@@ -1,0 +1,49 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A utility-first CSS framework for rapidly building fluid websites for modern browsers",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "commit": "git-cz",
+    "new": "cross-env hygen new",
+    "dev": "yarn test:unit --watch",
+    "release": "lerna version",
+    "lint:styles": "stylelint **/*.{pcss,vue} --fix",
+    "test:unit": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.1.0",
+    "commitizen": "^4.1.2",
+    "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "hygen": "^6.0.4",
+    "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "prettier-config-standard": "^1.0.1",
+    "stylelint": "^13.6.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recess-order": "^2.0.4",
+    "stylelint-prettier": "^1.1.2"
+  }
+}

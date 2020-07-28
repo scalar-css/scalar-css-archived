@@ -1,0 +1,33 @@
+{
+  "name": "@scalar-css/scalar-css",
+  "version": "0.0.0",
+  "description": "A utility-first CSS framework for rapidly building fluid websites for modern browsers",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {},
+  "homepage": "https://www.scalar-css.com",
+  "repository": "https://github.com/scalar-css/scalar-css",
+  "bugs": "https://github.com/scalar-css/scalar-css/issues",
+  "author": {
+    "name": "Kether Saturnius",
+    "email": "iamkether@gmail.com",
+    "url": "https://www.k3th3r.com"
+  },
+  "keywords": [
+    "css",
+    "modular scale",
+    "typography",
+    "fluid web design",
+    "postcss",
+    "postcss-plugin",
+    "css utilities"
+  ],
+  "engines": {
+    "node": ">=12.11.0"
+  },
+  "devDependencies": {
+    "cosmiconfig": "^6.0.0",
+    "is-resolvable": "^1.1.0",
+    "postcss": "^7.0.32"
+  }
+}
