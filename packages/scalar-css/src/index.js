@@ -4,6 +4,7 @@ import isResolvable from 'is-resolvable'
 import { cosmiconfig } from 'cosmiconfig'
 
 import setup from './setup'
+import core from './core'
 
 const scalarName = 'scalar-css'
 
@@ -92,6 +93,9 @@ export default postcss.plugin(scalarName, (options = {}, config = {}) => {
   ctx.plugins = resolveOptions(css, options)
 
   return (css, result) => {
+    // Core needs to run before our other plugins run
+    core(ctx)(css)
+
     return ctx.plugins.reduce((promise, plugin) => {
       return promise.then(initializePlugin.bind(null, plugin, css, result, ctx))
     }, Promise.resolve())

@@ -6,7 +6,7 @@ import {
   remToPx
 } from './conversions'
 
-describe('util/conversions', () => {
+describe('src/util/conversions.js', () => {
   it('should convert pixels to a percent integer', () => {
     let expected = 100
     let actual = pxToPercent(16)
