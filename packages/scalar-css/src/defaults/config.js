@@ -13,8 +13,8 @@ export default {
       key: 'start',
       fontScaleId: 'minorThird',
       breakpointStartPx: 320,
-      baseFontSizePx: 14,
-      baseLineHeight: 1.4
+      baseFontSizePx: 16,
+      baseLineHeight: 1.5
     },
     {
       key: 'sm',

@@ -3,65 +3,124 @@ import defaultConfig from './defaults/config'
 import defaultFontScales from './defaults/fontScales'
 
 /**
+ * Set the base font size in pixels for the current screen
+ *
+ * @param {Object} screen
+ * @param {Object} prevScreen *
+ * @returns {Integer} the base font size in pixels
+ */
+export function setBaseFontSizePx(screen, prevScreen) {
+  if (screen.key === 'start' && !screen.baseFontSizePx) {
+    throw new Error(
+      `Invalid config for '${screen.key}' screen. You must provide a 'baseFontSizePx' value.`
+    )
+  }
+
+  return screen.baseFontSizePx
+    ? screen.baseFontSizePx
+    : prevScreen.baseFontSizePx
+}
+
+/**
+ * Set the base line height for the current screen
+ *
+ * @param {Object} screen
+ * @param {Object} prevScreen *
+ * @returns {Number} the base line height as a unitless number value
+ */
+export function setBaseLineHeight(screen, prevScreen) {
+  if (screen.key === 'start' && !screen.baseLineHeight) {
+    throw new Error(
+      `Invalid config for '${screen.key}' screen. You must provide a 'baseLineHeight' value.`
+    )
+  }
+
+  return screen.baseLineHeight
+    ? screen.baseLineHeight
+    : prevScreen.baseLineHeight
+}
+
+/**
+ * Set the vertical rhythm for the current screen
+ *
+ * If the user hasn't provided a custom vertical rhythm in a unitless
+ * number (`screen.verticalRhythm`), then we use half the baseline as a default.
+ *
+ * @param {Object} screen current screen *
+ * @returns {Number} the vertical rhythm in a unitless number value
+ */
+export function setVerticalRhythm(screen) {
+  return screen.verticalRhythm
+    ? screen.verticalRhythm
+    : screen.baseLineHeight / 2
+}
+
+/**
+ * Set the 'end' value for our current screen's range
+ *
+ * The 'end' screen is special because our site no longer scales upon
+ * hitting this breakpoint, so we set the start/end breakpoints for
+ * this screen to the same value
+ *
+ * @param {Object} screen
+ * @param {Object} nextScreen
+ * @returns {Integer} the end breakpoint value in pixels
+ */
+export function setBreakpointEndPx(screen, nextScreen) {
+  return screen.key === 'end'
+    ? screen.breakpointStartPx
+    : nextScreen.breakpointStartPx
+}
+
+/**
+ * Set the font scale for the current screen
+ *
+ * If the user hasn't specified their own modular scale value on the
+ * `screen.fontScale` value, we create it based on a modular scale
+ * id they provided (or use the value from the previous screen)
+ *
+ * @param {Object} screen
+ * @param {Object} prevScreen
+ * @returns {Number}
+ */
+export function setFontScale(screen, prevScreen) {
+  if (screen.fontScale) {
+    return screen.fontScale
+  }
+
+  if (screen.fontScaleId && !(screen.fontScaleId in defaultFontScales)) {
+    // @todo add reference URL to default modular scales
+    throw new Error(
+      `Invalid font scale settings for '${screen.key}'. You must either provide a 'modularScale' float value, or specify a 'modularScaleId' value that matches one of the default modular scales provided by Fluid CSS.`
+    )
+  }
+
+  return screen.fontScaleId && screen.fontScaleId in defaultFontScales
+    ? defaultFontScales[screen.fontScaleId]
+    : prevScreen.fontScale
+}
+
+/**
  * Finalize the screen properties by duplicating/merging a few values
  * to allow easier access to properties for calculation purposes in
  * other areas of the framework. If a screen does not have new/existing
  * values set, then we re-use the values from the previous screen.
  *
- * 1. If the user hasn't provided a custom vertical rhythm in a unitless
- *    number (`screen.verticalRhythm`), then we use the value provided in
- *    PX. If neither is provided, we use half the baseline as a default.
- * 2. The 'end' screen is special because our site no longer scales upon
- *    hitting this breakpoint, so we set the start/end breakpoints for
- *    this screen to the same value
- * 3. If the user hasn't specified their own modular scale value on the
- *    `screen.modularScale` value, we create it based on a modular scale
- *    id they provided (or use the value from the previous screen)
- *
  * @param {Object} config
+ * @returns {Object}
  */
-function finalizeScreens(config) {
+export function finalizeScreens(config) {
   config.screens.forEach((screen, index) => {
     const nextScreen = config.screens[index + 1]
     const prevScreen = index !== 0 ? config.screens[index - 1] : null
 
-    screen.baseFontSizePx = screen.baseFontSizePx
-      ? screen.baseFontSizePx
-      : prevScreen.baseFontSizePx
-    screen.baseLineHeight = screen.baseLineHeight
-      ? screen.baseLineHeight
-      : prevScreen.baseLineHeight
+    screen.baseFontSizePx = setBaseFontSizePx(screen, prevScreen)
+    screen.baseLineHeight = setBaseLineHeight(screen, prevScreen)
+    screen.verticalRhythm = setVerticalRhythm(screen)
+    screen.breakpointEndPx = setBreakpointEndPx(screen, nextScreen)
+    screen.fontScale = setFontScale(screen, prevScreen)
     screen.baseLineHeightPx = screen.baseLineHeight * screen.baseFontSizePx
-
-    /* 1 */
-    if (screen.verticalRhythm) {
-      screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
-    } else if (screen.verticalRhythmPx) {
-      screen.verticalRhythm = screen.verticalRhythmPx / screen.baseFontSizePx
-    } else {
-      screen.verticalRhythm = screen.baseLineHeight / 2
-      screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
-    }
-
-    /* 2 */
-    screen.breakpointEndPx =
-      screen.key === 'end'
-        ? screen.breakpointStartPx
-        : nextScreen.breakpointStartPx
-
-    /* 3 */
-    if (!screen.fontScale) {
-      if (screen.fontScaleId && screen.fontScaleId in defaultFontScales) {
-        screen.fontScale = defaultFontScales[screen.fontScaleId]
-      } else if (prevScreen.fontScale) {
-        screen.fontScale = prevScreen.fontScale
-      } else {
-        // @todo add reference URL to default modular scales
-        throw new Error(
-          `Invalid font scale settings for ${screen.key}. You must either provide a 'modularScale' float value, or specify a 'modularScaleId' value that matches one of the default modular scales provided by Fluid CSS.`
-        )
-      }
-    }
+    screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
   })
 
   return config
