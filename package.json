@@ -1,6 +1,7 @@
 {
   "name": "@scalar-css/monorepo",
   "version": "0.0.0",
+  "private": true,
   "description": "A utility-first CSS framework for rapidly building fluid websites for modern browsers",
   "license": "MIT",
   "workspaces": [
@@ -11,6 +12,7 @@
     "bootstrap": "lerna bootstrap --use-workspaces",
     "commit": "git-cz",
     "new": "cross-env hygen new",
+    "postcss": "",
     "dev": "yarn test:unit --watch",
     "release": "lerna version",
     "lint:styles": "stylelint **/*.{pcss,vue} --fix",

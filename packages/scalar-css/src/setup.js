@@ -1,3 +1,5 @@
+import postcss from 'postcss'
+
 import { merge } from './util/helpers'
 import defaultConfig from './defaults/config'
 import defaultFontScales from './defaults/fontScales'
@@ -101,6 +103,22 @@ export function setFontScale(screen, prevScreen) {
 }
 
 /**
+ * Generate a new root css node to attach to our context object. This node
+ * is used to insert our generated utility classes and css variables directly
+ * from our plugins so that all of the final CSS is output in a single
+ * bundle that is organized by screen
+ *
+ * @param {Object} screen
+ */
+export function setRootCSSNode(screen) {
+  const root = postcss.root({ after: '\n' })
+
+  return screen.key === 'start'
+    ? root.append(':root {}')
+    : root.append(postcss.parse(`@above ${screen.key} {\n:root {}\n}`))
+}
+
+/**
  * Finalize the screen properties by duplicating/merging a few values
  * to allow easier access to properties for calculation purposes in
  * other areas of the framework. If a screen does not have new/existing
@@ -119,6 +137,7 @@ export function finalizeScreens(config) {
     screen.verticalRhythm = setVerticalRhythm(screen)
     screen.breakpointEndPx = setBreakpointEndPx(screen, nextScreen)
     screen.fontScale = setFontScale(screen, prevScreen)
+    screen.rootNode = setRootCSSNode(screen)
     screen.baseLineHeightPx = screen.baseLineHeight * screen.baseFontSizePx
     screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
   })

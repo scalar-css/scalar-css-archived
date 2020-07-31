@@ -90,14 +90,18 @@ function resolveOptions(css, options) {
 
 export default postcss.plugin(scalarName, (options = {}, config = {}) => {
   const ctx = setup(options)
-  ctx.plugins = resolveOptions(css, options)
 
   return (css, result) => {
+    // ctx.plugins = resolveOptions(css, options)
     // Core needs to run before our other plugins run
     core(ctx)(css)
 
-    return ctx.plugins.reduce((promise, plugin) => {
-      return promise.then(initializePlugin.bind(null, plugin, css, result, ctx))
-    }, Promise.resolve())
+    // return ctx.plugins.reduce((promise, plugin) => {
+    //   return promise.then(initializePlugin.bind(null, plugin, css, result, ctx))
+    // }, Promise.resolve())
+
+    return ctx.screens.forEach(screen => {
+      css.append(screen.rootNode.toString())
+    })
   }
 })

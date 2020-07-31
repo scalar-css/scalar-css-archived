@@ -4,6 +4,7 @@ import {
   setFontScale,
   setVerticalRhythm,
   setBreakpointEndPx,
+  setRootCSSNode,
   default as setup
 } from './setup'
 
@@ -197,5 +198,31 @@ describe('src/setup.js', () => {
     expect(actual.currentScreen.key).toBe('start')
     expect(actual.defaultScreenKey).toBe('start')
     expect(Object.keys(actual.screensByKey).length).toBe(4)
+  })
+
+  it('should properly generate the right root node', () => {
+    const startScreen = {
+      key: 'start'
+    }
+    const mdScreen = {
+      key: 'md'
+    }
+
+    let actual = setRootCSSNode(startScreen)
+    expect(actual.type).toBe('root')
+    expect(actual.nodes.length).toBe(1)
+    expect(actual.nodes[0].type).toBe('rule')
+    expect(actual.nodes[0].selector).toBe(':root')
+
+    actual = setRootCSSNode(mdScreen)
+    const atRule = actual.nodes[0]
+    expect(actual.type).toBe('root')
+    expect(actual.nodes.length).toBe(1)
+    expect(atRule.type).toBe('atrule')
+    expect(atRule.name).toBe('above')
+    expect(atRule.params).toBe('md')
+    expect(atRule.nodes.length).toBe(1)
+    expect(atRule.nodes[0].type).toBe('rule')
+    expect(atRule.nodes[0].selector).toBe(':root')
   })
 })
