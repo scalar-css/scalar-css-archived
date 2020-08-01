@@ -1,0 +1,57 @@
+:root {
+  --line-thickness: 1px;
+  /* Baseline */
+  --baseline-color: hsla(0, 100%, 100%, 0.1);
+  --background-baseline: repeating-linear-gradient(
+    to bottom,
+    var(--baseline-color),
+    var(--baseline-color) var(--line-thickness),
+    transparent var(--line-thickness),
+    transparent var(--baseline)
+  );
+  --background-baseline-columns: repeating-linear-gradient(
+    to right,
+    var(--baseline-color),
+    var(--baseline-color) var(--line-thickness),
+    transparent var(--line-thickness),
+    transparent var(--baseline)
+  );
+  /* Vertical Rhythm */
+  --rhythm-color: hsla(255, 100%, 100%, 0.05);
+  --rhythm-column-color: hsla(255, 100%, 100%, 0.05);
+  --background-rhythm: repeating-linear-gradient(
+    to bottom,
+    var(--rhythm-color),
+    var(--rhythm-color) var(--line-thickness),
+    transparent var(--line-thickness),
+    transparent var(--rhythm)
+  );
+  --background-rhythm-columns: repeating-linear-gradient(
+    to right,
+    var(--rhythm-column-color),
+    var(--rhythm-column-color) var(--line-thickness),
+    transparent var(--line-thickness),
+    transparent var(--rhythm)
+  );
+}
+
+html {
+  position: relative;
+}
+
+html::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  min-height: 100vh;
+  content: '';
+  background-image: var(--background-rhythm), var(--background-baseline);
+  background-size: 100%;
+  background-position: 0 0;
+  z-index: 1000;
+  pointer-events: none;
+}

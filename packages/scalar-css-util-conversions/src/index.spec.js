@@ -1,10 +1,4 @@
-import {
-  rounded,
-  pxToPercent,
-  percentToPx,
-  pxToRem,
-  remToPx
-} from './conversions'
+import { rounded, pxToPercent, percentToPx, pxToRem, remToPx } from '.'
 
 describe('src/util/conversions.js', () => {
   it('should convert pixels to a percent integer', () => {

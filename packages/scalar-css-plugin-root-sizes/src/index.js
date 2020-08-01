@@ -1,5 +1,5 @@
 import postcss from 'postcss'
-import { pxToPercent } from '../util/conversions'
+import { pxToPercent } from '@scalar-css/scalar-css-util-conversions'
 
 /**
  * Generate the root font size that is used as a scale parameter
@@ -48,20 +48,19 @@ export function generateRootFontSizeCSS(source, screen, prev) {
       value: fontSize
     })
 
-  const htmlRoot =
-    screen.key === 'start' ? screen.rootNode : screen.rootNode.nodes[0]
-  const variablesRule = htmlRoot.nodes[0]
-  variablesRule
-    .append({ prop: '--baseline', value: `${screen.baseLineHeight}rem` })
-    .append({ prop: '--rhythm', value: `${screen.verticalRhythm}rem` })
-  htmlRoot.append(html)
+  screen.htmlRoot.append(html)
+  screen.varsRoot
+    .append({ prop: '--baseline', value: screen.baseLineHeight })
+    .append({ prop: '--rhythm', value: screen.verticalRhythm })
+    .append({ prop: '--baseline-rem', value: `calc(var(--baseline) * 1rem)` })
+    .append({ prop: '--rhythm-rem', value: `calc(var(--rhythm) * 1rem)` })
 }
 
-export default function rootSizes(ctx) {
+export default postcss.plugin('scalar-css-plugin-root-sizes', ctx => {
   return css => {
     ctx.screens.forEach((screen, index) => {
       const prev = screen.key === 'end' ? ctx.screens[index - 1] : null
       generateRootFontSizeCSS(css.source, screen, prev)
     })
   }
-}
+})

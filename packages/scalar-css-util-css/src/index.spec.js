@@ -1,8 +1,8 @@
-import { loadCssFile, processParams } from './css'
+import { loadCssFile, processParams } from '.'
 
 describe('src/util/css.js', () => {
   it('should properly load a css file as a postcss object', () => {
-    const actual = loadCssFile('reset.css')
+    const actual = loadCssFile('fixture.css', 'fixtures')
     expect(actual.type).toBe('root')
     expect(actual.source).toBeTruthy()
   })

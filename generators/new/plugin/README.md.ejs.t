@@ -1,4 +1,4 @@
 ---
-to: "packages/plugin-<%= h.changeCase.paramCase(name) %>/README.md"
+to: "packages/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>/README.md"
 ---
-# @scalar-css/plugin-<%= h.changeCase.paramCase(name) %>
+# @scalar-css/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>

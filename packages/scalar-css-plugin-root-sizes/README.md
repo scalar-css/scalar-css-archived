@@ -1,0 +1,1 @@
+# @scalar-css/plugin-root-sizes

@@ -1,6 +1,3 @@
----
-to: "packages/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>/LICENSE"
----
 MIT License
 
 Copyright (c) Kether Saturnius <iamkether@gmail.com>

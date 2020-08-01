@@ -36,7 +36,7 @@ describe('src/setup.js', () => {
     expect(() => {
       setFontScale(screen, null)
     }).toThrowError(
-      `Invalid font scale settings for '${screen.key}'. You must either provide a 'modularScale' float value, or specify a 'modularScaleId' value that matches one of the default modular scales provided by Fluid CSS.`
+      `Invalid font scale settings for '${screen.key}'. You must either provide a 'modularScale' float value, or specify a 'modularScaleId' value that matches one of the default modular scales provided by Scalar CSS.`
     )
   })
 

@@ -1,8 +1,8 @@
 ---
-to: "packages/plugin-<%= h.changeCase.paramCase(name) %>/package.json"
+to: "packages/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>/package.json"
 ---
 {
-  "name": "@scalar-css/plugin-<%= h.changeCase.paramCase(name) %>",
+  "name": "@scalar-css/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",

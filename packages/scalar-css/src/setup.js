@@ -93,7 +93,7 @@ export function setFontScale(screen, prevScreen) {
   if (screen.fontScaleId && !(screen.fontScaleId in defaultFontScales)) {
     // @todo add reference URL to default modular scales
     throw new Error(
-      `Invalid font scale settings for '${screen.key}'. You must either provide a 'modularScale' float value, or specify a 'modularScaleId' value that matches one of the default modular scales provided by Fluid CSS.`
+      `Invalid font scale settings for '${screen.key}'. You must either provide a 'modularScale' float value, or specify a 'modularScaleId' value that matches one of the default modular scales provided by Scalar CSS.`
     )
   }
 
@@ -138,18 +138,21 @@ export function finalizeScreens(config) {
     screen.breakpointEndPx = setBreakpointEndPx(screen, nextScreen)
     screen.fontScale = setFontScale(screen, prevScreen)
     screen.rootNode = setRootCSSNode(screen)
+    screen.htmlRoot =
+      screen.key === 'start' ? screen.rootNode : screen.rootNode.nodes[0]
+    screen.varsRoot = screen.htmlRoot.nodes[0]
     screen.baseLineHeightPx = screen.baseLineHeight * screen.baseFontSizePx
     screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
   })
 
   return config
 }
+
 /**
- * Take our Fluid config and build out our custom context that will
- * be used for calculations and intepretations throughout the rest
- * of the framework
+ * Take our config and build out our custom context that will
+ * be used for calculations throughout the rest of the framework
  *
- * @param {Object} defaultConfig Fluid's default config
+ * @param {Object} defaultConfig Scalar's default config
  * @param {Object} userConfig User's configuration
  *
  * @returns {Object} ctx Finalized context that is used throughout framework
