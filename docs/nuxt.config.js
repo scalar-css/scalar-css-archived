@@ -1,6 +1,10 @@
 export default {
   components: true,
+
+  css: ['~/scalar.pcss'],
+
   modules: ['@nuxt/content'],
+
   build: {
     postcss: {
       plugins: {

@@ -5,7 +5,7 @@ const debugTypes = ['rhythm']
 
 export default postcss.plugin('scalar-css-plugin-debug', (ctx, options) => {
   return css => {
-    css.walkAtRules('debug', atRule => {
+    css.walkAtRules('scalar-debug', atRule => {
       const debugType = atRule.params
 
       if (!debugTypes.includes(debugType)) {

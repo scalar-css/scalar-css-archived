@@ -1,3 +1,4 @@
+import fs from 'fs'
 import path from 'path'
 import postcss from 'postcss'
 import isResolvable from 'is-resolvable'
@@ -108,11 +109,31 @@ export default postcss.plugin(scalarName, (config = {}) => {
   return async (css, result) => {
     const plugins = await resolveConfig(config, css, result)
 
-    plugins.reduce(async (prevPromise, plugin) => {
-      return prevPromise.then(
-        initializePlugin.bind(null, ctx, plugin, css, result)
-      )
-    }, Promise.resolve())
+    css.walkAtRules('scalar', atRule => {
+      if (atRule.params === 'reset') {
+        const resetPath = path.resolve(__dirname, 'defaults/reset.css')
+        atRule.before(
+          postcss.parse(fs.readFileSync(resetPath, 'utf8'), { from: resetPath })
+        )
+        atRule.remove()
+      }
+
+      if (atRule.params === 'debug') {
+        const debugPath = path.resolve(__dirname, 'defaults/debug.css')
+        atRule.before(
+          postcss.parse(fs.readFileSync(debugPath, 'utf8'), { from: debugPath })
+        )
+        atRule.remove()
+      }
+
+      if (atRule.params === 'utilities') {
+        plugins.reduce(async (prevPromise, plugin) => {
+          return prevPromise.then(
+            initializePlugin.bind(null, ctx, plugin, css, result)
+          )
+        }, Promise.resolve())
+      }
+    })
 
     ctx.screens.forEach(screen => {
       css.append(screen.rootNode.toString())

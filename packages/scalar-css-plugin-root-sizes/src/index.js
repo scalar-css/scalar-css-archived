@@ -60,9 +60,12 @@ export default postcss.plugin(
   'scalar-css-plugin-root-sizes',
   (ctx, options) => {
     return css => {
-      ctx.screens.forEach((screen, index) => {
-        const prev = screen.key === 'end' ? ctx.screens[index - 1] : null
-        generateRootFontSizeCSS(css.source, screen, prev)
+      css.walkAtRules('scalar-root-sizes', atRule => {
+        ctx.screens.forEach((screen, index) => {
+          const prev = screen.key === 'end' ? ctx.screens[index - 1] : null
+          generateRootFontSizeCSS(css.source, screen, prev)
+        })
+        atRule.remove()
       })
     }
   }
