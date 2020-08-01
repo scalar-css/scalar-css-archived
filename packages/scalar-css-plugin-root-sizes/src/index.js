@@ -56,11 +56,14 @@ export function generateRootFontSizeCSS(source, screen, prev) {
     .append({ prop: '--rhythm-rem', value: `calc(var(--rhythm) * 1rem)` })
 }
 
-export default postcss.plugin('scalar-css-plugin-root-sizes', ctx => {
-  return css => {
-    ctx.screens.forEach((screen, index) => {
-      const prev = screen.key === 'end' ? ctx.screens[index - 1] : null
-      generateRootFontSizeCSS(css.source, screen, prev)
-    })
+export default postcss.plugin(
+  'scalar-css-plugin-root-sizes',
+  (ctx, options) => {
+    return css => {
+      ctx.screens.forEach((screen, index) => {
+        const prev = screen.key === 'end' ? ctx.screens[index - 1] : null
+        generateRootFontSizeCSS(css.source, screen, prev)
+      })
+    }
   }
-})
+)

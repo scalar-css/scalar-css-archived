@@ -22,7 +22,9 @@
     "nuxt": "^2.14.0"
   },
   "devDependencies": {
-    "@scalar-css/scalar-css": "0.0.0"
+    "@babel/preset-env": "^7.10.4",
+    "@scalar-css/scalar-css": "0.0.0",
+    "@scalar-css/scalar-css-preset-minimal": "0.0.0"
   },
   "keywords": [
     "css",

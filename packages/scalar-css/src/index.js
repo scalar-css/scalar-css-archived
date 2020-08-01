@@ -4,9 +4,29 @@ import isResolvable from 'is-resolvable'
 import { cosmiconfig } from 'cosmiconfig'
 
 import setup from './setup'
-import core from './core'
 
 const scalarName = 'scalar-css'
+
+function initializePlugin(ctx, plugin, css, result) {
+  if (Array.isArray(plugin)) {
+    const [processor, opts] = plugin
+
+    if (
+      typeof opts === 'undefined' ||
+      (typeof opts === 'object' && !opts.exclude) ||
+      (typeof opts === 'boolean' && opts === true)
+    ) {
+      return Promise.resolve(processor(ctx, opts)(css, result))
+    }
+  } else {
+    return Promise.resolve(plugin(ctx)(css, result))
+  }
+
+  // @TODO: double-check this
+  console.log('--- THIS SHOULD NEVER EXECUTE')
+  // // Handle excluded plugins
+  // return Promise.resolve()
+}
 
 /**
  *
@@ -29,24 +49,18 @@ function resolvePreset(preset) {
     options = {}
   }
 
-  // Provide an alias for the default preset, as it is built-in
-  if (fn === 'default') {
-    return Promise.resolve(
-      require('lerna:scalar-css-preset-default')(options).plugins
-    )
-  }
-
-  // Otherwise, try loading a preset from node_modules
+  // Try loading a preset from node_modules
   if (isResolvable(fn)) {
-    return Promise.resolve(require(fn)(options).plugins)
+    return Promise.resolve(require(fn).default(options).plugins)
   }
 
-  const sugar = `scalar-css-preset-${fn}`
+  // Otherwise, try adding some syntactic sugar
+  const sugar = `@scalar-css/scalar-css-preset-${fn}`
   if (isResolvable(sugar)) {
-    return Promise.resolve(require(sugar)(options).plugins)
+    return Promise.resolve(require(sugar).default(options).plugins)
   }
 
-  // If all else fails, we probably have a typo in the config somewhere
+  // If those fail, we probably have a typo in the config somewhere
   throw new Error(
     `Cannot load preset "${fn}". Please check your configuration for errors and try again.`
   )
@@ -60,18 +74,18 @@ function resolvePreset(preset) {
  * @param {*} css
  * @param {*} options
  */
-function resolveOptions(css, options) {
-  if (options.preset) {
-    return resolvePreset(options.preset)
+async function resolveConfig(config, css, result) {
+  if (config.preset) {
+    return resolvePreset(config.preset)
   }
 
   const inputFile = css.source && css.source.input && css.source.input.file
   let searchPath = inputFile ? path.dirname(inputFile) : process.cwd()
   let configPath = null
 
-  if (options.configFile) {
+  if (config.configFile) {
     searchPath = null
-    configPath = path.resolve(process.cwd(), options.configFile)
+    configPath = path.resolve(process.cwd(), config.configFile)
   }
 
   const configExplorer = cosmiconfig(scalarName)
@@ -81,26 +95,26 @@ function resolveOptions(css, options) {
 
   return searchForConfig.then(config => {
     if (config === null) {
-      return resolvePreset('default')
+      return resolvePreset('minimal')
     }
 
     return resolvePreset(config.config.preset || config.config)
   })
 }
 
-export default postcss.plugin(scalarName, (options = {}, config = {}) => {
-  const ctx = setup(options)
+export default postcss.plugin(scalarName, (config = {}) => {
+  const ctx = setup(config)
 
-  return (css, result) => {
-    // ctx.plugins = resolveOptions(css, options)
-    // Core needs to run before our other plugins run
-    core(ctx)(css)
+  return async (css, result) => {
+    const plugins = await resolveConfig(config, css, result)
 
-    // return ctx.plugins.reduce((promise, plugin) => {
-    //   return promise.then(initializePlugin.bind(null, plugin, css, result, ctx))
-    // }, Promise.resolve())
+    plugins.reduce(async (prevPromise, plugin) => {
+      return prevPromise.then(
+        initializePlugin.bind(null, ctx, plugin, css, result)
+      )
+    }, Promise.resolve())
 
-    return ctx.screens.forEach(screen => {
+    ctx.screens.forEach(screen => {
       css.append(screen.rootNode.toString())
     })
   }

@@ -3,7 +3,7 @@ import { loadCssFile } from '@scalar-css/scalar-css-util-css'
 
 const debugTypes = ['rhythm']
 
-export default postcss.plugin('scalar-css-plugin-debug', ctx => {
+export default postcss.plugin('scalar-css-plugin-debug', (ctx, options) => {
   return css => {
     css.walkAtRules('debug', atRule => {
       const debugType = atRule.params
