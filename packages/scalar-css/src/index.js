@@ -8,7 +8,7 @@ import setup from './setup'
 
 const scalarName = 'scalar-css'
 
-function initializePlugin(ctx, plugin, css, result) {
+function initializePlugin(ctx, plugin, source) {
   if (Array.isArray(plugin)) {
     const [processor, opts] = plugin
 
@@ -17,16 +17,11 @@ function initializePlugin(ctx, plugin, css, result) {
       (typeof opts === 'object' && !opts.exclude) ||
       (typeof opts === 'boolean' && opts === true)
     ) {
-      return Promise.resolve(processor(ctx, opts)(css, result))
+      return Promise.resolve(processor(ctx, opts, source))
     }
-  } else {
-    return Promise.resolve(plugin(ctx)(css, result))
   }
 
-  // @TODO: double-check this
-  console.log('--- THIS SHOULD NEVER EXECUTE')
-  // // Handle excluded plugins
-  // return Promise.resolve()
+  return Promise.resolve(plugin(ctx, opts, source))
 }
 
 /**
@@ -104,12 +99,11 @@ async function resolveConfig(config, css, result) {
 }
 
 export default postcss.plugin(scalarName, (config = {}) => {
-  const ctx = setup(config)
-
   return async (css, result) => {
+    const ctx = setup(config)
     const plugins = await resolveConfig(config, css, result)
 
-    css.walkAtRules('scalar', atRule => {
+    css.walkAtRules('scalar', async atRule => {
       if (atRule.params === 'reset') {
         const resetPath = path.resolve(__dirname, 'defaults/reset.css')
         atRule.before(
@@ -127,16 +121,15 @@ export default postcss.plugin(scalarName, (config = {}) => {
       }
 
       if (atRule.params === 'utilities') {
-        plugins.reduce(async (prevPromise, plugin) => {
-          return prevPromise.then(
-            initializePlugin.bind(null, ctx, plugin, css, result)
-          )
+        await plugins.reduce(async (prevPromise, plugin) => {
+          return prevPromise.then(initializePlugin(ctx, plugin, atRule.source))
         }, Promise.resolve())
+        atRule.remove()
       }
-    })
 
-    ctx.screens.forEach(screen => {
-      css.append(screen.rootNode.toString())
+      ctx.screens.forEach(screen => {
+        css.append(screen.rootNode.toString())
+      })
     })
   }
 })

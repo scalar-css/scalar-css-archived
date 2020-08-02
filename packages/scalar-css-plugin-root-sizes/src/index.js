@@ -35,7 +35,7 @@ export function calculateRootFontSize(
     : `clamp(${rootSizeStart}%, ${rootSizeVW}vw, ${rootSizeEnd}%)`
 }
 
-export function generateRootFontSizeCSS(source, screen, prev) {
+export function generateRootFontSizeCSS(screen, prev, source) {
   const fontSize = calculateRootFontSize(screen, prev)
   const html = postcss
     .rule({ selector: 'html', source })
@@ -56,17 +56,9 @@ export function generateRootFontSizeCSS(source, screen, prev) {
     .append({ prop: '--rhythm-rem', value: `calc(var(--rhythm) * 1rem)` })
 }
 
-export default postcss.plugin(
-  'scalar-css-plugin-root-sizes',
-  (ctx, options) => {
-    return css => {
-      css.walkAtRules('scalar-root-sizes', atRule => {
-        ctx.screens.forEach((screen, index) => {
-          const prev = screen.key === 'end' ? ctx.screens[index - 1] : null
-          generateRootFontSizeCSS(css.source, screen, prev)
-        })
-        atRule.remove()
-      })
-    }
-  }
-)
+export default function rootSizes(ctx, options, source) {
+  ctx.screens.forEach((screen, index) => {
+    const prev = screen.key === 'end' ? ctx.screens[index - 1] : null
+    generateRootFontSizeCSS(screen, prev, source)
+  })
+}
