@@ -1,15 +1,14 @@
 import { calculateRootFontSize, default as rootSizes } from './'
 import setup from '../../scalar-css/src/setup'
-import defaultConfig from '../../scalar-css/src/defaults/config'
 
-const ctx = setup(defaultConfig)
+const ctx = setup({})
 
-const startScreen = ctx.screens[0]
-const smScreen = ctx.screens[1]
-const mdScreen = ctx.screens[2]
-const lgScreen = ctx.screens[3]
-const xlScreen = ctx.screens[4]
-const endScreen = ctx.screens[5]
+const startScreen = ctx.theme.screens[0]
+const smScreen = ctx.theme.screens[1]
+const mdScreen = ctx.theme.screens[2]
+const lgScreen = ctx.theme.screens[3]
+const xlScreen = ctx.theme.screens[4]
+const endScreen = ctx.theme.screens[5]
 
 describe('@scalar-css/scalar-css-plugin-root-sizes', () => {
   it('should generate our start root size properly', () => {
@@ -50,7 +49,7 @@ describe('@scalar-css/scalar-css-plugin-root-sizes', () => {
 
   it('should properly generate the html/css properly', () => {
     rootSizes(ctx)
-    let rootNode = ctx.screens[0].rootNode.toString()
+    let rootNode = ctx.theme.screens[0].rootNode.toString()
     let expected = `:root {
     --baseline: 1.5;
     --rhythm: 0.75;
@@ -62,7 +61,7 @@ html {
     expect(rootNode).toBe(expected)
 
     // 'md' screen
-    rootNode = ctx.screens[2].rootNode.toString()
+    rootNode = ctx.theme.screens[2].rootNode.toString()
     expected = `@above md {
 :root {
 --baseline: 1.5;
@@ -77,7 +76,7 @@ font-size: clamp(100%, 2.083333333333333vw, 129.16666666666666%)
     expect(rootNode).toBe(expected)
 
     // 'end' screen
-    rootNode = ctx.screens[5].rootNode.toString()
+    rootNode = ctx.theme.screens[5].rootNode.toString()
     expected = `@above end {
 :root {
 --baseline: 1.5;

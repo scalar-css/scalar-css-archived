@@ -142,62 +142,64 @@ describe('src/setup.js', () => {
   it('should properly generate the context from an empty config', () => {
     let actual = setup()
 
-    const start = actual.screens[0]
+    const start = actual.theme.screens[0]
     expect(start.baseLineHeightPx).toBe(24)
     expect(start.verticalRhythmPx).toBe(12)
 
-    const lg = actual.screens[3]
+    const lg = actual.theme.screens[3]
     expect(lg.baseLineHeightPx).toBe(24)
     expect(lg.verticalRhythmPx).toBe(12)
     expect(lg.fontScaleId).toBe('perfectFourth')
     expect(lg.fontScale).toBe(1.333)
     expect(lg.breakpointEndPx).toBe(1200)
 
-    expect(actual.currentScreen.key).toBe('start')
-    expect(actual.defaultScreenKey).toBe('start')
-    expect(Object.keys(actual.screensByKey).length).toBe(6)
+    expect(actual.theme.currentScreen.key).toBe('start')
+    expect(actual.theme.defaultScreenKey).toBe('start')
+    expect(Object.keys(actual.theme.screensByKey).length).toBe(6)
   })
 
   it('should properly generate the context from an existing config', () => {
     const config = {
-      screens: [
-        {
-          key: 'start',
-          fontScaleId: 'minorThird',
-          breakpointStartPx: 320,
-          baseFontSizePx: 14,
-          baseLineHeight: 1.4
-        },
-        {
-          key: 'sm',
-          breakpointStartPx: 576
-        },
-        {
-          key: 'md',
-          breakpointStartPx: 768,
-          baseFontSizePx: 16,
-          baseLineHeight: 1.5,
-          verticalRhythm: 1
-        },
-        {
-          key: 'end',
-          breakpointStartPx: 1440
-        }
-      ]
+      theme: {
+        screens: [
+          {
+            key: 'start',
+            fontScaleId: 'minorThird',
+            breakpointStartPx: 320,
+            baseFontSizePx: 14,
+            baseLineHeight: 1.4
+          },
+          {
+            key: 'sm',
+            breakpointStartPx: 576
+          },
+          {
+            key: 'md',
+            breakpointStartPx: 768,
+            baseFontSizePx: 16,
+            baseLineHeight: 1.5,
+            verticalRhythm: 1
+          },
+          {
+            key: 'end',
+            breakpointStartPx: 1440
+          }
+        ]
+      }
     }
     let actual = setup(config)
 
-    const start = actual.screens[0]
+    const start = actual.theme.screens[0]
     expect(start.baseLineHeightPx).toBe(19.599999999999998)
     expect(start.verticalRhythmPx).toBe(9.799999999999999)
 
-    const md = actual.screens[2]
+    const md = actual.theme.screens[2]
     expect(md.baseLineHeightPx).toBe(24)
     expect(md.verticalRhythmPx).toBe(16)
 
-    expect(actual.currentScreen.key).toBe('start')
-    expect(actual.defaultScreenKey).toBe('start')
-    expect(Object.keys(actual.screensByKey).length).toBe(4)
+    expect(actual.theme.currentScreen.key).toBe('start')
+    expect(actual.theme.defaultScreenKey).toBe('start')
+    expect(Object.keys(actual.theme.screensByKey).length).toBe(4)
   })
 
   it('should properly generate the right root node', () => {

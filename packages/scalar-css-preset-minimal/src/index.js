@@ -9,13 +9,17 @@
  */
 
 import scalarRootSizes from '@scalar-css/scalar-css-plugin-root-sizes'
+import scalarType from '@scalar-css/scalar-css-plugin-type'
 
 const defaultOptions = {}
 
 export default function presetDefault(opts = {}) {
   const options = Object.assign({}, defaultOptions, opts)
 
-  const plugins = [[scalarRootSizes, options.rootSizes]]
+  const plugins = [
+    [scalarRootSizes, options.rootSizes],
+    [scalarType, options.type]
+  ]
 
   return { plugins }
 }

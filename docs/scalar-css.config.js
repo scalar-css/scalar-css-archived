@@ -1,3 +1,5 @@
 module.exports = {
-  preset: 'minimal'
+  preset: 'minimal',
+  options: {},
+  theme: {}
 }

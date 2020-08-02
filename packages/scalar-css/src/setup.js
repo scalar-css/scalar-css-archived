@@ -128,9 +128,9 @@ export function setRootCSSNode(screen) {
  * @returns {Object}
  */
 export function finalizeScreens(config) {
-  config.screens.forEach((screen, index) => {
-    const nextScreen = config.screens[index + 1]
-    const prevScreen = index !== 0 ? config.screens[index - 1] : null
+  config.theme.screens.forEach((screen, index) => {
+    const nextScreen = config.theme.screens[index + 1]
+    const prevScreen = index !== 0 ? config.theme.screens[index - 1] : null
 
     screen.baseFontSizePx = setBaseFontSizePx(screen, prevScreen)
     screen.baseLineHeight = setBaseLineHeight(screen, prevScreen)
@@ -160,14 +160,15 @@ export function finalizeScreens(config) {
 export default function setup(userConfig = {}) {
   const config = finalizeScreens(merge(userConfig, defaultConfig))
 
-  const ctx = {
-    ...config,
-    currentScreen: config.screens[0],
-    defaultScreenKey: config.screens[0].key
-  }
+  const ctx = merge(config, {
+    theme: {
+      currentScreen: config.theme.screens[0],
+      defaultScreenKey: config.theme.screens[0].key
+    }
+  })
 
   // Provide additional, easy access to screen values by their key
-  ctx.screensByKey = config.screens.reduce((available, screen) => {
+  ctx.theme.screensByKey = config.theme.screens.reduce((available, screen) => {
     return {
       ...available,
       [screen.key]: screen
