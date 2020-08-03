@@ -40,7 +40,6 @@ export function generateCSS(screen, prev, source) {
   }
 
   screen.htmlRoot.append(containerClass)
-  console.log(screen.rootNode.toString())
 }
 
 export default function container(ctx, options, source) {

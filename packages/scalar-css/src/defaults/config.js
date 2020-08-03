@@ -9,7 +9,7 @@ export default {
         baseFontSizePx: 16,
         baseLineHeight: 1.5,
         container: {
-          padding: 20
+          padding: '1vr'
         }
       },
       {

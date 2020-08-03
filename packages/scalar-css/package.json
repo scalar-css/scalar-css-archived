@@ -32,5 +32,8 @@
     "cosmiconfig": "^6.0.0",
     "is-resolvable": "^1.1.0",
     "postcss": "^7.0.32"
+  },
+  "dependencies": {
+    "postcss-functions": "^3.0.0"
   }
 }

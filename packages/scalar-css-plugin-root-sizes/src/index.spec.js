@@ -1,5 +1,5 @@
 import { calculateRootFontSize, default as rootSizes } from './'
-import setup from '../../scalar-css/src/setup'
+import setup from '../../scalar-css/src/core/setup'
 
 const ctx = setup({})
 
@@ -62,7 +62,7 @@ html {
 
     // 'md' screen
     rootNode = ctx.theme.screens[2].rootNode.toString()
-    expected = `@above md {
+    expected = `@screen md {
 :root {
 --baseline: 1.5;
 --rhythm: 0.75;
@@ -77,7 +77,7 @@ font-size: clamp(100%, 2.083333333333333vw, 129.16666666666666%)
 
     // 'end' screen
     rootNode = ctx.theme.screens[5].rootNode.toString()
-    expected = `@above end {
+    expected = `@screen end {
 :root {
 --baseline: 1.5;
 --rhythm: 0.75;
