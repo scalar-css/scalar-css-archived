@@ -107,4 +107,28 @@ function generateFontValues(screen, params, capHeight) {
   }
 }
 
-export default function type(ctx, options, source) {}
+export function createBaseStyleRule() {
+  return postcss
+    .rule({ selector: '[class*="type-"]' })
+    .append({ prop: 'font-size', value: 'var(--fs)' })
+    .append({ prop: 'line-height', value: 'var(--lh)' })
+    .append({ prop: 'margin-bottom', value: 'var(--mb)' })
+    .append({ prop: 'padding-top', value: 'var(--pt)' })
+}
+
+export function generateCSS(fontSizes, screen, source) {
+  Object.entries(fontSizes).forEach(fs => {
+    const [modularStep, fontFamily] = fs
+  })
+}
+
+export default function type(ctx, options, source) {
+  if (ctx.theme.fontSizes) {
+    ctx.theme.screens.forEach(screen => {
+      if (screen.key === 'start') {
+        screen.htmlRoot.append(createBaseStyleRule())
+      }
+      generateCSS(ctx.theme.fontSizes, screen, source)
+    })
+  }
+}

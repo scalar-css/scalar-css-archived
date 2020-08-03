@@ -1,14 +1,6 @@
 import postcss from 'postcss'
 import { scalarUnitConversion } from '@scalar-css/scalar-css-util-conversions'
 
-/**
- * .container
- *    --pr: var(--p-1);
- *    --pl: var(--p-1);
- *    --max-width: rem(900px);
- *    --margin:
- */
-
 export function createBaseStyleRule() {
   return postcss
     .rule({ selector: '[class*="container"]' })
@@ -20,10 +12,6 @@ export function createBaseStyleRule() {
 export function generateCSS(screen, prev, source) {
   const container = screen.container ? screen.container : prev.container
   const containerClass = postcss.rule({ selector: '.container', source })
-
-  if (screen.key === 'start') {
-    screen.htmlRoot.append(createBaseStyleRule())
-  }
 
   if (container.padding) {
     const paddingValue = scalarUnitConversion(container.padding)
@@ -48,6 +36,11 @@ export function generateCSS(screen, prev, source) {
 export default function container(ctx, options, source) {
   ctx.theme.screens.forEach((screen, index) => {
     const prev = screen.key !== 'start' ? ctx.theme.screens[index - 1] : null
+
+    if (screen.key === 'start') {
+      screen.htmlRoot.append(createBaseStyleRule())
+    }
+
     generateCSS(screen, prev, source)
   })
 }

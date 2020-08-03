@@ -1,6 +1,17 @@
 export default {
   options: {},
   theme: {
+    fontSizes: {
+      '-3': 'system',
+      '-2': 'system',
+      '-1': 'system',
+      '0': 'system',
+      '1': 'georgia',
+      '2': 'georgia',
+      '3': 'georgia',
+      '4': 'georgia',
+      '5': 'georgia'
+    },
     screens: [
       {
         key: 'start',
