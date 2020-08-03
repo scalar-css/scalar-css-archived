@@ -1,3 +1,21 @@
+import { pxToRem } from '@scalar-css/scalar-css-util-conversions'
+
+function updateContext(ctx, screen) {
+  ctx.theme.currentScreen = {
+    ...ctx.theme.screensByKey[screen]
+  }
+}
+
+function resetContext(ctx) {
+  ctx.theme.currentScreen = ctx.theme.screensByKey[ctx.theme.defaultScreenKey]
+}
+
+function convertRemUnits(decl, baseFontSizePx) {
+  const pixelValue = decl.value.replace('rem(', '').replace('px)', '')
+  const newValue = pxToRem(pixelValue, baseFontSizePx)
+  decl.replaceWith({ prop: decl.prop, value: `${newValue}rem` })
+}
+
 export default function (ctx) {
   return css => {
     css.walkAtRules('screen', atRule => {
@@ -7,9 +25,23 @@ export default function (ctx) {
         )
       }
 
-      const breakpoint = ctx.theme.screensByKey[atRule.params].breakpointStartPx
+      const { breakpointStartPx, baseFontSizePx } = ctx.theme.screensByKey[
+        atRule.params
+      ]
+
+      updateContext(ctx, atRule.params)
       atRule.name = 'media'
-      atRule.params = `(min-width: ${breakpoint}px)`
+      atRule.params = `(min-width: ${breakpointStartPx}px)`
+
+      // Convert any rem units for this screen because rems are
+      // relative to the baseFontSize of the current screen
+      atRule.walkDecls(decl => {
+        if (decl.value.includes('rem(')) {
+          convertRemUnits(decl, baseFontSizePx)
+        }
+      })
+
+      resetContext(ctx)
     })
   }
 }

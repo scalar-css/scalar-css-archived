@@ -12,8 +12,7 @@ import { scalarUnitConversion } from '@scalar-css/scalar-css-util-conversions'
 export function createBaseStyleRule() {
   return postcss
     .rule({ selector: '[class*="container"]' })
-    .append({ prop: 'padding-left', value: 'var(--pl, 0)' })
-    .append({ prop: 'padding-right', value: 'var(--pr, 0)' })
+    .append({ prop: 'padding', value: 'var(--padding, 0)' })
     .append({ prop: 'max-width', value: 'var(--max-width, 100%)' })
     .append({ prop: 'margin', value: 'var(--margin, 0 auto)' })
 }
@@ -27,9 +26,8 @@ export function generateCSS(screen, prev, source) {
   }
 
   if (container.padding) {
-    containerClass
-      .append({ prop: '--pl', value: scalarUnitConversion(container.padding) })
-      .append({ prop: '--pr', value: scalarUnitConversion(container.padding) })
+    const paddingValue = scalarUnitConversion(container.padding)
+    containerClass.append({ prop: '--padding', value: `0 ${paddingValue}` })
   }
 
   if (container.maxWidth) {
@@ -37,6 +35,11 @@ export function generateCSS(screen, prev, source) {
       prop: '--max-width',
       value: scalarUnitConversion(container.maxWidth)
     })
+  }
+
+  if (container.margin) {
+    const marginValue = scalarUnitConversion(container.margin)
+    containerClass.append({ prop: '--margin', value: `0 ${marginValue}` })
   }
 
   screen.htmlRoot.append(containerClass)

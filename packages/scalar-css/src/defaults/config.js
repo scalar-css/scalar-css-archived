@@ -34,7 +34,8 @@ export default {
         fontScaleId: 'perfectFourth',
         container: {
           padding: '0',
-          maxWidth: 960
+          maxWidth: 960,
+          margin: 'auto'
         }
       },
       {
