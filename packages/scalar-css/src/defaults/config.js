@@ -1,43 +1,50 @@
 export default {
   options: {},
   theme: {
-    fonts: {
-      // body, header, code, body-and-header, all
-      all: {
-        key: '',
-        fontFamily: '"Helvetica Neue", Arial, sans-serif',
-        fontStack: 'helvetica',
-        capHeight: 0.5
-      }
-    },
     screens: [
       {
         key: 'start',
         fontScaleId: 'minorThird',
         breakpointStartPx: 320,
         baseFontSizePx: 16,
-        baseLineHeight: 1.5
+        baseLineHeight: 1.5,
+        container: {
+          padding: 20
+        }
       },
       {
         key: 'sm',
-        breakpointStartPx: 576
+        breakpointStartPx: 576,
+        container: {
+          maxWidth: 540
+        }
       },
       {
         key: 'md',
         breakpointStartPx: 768,
         baseFontSizePx: 16,
-        baseLineHeight: 1.5
+        baseLineHeight: 1.5,
+        container: {
+          maxWidth: 720
+        }
       },
       {
         key: 'lg',
         breakpointStartPx: 992,
-        fontScaleId: 'perfectFourth'
+        fontScaleId: 'perfectFourth',
+        container: {
+          padding: '0',
+          maxWidth: 960
+        }
       },
       {
         key: 'xl',
         breakpointStartPx: 1200,
         baseFontSizePx: 20,
-        baseLineHeight: 1.5
+        baseLineHeight: 1.5,
+        container: {
+          maxWidth: 1140
+        }
       },
       {
         key: 'end',

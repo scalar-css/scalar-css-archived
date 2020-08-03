@@ -127,7 +127,7 @@ export default postcss.plugin(scalarName, (config = {}) => {
         atRule.remove()
       }
 
-      ctx.screens.forEach(screen => {
+      ctx.theme.screens.forEach(screen => {
         css.append(screen.rootNode.toString())
       })
     })

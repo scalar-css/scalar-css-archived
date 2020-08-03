@@ -1,4 +1,11 @@
-import { rounded, pxToPercent, percentToPx, pxToRem, remToPx } from '.'
+import {
+  rounded,
+  pxToPercent,
+  percentToPx,
+  pxToRem,
+  remToPx,
+  scalarUnitConversion
+} from '.'
 
 describe('src/util/conversions.js', () => {
   it('should convert pixels to a percent integer', () => {
@@ -108,6 +115,24 @@ describe('src/util/conversions.js', () => {
 
     expected = 2.8744
     actual = rounded(2.8743962, 5)
+    expect(actual).toBe(expected)
+  })
+
+  it('should convert scalar units properly', () => {
+    let expected = 'rem(20px)'
+    let actual = scalarUnitConversion(20)
+    expect(actual).toBe(expected)
+
+    expected = '1rem'
+    actual = scalarUnitConversion('1rem')
+    expect(actual).toBe(expected)
+
+    expected = '100%'
+    actual = scalarUnitConversion('100%')
+    expect(actual).toBe(expected)
+
+    expected = 'vr(1)'
+    actual = scalarUnitConversion('1vr')
     expect(actual).toBe(expected)
   })
 })

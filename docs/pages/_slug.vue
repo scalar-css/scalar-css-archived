@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article class="container">
     <nav>
       <ul>
         <li
