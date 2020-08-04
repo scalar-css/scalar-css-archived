@@ -1,6 +1,5 @@
 import postcss from 'postcss'
 
-import { processParams } from '@scalar-css/scalar-css-util-css'
 import { pxToRem } from '@scalar-css/scalar-css-util-conversions'
 
 /**
@@ -23,13 +22,20 @@ export function getFontSizePx(baseFontSizePx, fontScale, fontScaleStep) {
  * @see https://observablehq.com/@mayagao/compose-a-typography-system-with-modular-scales-and-vertic
  *
  * @param {Integer} fontSizePx the current font size in pixels
+ * @param {Integer} baseLineHeight the current screen's baseLineHeight in case 'lineHeight' isn't set
  * @param {Integer} lineHeight unitless number for this type's font size
  * @param {Integer} verticalRhythmPx base vertical rhythm in pixels
  *
  * @returns {Number}
  */
-export function getLineHeightPx(fontSizePx, lineHeight, verticalRhythmPx) {
-  const lineHeightPx = fontSizePx * lineHeight
+export function getLineHeightPx(
+  fontSizePx,
+  baseLineHeight,
+  lineHeight,
+  verticalRhythmPx
+) {
+  const lh = lineHeight ? lineHeight : baseLineHeight
+  const lineHeightPx = fontSizePx * lh
   const rhythmMod = lineHeightPx % verticalRhythmPx
 
   if (rhythmMod === 0) {
@@ -75,36 +81,73 @@ export function getMarginBottomPx(
   marginBottom,
   paddingTopPx
 ) {
-  return marginBottom * verticalRhythmPx - paddingTopPx
+  return marginBottom.replace('vr', '') * verticalRhythmPx - paddingTopPx
 }
 
-function generateFontValues(screen, params, capHeight) {
-  const { baseFontSizePx, verticalRhythmPx, fontScale } = screen
-  const [fontScaleStep, lineHeight, marginBottom] = params
+/**
+ * Get the current font scale step. If `fontScaleStep` is undefined, we
+ * attempt to use the id/key for the font scale value (DX sugar, basically).
+ *
+ * @param {String} id key for the current type object
+ * @param {Integer|Undefined} fontScaleStep the step in the modular scale
+ */
+export function getFontScaleStep(id, fontScaleStep) {
+  if (typeof fontScaleStep !== 'undefined' && Number.isInteger(fontScaleStep)) {
+    return fontScaleStep
+  } else if (Number.isInteger(parseInt(id))) {
+    return parseInt(id)
+  }
 
-  const fontSizePx = getFontSizePx(
-    baseFontSizePx,
-    fontScale,
-    parseFloat(fontScaleStep)
+  throw new Error(
+    `'${id}' is not a valid font scale step for your typography settings. Make sure your 'scaleStep' property is a number and not a string.`
   )
+}
+
+/**
+ * Generate a new type class that calculates the top-padding offset,
+ * margin bottom, line height, and font size based on the values provided,
+ * while also automatically aligning it to our vertical rhythm.
+ *
+ * @param {String} id key for the current type object
+ * @param {Object} settings properties for the current type object
+ * @param {Object} screen current screen
+ * @param {Object} fonts the current theme's font settings
+ */
+export function generateTypeClassRule(id, settings, screen, fonts) {
+  const { baseFontSizePx, baseLineHeight, verticalRhythmPx, fontScale } = screen
+  const { fontId, scaleStep, lineHeight, marginBottom } = settings
+  const capHeight = fonts[fontId].capHeight
+  const typeClass = postcss.rule({ selector: `.type-${id}` })
+
+  const fontScaleStep = getFontScaleStep(id, scaleStep)
+  const fontSizePx = getFontSizePx(baseFontSizePx, fontScale, fontScaleStep)
   const lineHeightPx = getLineHeightPx(
     fontSizePx,
-    parseFloat(lineHeight),
+    baseLineHeight,
+    lineHeight,
     verticalRhythmPx
   )
   const paddingTopPx = getPaddingTopPx(fontSizePx, lineHeightPx, capHeight)
   const marginBottomPx = getMarginBottomPx(
     verticalRhythmPx,
-    parseFloat(marginBottom),
+    marginBottom,
     paddingTopPx
   )
 
-  return {
-    lineHeight: `${lineHeightPx / fontSizePx}`, // convert back to unitless number
-    fontSize: `${pxToRem(fontSizePx, baseFontSizePx)}rem`,
-    paddingTop: `${pxToRem(paddingTopPx, baseFontSizePx)}rem`,
-    marginBottom: `${pxToRem(marginBottomPx, baseFontSizePx)}rem`
-  }
+  return typeClass
+    .append({
+      prop: '--fs',
+      value: `${pxToRem(fontSizePx, baseFontSizePx)}rem`
+    })
+    .append({ prop: '--lh', value: `${lineHeightPx / fontSizePx}` })
+    .append({
+      prop: '--pt',
+      value: `${pxToRem(paddingTopPx, baseFontSizePx)}rem`
+    })
+    .append({
+      prop: '--mb',
+      value: `${pxToRem(marginBottomPx, baseFontSizePx)}rem`
+    })
 }
 
 export function createBaseStyleRule() {
@@ -112,23 +155,22 @@ export function createBaseStyleRule() {
     .rule({ selector: '[class*="type-"]' })
     .append({ prop: 'font-size', value: 'var(--fs)' })
     .append({ prop: 'line-height', value: 'var(--lh)' })
-    .append({ prop: 'margin-bottom', value: 'var(--mb)' })
     .append({ prop: 'padding-top', value: 'var(--pt)' })
-}
-
-export function generateCSS(fontSizes, screen, source) {
-  Object.entries(fontSizes).forEach(fs => {
-    const [modularStep, fontFamily] = fs
-  })
+    .append({ prop: 'margin-bottom', value: 'var(--mb)' })
 }
 
 export default function type(ctx, options, source) {
-  if (ctx.Theme.Typography) {
-    ctx.Theme.Screens.forEach(screen => {
-      if (screen.key === 'start') {
-        screen.htmlRoot.append(createBaseStyleRule())
-      }
-      generateCSS(ctx.Theme.Typography, screen, source)
-    })
-  }
+  ctx.theme.screens.forEach(screen => {
+    if (screen.key === 'start') {
+      screen.htmlRoot.append(createBaseStyleRule())
+    }
+
+    if ('typography' in screen) {
+      Object.entries(screen.typography).forEach(([id, settings]) => {
+        screen.htmlRoot.append(
+          generateTypeClassRule(id, settings, screen, ctx.theme.fonts)
+        )
+      })
+    }
+  })
 }

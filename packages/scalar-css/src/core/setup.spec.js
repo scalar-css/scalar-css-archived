@@ -221,7 +221,7 @@ describe('src/setup.js', () => {
     expect(actual.type).toBe('root')
     expect(actual.nodes.length).toBe(1)
     expect(atRule.type).toBe('atrule')
-    expect(atRule.name).toBe('above')
+    expect(atRule.name).toBe('screen')
     expect(atRule.params).toBe('md')
     expect(atRule.nodes.length).toBe(1)
     expect(atRule.nodes[0].type).toBe('rule')

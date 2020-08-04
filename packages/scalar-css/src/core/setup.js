@@ -3,6 +3,7 @@ import postcss from 'postcss'
 import { merge } from '../util/helpers'
 import defaultConfig from '../defaults/config'
 import defaultFontScales from '../defaults/fontScales'
+import fontStacks from '../defaults/fontStacks'
 
 /**
  * Set the base font size in pixels for the current screen
@@ -119,6 +120,25 @@ export function setRootCSSNode(screen) {
 }
 
 /**
+ * Loop through our theme's font properties, and for any properties
+ * that have a child referencing one of our default font stacks,
+ * merge the default font stacks' properties in
+ *
+ * @param {Object} config
+ */
+export function replaceFontStackRefs(config) {
+  Object.entries(config.theme.fonts).forEach(([id, settings]) => {
+    if (settings.fontFamily in fontStacks) {
+      const stack = fontStacks[settings.fontFamily]
+      config.theme.fonts[id] = {
+        ...settings,
+        ...stack
+      }
+    }
+  })
+}
+
+/**
  * Finalize the screen properties by duplicating/merging a few values
  * to allow easier access to properties for calculation purposes in
  * other areas of the framework. If a screen does not have new/existing
@@ -128,9 +148,9 @@ export function setRootCSSNode(screen) {
  * @returns {Object}
  */
 export function finalizeScreens(config) {
-  config.Theme.Screens.forEach((screen, index) => {
-    const nextScreen = config.Theme.Screens[index + 1]
-    const prevScreen = index !== 0 ? config.Theme.Screens[index - 1] : null
+  config.theme.screens.forEach((screen, index) => {
+    const nextScreen = config.theme.screens[index + 1]
+    const prevScreen = index !== 0 ? config.theme.screens[index - 1] : null
 
     screen.baseFontSizePx = setBaseFontSizePx(screen, prevScreen)
     screen.baseLineHeight = setBaseLineHeight(screen, prevScreen)
@@ -144,6 +164,8 @@ export function finalizeScreens(config) {
     screen.baseLineHeightPx = screen.baseLineHeight * screen.baseFontSizePx
     screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
   })
+
+  replaceFontStackRefs(config)
 
   return config
 }
@@ -161,14 +183,14 @@ export default function setup(userConfig = {}) {
   const config = finalizeScreens(merge(userConfig, defaultConfig))
 
   const ctx = merge(config, {
-    Theme: {
-      currentScreen: config.Theme.Screens[0],
-      defaultScreenKey: config.Theme.Screens[0].key
+    theme: {
+      currentScreen: config.theme.screens[0],
+      defaultScreenKey: config.theme.screens[0].key
     }
   })
 
   // Provide additional, easy access to screen values by their key
-  ctx.Theme.ScreensByKey = config.Theme.Screens.reduce((available, screen) => {
+  ctx.theme.screensByKey = config.theme.screens.reduce((available, screen) => {
     return {
       ...available,
       [screen.key]: screen

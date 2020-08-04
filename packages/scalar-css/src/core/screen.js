@@ -1,13 +1,13 @@
 import { pxToRem } from '@scalar-css/scalar-css-util-conversions'
 
 function updateContext(ctx, screen) {
-  ctx.Theme.CurrentScreen = {
-    ...ctx.Theme.ScreensByKey[screen]
+  ctx.theme.currentScreen = {
+    ...ctx.theme.screensByKey[screen]
   }
 }
 
 function resetContext(ctx) {
-  ctx.Theme.CurrentScreen = ctx.Theme.ScreensByKey[ctx.Theme.DefaultScreenKey]
+  ctx.theme.currentScreen = ctx.theme.screensByKey[ctx.theme.defaultScreenKey]
 }
 
 function convertRemUnits(decl, baseFontSizePx) {
@@ -19,13 +19,13 @@ function convertRemUnits(decl, baseFontSizePx) {
 export default function (ctx) {
   return css => {
     css.walkAtRules('screen', atRule => {
-      if (!(atRule.params in ctx.Theme.ScreensByKey)) {
+      if (!(atRule.params in ctx.theme.screensByKey)) {
         throw atRule.error(
           `'@screen ${atRule.params}' is an invalid breakpoint value. `
         )
       }
 
-      const { breakpointStartPx, baseFontSizePx } = ctx.Theme.ScreensByKey[
+      const { breakpointStartPx, baseFontSizePx } = ctx.theme.screensByKey[
         atRule.params
       ]
 

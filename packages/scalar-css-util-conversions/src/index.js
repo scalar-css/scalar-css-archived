@@ -23,7 +23,7 @@ export function scalarUnitConversion(value) {
   if (typeof value === 'number') {
     return `rem(${value}px)`
   } else if (value.endsWith('vr')) {
-    return `vr(${value.replace('vr', '')})`
+    return `calc(var(--rhythm-rem) * ${value.replace('vr', '')})`
   }
 
   return value

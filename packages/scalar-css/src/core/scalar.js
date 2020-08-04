@@ -44,7 +44,7 @@ export default function (ctx, plugins) {
         atRule.remove()
       }
 
-      ctx.Theme.Screens.forEach(screen => {
+      ctx.theme.screens.forEach(screen => {
         css.append(screen.rootNode.toString())
       })
     })

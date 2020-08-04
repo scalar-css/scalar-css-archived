@@ -1,5 +1,4 @@
 import postcss from 'postcss'
-import fontStacks from './fontStacks'
 
 export function createBaseStyleRule() {
   return postcss
@@ -46,21 +45,18 @@ export function generateFontClassRule(id, fontFamily, ligatures) {
 }
 
 export default function fonts(ctx, options, source) {
-  const startScreen = ctx.Theme.Screens[0]
+  const startScreen = ctx.theme.screens[0]
   startScreen.htmlRoot.append(createBaseStyleRule())
 
-  Object.entries(ctx.Theme.Fonts).forEach(
+  Object.entries(ctx.theme.fonts).forEach(
     ([id, { fontFamily, elements, ligatures }]) => {
-      const family =
-        fontFamily in fontStacks
-          ? fontStacks[fontFamily].fontFamily
-          : fontFamily
-
-      startScreen.htmlRoot.append(generateFontClassRule(id, family, ligatures))
+      startScreen.htmlRoot.append(
+        generateFontClassRule(id, fontFamily, ligatures)
+      )
 
       if (elements) {
         startScreen.htmlRoot.append(
-          generateElementsCSSRule(family, elements, ligatures)
+          generateElementsCSSRule(fontFamily, elements, ligatures)
         )
       }
     }

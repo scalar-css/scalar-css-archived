@@ -1,7 +1,7 @@
 export default {
-  Options: {},
-  Theme: {
-    Fonts: {
+  options: {},
+  theme: {
+    fonts: {
       sans: {
         fontFamily: 'system',
         elements: 'body'
@@ -17,18 +17,7 @@ export default {
         elements: 'mono'
       }
     },
-    Typography: {
-      '-3': 'system',
-      '-2': 'system',
-      '-1': 'system',
-      '0': 'system',
-      '1': 'georgia',
-      '2': 'georgia',
-      '3': 'georgia',
-      '4': 'georgia',
-      '5': 'georgia'
-    },
-    Screens: [
+    screens: [
       {
         key: 'start',
         fontScaleId: 'minorThird',
@@ -37,6 +26,48 @@ export default {
         baseLineHeight: 1.5,
         container: {
           padding: '1vr'
+        },
+        typography: {
+          '-3': {
+            fontId: 'sans',
+            scaleStep: -3,
+            lineHeight: 2,
+            marginBottom: '2vr'
+          },
+          '-2': {
+            fontId: 'sans',
+            scaleStep: -2,
+            marginBottom: '2vr'
+          },
+          '-1': {
+            fontId: 'sans',
+            scaleStep: -1,
+            marginBottom: '2vr'
+          },
+          '0': {
+            fontId: 'sans',
+            marginBottom: '2vr'
+          },
+          '1': {
+            fontId: 'roboto',
+            marginBottom: '2vr'
+          },
+          '2': {
+            fontId: 'roboto',
+            marginBottom: '3vr'
+          },
+          '3': {
+            fontId: 'roboto',
+            marginBottom: '4vr'
+          },
+          '4': {
+            fontId: 'roboto',
+            marginBottom: '4vr'
+          },
+          '5': {
+            fontId: 'roboto',
+            marginBottom: '6vr'
+          }
         }
       },
       {
@@ -63,6 +94,52 @@ export default {
           padding: '0',
           maxWidth: 960,
           margin: 'auto'
+        },
+        typography: {
+          '-3': {
+            fontId: 'sans',
+            scaleStep: 'x',
+            marginBottom: '2vr'
+          },
+          '-2': {
+            fontId: 'sans',
+            scaleStep: -2,
+            marginBottom: '2vr'
+          },
+          '-1': {
+            fontId: 'sans',
+            scaleStep: -1,
+            marginBottom: '2vr'
+          },
+          '0': {
+            fontId: 'sans',
+            marginBottom: '2vr'
+          },
+          '1': {
+            fontId: 'roboto',
+            lineHeight: 2,
+            marginBottom: '2vr'
+          },
+          '2': {
+            fontId: 'roboto',
+            lineHeight: 2,
+            marginBottom: '2vr'
+          },
+          '3': {
+            fontId: 'roboto',
+            lineHeight: 1.2,
+            marginBottom: '2vr'
+          },
+          '4': {
+            fontId: 'roboto',
+            lineHeight: 1.2,
+            marginBottom: '4vr'
+          },
+          '5': {
+            fontId: 'roboto',
+            lineHeight: 1.1,
+            marginBottom: '6vr'
+          }
         }
       },
       {

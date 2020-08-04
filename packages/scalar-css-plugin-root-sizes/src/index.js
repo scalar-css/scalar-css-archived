@@ -57,8 +57,8 @@ export function generateRootFontSizeCSS(screen, prev, source) {
 }
 
 export default function rootSizes(ctx, options, source) {
-  ctx.Theme.Screens.forEach((screen, index) => {
-    const prev = screen.key === 'end' ? ctx.Theme.Screens[index - 1] : null
+  ctx.theme.screens.forEach((screen, index) => {
+    const prev = screen.key === 'end' ? ctx.theme.screens[index - 1] : null
     generateRootFontSizeCSS(screen, prev, source)
   })
 }
