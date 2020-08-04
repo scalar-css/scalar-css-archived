@@ -1,5 +1,10 @@
 export default {
-  options: {},
+  options: {
+    debug: {
+      baseLineColor: 'rgba(245, 167, 66, 0.2)',
+      rhythmColor: 'rgba(245, 167, 66, 0.1)'
+    }
+  },
   theme: {
     fonts: {
       sans: {

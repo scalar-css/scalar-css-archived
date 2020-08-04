@@ -31,8 +31,29 @@ export default function (ctx, plugins) {
 
       if (atRule.params === 'debug') {
         const debugPath = path.resolve(__dirname, '../defaults/debug.css')
+        const baseLineColor =
+          ctx.options.debug && ctx.options.debug.baselineColor
+            ? ctx.options.debug.baselineColor
+            : 'rgba(255, 0, 0, 0.1)'
+        const rhythmColor =
+          ctx.options.debug && ctx.options.debug.rhythmColor
+            ? ctx.options.debug.rhythmColor
+            : 'rgba(255, 0, 0, 0.05)'
+
         atRule.before(
           postcss.parse(fs.readFileSync(debugPath, 'utf8'), { from: debugPath })
+        )
+        atRule.before(
+          postcss
+            .rule({ selector: ':root' })
+            .append({
+              prop: '--baseline-color',
+              value: baseLineColor
+            })
+            .append({
+              prop: '--rhythm-color',
+              value: rhythmColor
+            })
         )
         atRule.remove()
       }

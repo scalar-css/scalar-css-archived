@@ -52,8 +52,8 @@ export function generateRootFontSizeCSS(screen, prev, source) {
   screen.varsRoot
     .append({ prop: '--baseline', value: screen.baseLineHeight })
     .append({ prop: '--rhythm', value: screen.verticalRhythm })
-    .append({ prop: '--baseline-rem', value: `calc(var(--baseline) * 1rem)` })
-    .append({ prop: '--rhythm-rem', value: `calc(var(--rhythm) * 1rem)` })
+    .append({ prop: '--baseline-rem', value: `${screen.baseLineHeight}rem` })
+    .append({ prop: '--rhythm-rem', value: `${screen.verticalRhythm}rem` })
 }
 
 export default function rootSizes(ctx, options, source) {
