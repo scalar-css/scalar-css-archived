@@ -1,9 +1,15 @@
 export default {
   components: true,
 
+  modules: ['@nuxt/content', 'nuxt-webfontloader'],
+
   css: ['~/scalar.pcss'],
 
-  modules: ['@nuxt/content'],
+  webfontloader: {
+    google: {
+      families: ['Roboto+Slab:wght@660&display=swap']
+    }
+  },
 
   build: {
     postcss: {

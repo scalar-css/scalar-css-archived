@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@scalar-css/scalar-css-plugin-container": "0.0.0",
+    "@scalar-css/scalar-css-plugin-font-family": "0.0.0",
     "@scalar-css/scalar-css-plugin-root-sizes": "0.0.0",
     "@scalar-css/scalar-css-plugin-type": "0.0.0"
   },

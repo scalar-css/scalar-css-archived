@@ -1,7 +1,23 @@
 export default {
-  options: {},
-  theme: {
-    fontSizes: {
+  Options: {},
+  Theme: {
+    Fonts: {
+      sans: {
+        fontFamily: 'system',
+        elements: 'body'
+      },
+      roboto: {
+        fontFamily: '"Roboto Slab", serif',
+        capHeight: 0.7288135593220338,
+        ligatures: 'normal',
+        elements: ['h1', 'h2', 'h3', 'h4', 'h5']
+      },
+      mono: {
+        fontFamily: 'monospace',
+        elements: 'mono'
+      }
+    },
+    Typography: {
       '-3': 'system',
       '-2': 'system',
       '-1': 'system',
@@ -12,7 +28,7 @@ export default {
       '4': 'georgia',
       '5': 'georgia'
     },
-    screens: [
+    Screens: [
       {
         key: 'start',
         fontScaleId: 'minorThird',

@@ -12,10 +12,12 @@
       </ul>
     </nav>
 
-    <h1>{{ article.title }}</h1>
+    <h1 class="font-roboto">{{ article.title }}</h1>
     <p>{{ article.description }}</p>
-    <p>Article last updated: {{ formatDate(article.updatedAt) }}</p>
-    <nuxt-content :document="article" />
+    <p class="font-mono">
+      Article last updated: {{ formatDate(article.updatedAt) }}
+    </p>
+    <nuxt-content class="font-sans" :document="article" />
   </article>
 </template>
 

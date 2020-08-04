@@ -123,12 +123,12 @@ export function generateCSS(fontSizes, screen, source) {
 }
 
 export default function type(ctx, options, source) {
-  if (ctx.theme.fontSizes) {
-    ctx.theme.screens.forEach(screen => {
+  if (ctx.Theme.Typography) {
+    ctx.Theme.Screens.forEach(screen => {
       if (screen.key === 'start') {
         screen.htmlRoot.append(createBaseStyleRule())
       }
-      generateCSS(ctx.theme.fontSizes, screen, source)
+      generateCSS(ctx.Theme.Typography, screen, source)
     })
   }
 }

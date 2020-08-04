@@ -34,8 +34,8 @@ export function generateCSS(screen, prev, source) {
 }
 
 export default function container(ctx, options, source) {
-  ctx.theme.screens.forEach((screen, index) => {
-    const prev = screen.key !== 'start' ? ctx.theme.screens[index - 1] : null
+  ctx.Theme.Screens.forEach((screen, index) => {
+    const prev = screen.key !== 'start' ? ctx.Theme.Screens[index - 1] : null
 
     if (screen.key === 'start') {
       screen.htmlRoot.append(createBaseStyleRule())
