@@ -1,6 +1,6 @@
 <template>
   <nav class="container">
-    <div class="d-flex mx-1 md-my-1">
+    <div class="d-flex mx-auto xl-mx-6">
       <a href="/" class="d-block">
         <scalar-brand />
       </a>
