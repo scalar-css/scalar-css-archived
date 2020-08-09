@@ -1,3 +1,7 @@
 <template>
-  <h1>Hello world!</h1>
+  <div class="container"><h1 class="type-1 m-x-auto">Index Page</h1></div>
 </template>
+
+<script></script>
+
+<style lang="postcss"></style>

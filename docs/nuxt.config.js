@@ -3,7 +3,7 @@ export default {
 
   modules: ['@nuxt/content', 'nuxt-webfontloader'],
 
-  css: ['~/scalar.pcss'],
+  css: ['~/styles/scalar.pcss'],
 
   webfontloader: {
     google: {
@@ -19,11 +19,26 @@ export default {
   build: {
     postcss: {
       plugins: {
+        'postcss-import': {},
+        'postcss-simple-vars': {},
+        'postcss-preset-env': {},
+        'postcss-nested': {},
         '@scalar-css/scalar-css': {}
       },
       preset: {
         stage: 0
       }
+    },
+
+    extend(config, ctx) {
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+
+      svgRule.test = /\.(png|jpe?g|gif|webp)$/
+
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ['babel-loader', 'vue-svg-loader']
+      })
     }
   }
 }
