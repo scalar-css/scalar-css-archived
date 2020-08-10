@@ -22,6 +22,9 @@ export default {
         elements: 'mono'
       }
     },
+    spacing: {
+      total: 10
+    },
     screens: [
       {
         key: 'start',

@@ -131,8 +131,8 @@ describe('src/util/conversions.js', () => {
     actual = scalarUnitConversion('100%')
     expect(actual).toBe(expected)
 
-    expected = 'vr(1)'
-    actual = scalarUnitConversion('1vr')
+    expected = 'calc(var(--rhythm-rem) * 3)'
+    actual = scalarUnitConversion('3vr')
     expect(actual).toBe(expected)
   })
 })

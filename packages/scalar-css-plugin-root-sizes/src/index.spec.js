@@ -53,8 +53,8 @@ describe('@scalar-css/scalar-css-plugin-root-sizes', () => {
     let expected = `:root {
     --baseline: 1.5;
     --rhythm: 0.75;
-    --baseline-rem: calc(var(--baseline) * 1rem);
-    --rhythm-rem: calc(var(--rhythm) * 1rem)}
+    --baseline-rem: 1.5rem;
+    --rhythm-rem: 0.75rem}
 html {
     line-height: 1.5;
     font-size: clamp(100%, 5vw, 180%)}`
@@ -66,8 +66,8 @@ html {
 :root {
 --baseline: 1.5;
 --rhythm: 0.75;
---baseline-rem: calc(var(--baseline) * 1rem);
---rhythm-rem: calc(var(--rhythm) * 1rem)}
+--baseline-rem: 1.5rem;
+--rhythm-rem: 0.75rem}
 html {
 line-height: 1.5;
 font-size: clamp(100%, 2.083333333333333vw, 129.16666666666666%)
@@ -81,8 +81,8 @@ font-size: clamp(100%, 2.083333333333333vw, 129.16666666666666%)
 :root {
 --baseline: 1.5;
 --rhythm: 0.75;
---baseline-rem: calc(var(--baseline) * 1rem);
---rhythm-rem: calc(var(--rhythm) * 1rem)}
+--baseline-rem: 1.5rem;
+--rhythm-rem: 0.75rem}
 html {
 line-height: 1.5;
 font-size: 150%

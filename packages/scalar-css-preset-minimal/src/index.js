@@ -9,6 +9,7 @@
  */
 import container from '@scalar-css/scalar-css-plugin-container'
 import fontFamily from '@scalar-css/scalar-css-plugin-font-family'
+import spacing from '@scalar-css/scalar-css-plugin-spacing'
 import rootSizes from '@scalar-css/scalar-css-plugin-root-sizes'
 import typography from '@scalar-css/scalar-css-plugin-type'
 
@@ -20,6 +21,7 @@ export default function presetDefault(opts = {}) {
   const plugins = [
     [rootSizes, options.rootSizes],
     [fontFamily, options.fontFamily],
+    [spacing, options.spacing],
     [typography, options.type],
     [container, options.container]
   ]
