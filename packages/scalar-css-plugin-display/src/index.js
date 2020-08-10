@@ -34,16 +34,21 @@ export default function position(ctx, options, source) {
     }
 
     values.forEach(value => {
-      screen.htmlRoot.append(
-        postcss
-          .rule({
-            selector: `.d-${value}`
-          })
-          .append({
-            prop: `--d`,
-            value
-          })
-      )
+      const selector =
+        screen.key === 'start' ? `.d-${value}` : `.${screen.key}-d-${value}`
+
+      if (screen.key !== 'end') {
+        screen.htmlRoot.append(
+          postcss
+            .rule({
+              selector
+            })
+            .append({
+              prop: `--d`,
+              value
+            })
+        )
+      }
     })
   })
 }

@@ -7,6 +7,16 @@ const flexShorthand = {
   none: 'none'
 }
 
+const flexGrow = {
+  '1': 1,
+  '0': 0
+}
+
+const flexShrink = {
+  '1': 1,
+  '0': 0
+}
+
 const flexDirection = {
   row: 'row',
   column: 'column',
@@ -59,8 +69,10 @@ export function createBaseFlexRule() {
   return postcss
     .rule({ selector: '[class*="flex-"]' })
     .append({ prop: 'flex', value: 'var(--flex) !important' })
-    .append({ prop: 'flex-direction', value: 'var(--flex-dir)' })
-    .append({ prop: 'flex-wrap', value: 'var(--flex-wrap)' })
+    .append({ prop: 'flex-grow', value: 'var(--flex-grow) !important' })
+    .append({ prop: 'flex-shrink', value: 'var(--flex-shrink) !important' })
+    .append({ prop: 'flex-direction', value: 'var(--flex-dir) !important' })
+    .append({ prop: 'flex-wrap', value: 'var(--flex-wrap) !important' })
 }
 
 export function createBaseJustifyContentRule() {
@@ -95,17 +107,26 @@ export default function flex(ctx, options, source) {
       screen.htmlRoot.append(createBaseAlignRule())
     }
 
-    createUtilityClasses(screen, 'flex', '--flex', flexShorthand)
-    createUtilityClasses(screen, 'flex', '--flex-dir', flexDirection)
-    createUtilityClasses(screen, 'flex', '--flex-wrap', flexWrap)
-    createUtilityClasses(screen, 'justify', '--justify', justify)
-    createUtilityClasses(screen, 'align-items', '--align-items', alignItems)
-    createUtilityClasses(
-      screen,
-      'align-content',
-      '--align-content',
-      alignContent
-    )
-    createUtilityClasses(screen, 'align-self', '--align-self', alignSelf)
+    if (screen.key !== 'end') {
+      createUtilityClasses(screen, 'flex', '--flex', flexShorthand)
+      createUtilityClasses(screen, 'flex-grow', '--flex-grow', flexGrow)
+      createUtilityClasses(screen, 'flex-shrink', '--flex-shrink', flexShrink)
+      createUtilityClasses(
+        screen,
+        'flex-direction',
+        '--flex-dir',
+        flexDirection
+      )
+      createUtilityClasses(screen, 'flex-wrap', '--flex-wrap', flexWrap)
+      createUtilityClasses(screen, 'justify', '--justify', justify)
+      createUtilityClasses(screen, 'align-items', '--align-items', alignItems)
+      createUtilityClasses(
+        screen,
+        'align-content',
+        '--align-content',
+        alignContent
+      )
+      createUtilityClasses(screen, 'align-self', '--align-self', alignSelf)
+    }
   })
 }
