@@ -1,14 +1,16 @@
 <template>
-  <nav class="container">
-    <div class="d-flex mx-auto xl-mx-6">
-      <a href="/" class="d-block">
-        <scalar-brand />
-      </a>
-      <div class="d-flex flex-grow">
-        Bloop
+  <header class="pos-fixed w-full">
+    <nav class="container">
+      <div class="d-flex mx-auto xl-mx-6">
+        <a href="/" class="d-block">
+          <scalar-brand />
+        </a>
+        <div class="d-flex flex-grow">
+          Bloop
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 </template>
 
 <script>

@@ -9,6 +9,7 @@
  */
 import container from '@scalar-css/scalar-css-plugin-container'
 import display from '@scalar-css/scalar-css-plugin-display'
+import flex from '@scalar-css/scalar-css-plugin-flex'
 import fontFamily from '@scalar-css/scalar-css-plugin-font-family'
 import position from '@scalar-css/scalar-css-plugin-position'
 import spacing from '@scalar-css/scalar-css-plugin-spacing'
@@ -23,6 +24,7 @@ export default function presetDefault(opts = {}) {
   const plugins = [
     [rootSizes, options.rootSizes],
     [display, options.display],
+    [flex, options.flex],
     [fontFamily, options.fontFamily],
     [position, options.position],
     [spacing, options.spacing],
