@@ -8,7 +8,9 @@
  * the reset, debug, root sizes, typography, and container for a fluid site.
  */
 import container from '@scalar-css/scalar-css-plugin-container'
+import display from '@scalar-css/scalar-css-plugin-display'
 import fontFamily from '@scalar-css/scalar-css-plugin-font-family'
+import position from '@scalar-css/scalar-css-plugin-position'
 import spacing from '@scalar-css/scalar-css-plugin-spacing'
 import rootSizes from '@scalar-css/scalar-css-plugin-root-sizes'
 import typography from '@scalar-css/scalar-css-plugin-type'
@@ -20,7 +22,9 @@ export default function presetDefault(opts = {}) {
 
   const plugins = [
     [rootSizes, options.rootSizes],
+    [display, options.display],
     [fontFamily, options.fontFamily],
+    [position, options.position],
     [spacing, options.spacing],
     [typography, options.type],
     [container, options.container]
