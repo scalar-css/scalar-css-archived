@@ -1,6 +1,6 @@
 <template>
   <button
-    class="pos-fixed bottom-0 left-2 toggle bg-black px-2 py-1 rounded-top rhythm-shadow color-dull font-bold d-flex align-center md-top-0 md-bottom-auto md-rounded-bottom md-right-5"
+    class="pos-fixed bottom-0 left-2 toggle bg-black px-2 py-1 rounded-top rhythm-shadow color-dull font-bold d-flex align-center md-top-0 md-bottom-auto md-rounded-top-none md-rounded-bottom md-right-5 md-left-auto"
     :class="{ 'color-primary': isShowingRhythm }"
     @click="toggle"
     type="button"

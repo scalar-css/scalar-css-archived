@@ -1,10 +1,6 @@
 <template>
   <div class="container pt-4">
-    <h1 class="type-3">
-      Utility-first CSS for crafting
-      <span class="color-primary">fluid, type-rich layouts</span> for the modern
-      web.
-    </h1>
+    <h1 class="type-title">No More Orphans</h1>
     <p class="type-0 color-text-light">
       Scalar CSS is a highly customizable framework for generating fluid web
       design layouts with typographically rich foundations. Scalar generates a

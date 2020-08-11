@@ -15,7 +15,7 @@ export default {
         fontFamily: '"Work Sans", serif',
         capHeight: 0.6779661016949152,
         ligatures: 'normal',
-        weight: 200,
+        weight: 700,
         elements: ['h1', 'h2', 'h3', 'h4', 'h5']
       },
       mono: {
@@ -27,7 +27,7 @@ export default {
     screens: [
       {
         key: 'start',
-        fontScaleId: 'minorThird',
+        fontScaleId: 'majorThird',
         breakpointStartPx: 320,
         baseFontSizePx: 16,
         baseLineHeight: 1.5,
@@ -76,6 +76,13 @@ export default {
           '5': {
             fontId: 'work',
             marginBottom: '6vr'
+          },
+          title: {
+            fontId: 'work',
+            marginBottom: '4vr',
+            scaleStep: 6,
+            lineHeight: 1.1,
+            letterSpacing: -0.2
           }
         }
       },

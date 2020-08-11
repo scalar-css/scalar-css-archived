@@ -1,6 +1,15 @@
 @scalar reset;
 @scalar utilities;
 
+:root {
+  --midnight-green-eagle-green: #143c44ff;
+  --indigo-dye: #174c64ff;
+  --ming: #3c6f75ff;
+  --viridian-green: #35918dff;
+  --liver-chestnut: #966846ff;
+  --camel: #c29970ff;
+}
+
 .w-full {
   width: 100%;
 }
@@ -10,7 +19,7 @@
 }
 
 .w-50 {
-  width: 50%;
+  width: 30%;
 }
 
 .w-2 {
@@ -87,6 +96,10 @@
   color: rgb(97, 124, 131);
 }
 
+.bg-white {
+  background-color: #fff;
+}
+
 .bg-black {
   background-color: #222;
 }
@@ -104,8 +117,17 @@
     right: calc(var(--rhythm-rem) * 10);
   }
 
+  .md-left-auto {
+    left: auto;
+  }
+
   .md-bottom-auto {
     bottom: auto;
+  }
+
+  .md-rounded-top-none {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .md-rounded-bottom {

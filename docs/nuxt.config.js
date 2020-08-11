@@ -6,7 +6,7 @@ export default {
   css: ['~/styles/scalar.pcss'],
 
   head: {
-    title: process.env.npm_package_name || 'Scalar CSS',
+    title: 'Scalar CSS',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -38,7 +38,7 @@ export default {
 
   webfontloader: {
     google: {
-      families: ['Work+Sans:wght@206&display=swap']
+      families: ['Work+Sans:wght@700&display=swap']
     }
   },
 
