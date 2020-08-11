@@ -11,10 +11,11 @@ export default {
         fontFamily: 'system',
         elements: 'body'
       },
-      roboto: {
-        fontFamily: '"Roboto Slab", serif',
-        capHeight: 0.7288135593220338,
+      work: {
+        fontFamily: '"Work Sans", serif',
+        capHeight: 0.6779661016949152,
         ligatures: 'normal',
+        weight: 200,
         elements: ['h1', 'h2', 'h3', 'h4', 'h5']
       },
       mono: {
@@ -22,9 +23,7 @@ export default {
         elements: 'mono'
       }
     },
-    spacing: {
-      total: 10
-    },
+    scalarUnits: 10,
     screens: [
       {
         key: 'start',
@@ -32,8 +31,9 @@ export default {
         breakpointStartPx: 320,
         baseFontSizePx: 16,
         baseLineHeight: 1.5,
+        verticalRhythm: 0.5,
         container: {
-          padding: '1vr'
+          padding: '2vr'
         },
         typography: {
           '-3': {
@@ -57,23 +57,24 @@ export default {
             marginBottom: '2vr'
           },
           '1': {
-            fontId: 'roboto',
+            fontId: 'work',
             marginBottom: '2vr'
           },
           '2': {
-            fontId: 'roboto',
+            fontId: 'work',
             marginBottom: '3vr'
           },
           '3': {
-            fontId: 'roboto',
+            fontId: 'work',
+            lineHeight: 1.1,
             marginBottom: '4vr'
           },
           '4': {
-            fontId: 'roboto',
+            fontId: 'work',
             marginBottom: '4vr'
           },
           '5': {
-            fontId: 'roboto',
+            fontId: 'work',
             marginBottom: '6vr'
           }
         }
@@ -88,14 +89,63 @@ export default {
       {
         key: 'md',
         breakpointStartPx: 768,
-        baseFontSizePx: 16,
+        baseFontSizePx: 20,
         baseLineHeight: 1.5,
+        fontScaleId: 'perfectFourth',
         container: {
-          maxWidth: 720
+          maxWidth: 720,
+          padding: '1vr'
+        },
+        typography: {
+          '-3': {
+            fontId: 'sans',
+            scaleStep: 'x',
+            marginBottom: '2vr'
+          },
+          '-2': {
+            fontId: 'sans',
+            scaleStep: -2,
+            marginBottom: '2vr'
+          },
+          '-1': {
+            fontId: 'sans',
+            scaleStep: -1,
+            marginBottom: '2vr'
+          },
+          '0': {
+            fontId: 'sans',
+            marginBottom: '2vr'
+          },
+          '1': {
+            fontId: 'work',
+            lineHeight: 2,
+            marginBottom: '2vr'
+          },
+          '2': {
+            fontId: 'work',
+            lineHeight: 2,
+            marginBottom: '2vr'
+          },
+          '3': {
+            fontId: 'work',
+            lineHeight: 1.2,
+            marginBottom: '2vr'
+          },
+          '4': {
+            fontId: 'work',
+            lineHeight: 1.2,
+            marginBottom: '4vr'
+          },
+          '5': {
+            fontId: 'work',
+            lineHeight: 1.1,
+            marginBottom: '6vr'
+          }
         }
       },
       {
         key: 'lg',
+        baseFontSizePx: 16,
         breakpointStartPx: 992,
         fontScaleId: 'perfectFourth',
         container: {
@@ -124,27 +174,27 @@ export default {
             marginBottom: '2vr'
           },
           '1': {
-            fontId: 'roboto',
+            fontId: 'work',
             lineHeight: 2,
             marginBottom: '2vr'
           },
           '2': {
-            fontId: 'roboto',
+            fontId: 'work',
             lineHeight: 2,
             marginBottom: '2vr'
           },
           '3': {
-            fontId: 'roboto',
+            fontId: 'work',
             lineHeight: 1.2,
             marginBottom: '2vr'
           },
           '4': {
-            fontId: 'roboto',
+            fontId: 'work',
             lineHeight: 1.2,
             marginBottom: '4vr'
           },
           '5': {
-            fontId: 'roboto',
+            fontId: 'work',
             lineHeight: 1.1,
             marginBottom: '6vr'
           }

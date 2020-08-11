@@ -150,6 +150,11 @@ object {
   vertical-align: middle;
 }
 
+svg {
+  width: 100%;
+  fill: currentColor;
+}
+
 img,
 video {
   /* 3 */

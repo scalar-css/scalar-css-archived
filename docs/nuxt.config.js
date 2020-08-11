@@ -5,9 +5,40 @@ export default {
 
   css: ['~/styles/scalar.pcss'],
 
+  head: {
+    title: process.env.npm_package_name || 'Scalar CSS',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'twitter_card', name: 'twitter:card', content: 'summary' },
+      { property: 'og:site_name', content: 'Scalar CSS' },
+      { property: 'og:type', content: 'website' }
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png'
+      }
+    ]
+  },
+
   webfontloader: {
     google: {
-      families: ['Roboto+Slab:wght@660&display=swap']
+      families: ['Work+Sans:wght@206&display=swap']
     }
   },
 

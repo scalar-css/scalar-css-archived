@@ -31,7 +31,7 @@ export default function (ctx) {
 
       updateContext(ctx, atRule.params)
       atRule.name = 'media'
-      atRule.params = `(min-width: ${breakpointStartPx}px)`
+      atRule.params = `screen and (min-width: ${breakpointStartPx}px)`
 
       // Convert any rem units for this screen because rems are
       // relative to the baseFontSize of the current screen

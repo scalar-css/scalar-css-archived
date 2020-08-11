@@ -6,6 +6,7 @@ const props = {
 }
 
 const types = {
+  a: '', // placeholder for our .p-* and .m-* classes
   t: 'top',
   r: 'right',
   b: 'bottom',
@@ -14,55 +15,31 @@ const types = {
   y: ['top', 'bottom']
 }
 
-/**
- * Create all of the base spacing unit variables
- *
- * @param {PostCSS Node} varsNode the postcss node to attach the vars to
- * @param {Number} total total number of spacing units to generate
- */
-export function createBaseRootVars(varsNode, total) {
-  const spacingNumber = [...Array(total)]
-
-  spacingNumber.forEach((_, num) => {
-    varsNode.append({
-      prop: `--su-${num + 1}`,
-      value: `calc(var(--rhythm-rem) * ${num + 1})`
-    })
-  })
-}
-
-/**
- * Generate the default attribute selectors for our spacing units
- *
- * @param {PostCSS Node} htmlRoot
- * @param {String} id the id used for these selectors
- * @param {String} prop the base property name
- */
-export function createAttrSelectors(htmlRoot, id, prop) {
+export function createAttrSelectors(htmlRoot, prefix, prop) {
   htmlRoot.append(
-    postcss.rule({ selector: `[class*="${id}-"]` }).append({
+    postcss.rule({ selector: `[class*="${prefix}-"]` }).append({
       prop: `${prop}`,
-      value: `var(--${id}) !important`
+      value: `var(--${prefix}) !important`
     })
   )
 
   Object.entries(types).forEach(([type, edge]) => {
-    const rule = postcss.rule({ selector: `[class*="${id}${type}-"]` })
+    const rule = postcss.rule({ selector: `[class*="${prefix}${type}-"]` })
 
     if (Array.isArray(edge)) {
       rule
         .append({
           prop: `${prop}-${edge[0]}`,
-          value: `var(--${id}) !important`
+          value: `var(--${prefix}${type}) !important`
         })
         .append({
           prop: `${prop}-${edge[1]}`,
-          value: `var(--${id}) !important`
+          value: `var(--${prefix}${type}) !important`
         })
     } else {
       rule.append({
         prop: `${prop}-${edge}`,
-        value: `var(--${id}) !important`
+        value: `var(--${prefix}${type}) !important`
       })
     }
 
@@ -77,49 +54,45 @@ export function createAttrSelectors(htmlRoot, id, prop) {
  * @param {Number} total
  * @param {String} key
  */
-export function createUtilityClasses(htmlRoot, total, key) {
-  const num = [...Array(total)]
-  const selector = Object.keys(types).reduce((acc, type, index, types) => {
-    acc += index !== types.length - 1 ? `.${key}${type}-#,` : `.${key}${type}-#`
-    return acc
-  }, '')
+export function createUtilityClasses({ htmlRoot, key }, scalarUnits, prefix) {
+  const finalPrefix = key === 'start' ? prefix : `${key}-${prefix}`
 
-  /* istanbul ignore else */
-  if (key === 'm') {
-    htmlRoot.append(
-      postcss
-        .rule({
-          selector: selector.replace(/\#/g, 'auto')
-        })
-        .append({ prop: `--${key}`, value: 'auto' })
-    )
-  }
+  Object.keys(types).forEach(type => {
+    const suffix = type === 'a' ? '' : type
 
-  num.forEach((_, num) => {
-    htmlRoot.append(
-      postcss
-        .rule({
-          selector: selector.replace(/\#/g, num + 1)
+    if (prefix === 'm') {
+      htmlRoot.append(
+        postcss
+          .rule({ selector: `.${finalPrefix}${suffix}-auto` })
+          .append({ prop: `--${finalPrefix}${suffix}`, value: `auto` })
+      )
+    }
+
+    scalarUnits.forEach((_, index) => {
+      const num = index + 1
+      htmlRoot.append(
+        postcss.rule({ selector: `.${finalPrefix}${suffix}-${num}` }).append({
+          prop: `--${finalPrefix}${suffix}`,
+          value: `var(--su-${num})`
         })
-        .append({ prop: `--${key}`, value: `var(--${key}-${num + 1})` })
-    )
+      )
+    })
   })
 }
 
 export default function spacing(ctx, options, source) {
-  const { total } = ctx.theme.spacing
-
+  const scalarUnits = [...Array(ctx.theme.scalarUnits)]
   ctx.theme.screens.forEach(screen => {
     if (screen.key === 'start') {
-      createBaseRootVars(screen.rootNode.first, total)
-
-      Object.entries(props).forEach(([id, prop]) => {
-        createAttrSelectors(screen.htmlRoot, id, prop)
+      Object.entries(props).forEach(([prefix, prop]) => {
+        createAttrSelectors(screen.htmlRoot, prefix, prop)
       })
     }
 
-    Object.keys(props).forEach(key => {
-      createUtilityClasses(screen.htmlRoot, total, key)
-    })
+    if (screen.key !== 'end') {
+      Object.keys(props).forEach(prefix => {
+        createUtilityClasses(screen, scalarUnits, prefix)
+      })
+    }
   })
 }

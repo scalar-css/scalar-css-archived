@@ -4,10 +4,16 @@ export function createBaseStyleRule() {
   return postcss
     .rule({ selector: '[class*="font-"]' })
     .append({ prop: 'font-family', value: 'var(--ff, inherit)' })
+    .append({ prop: 'font-weight', value: 'var(--fw, inherit)' })
     .append({ prop: 'font-variant-ligatures', value: 'var(--fvl, normal)' })
 }
 
-export function generateElementsCSSRule(fontFamily, elements, ligatures) {
+export function generateElementsCSSRule({
+  fontFamily,
+  elements,
+  ligatures,
+  weight
+}) {
   let rule = null
 
   if (elements === 'body') {
@@ -29,10 +35,14 @@ export function generateElementsCSSRule(fontFamily, elements, ligatures) {
     rule.append({ prop: 'font-variant-ligatures', value: ligatures })
   }
 
+  if (typeof weight !== 'undefined') {
+    rule.append({ prop: 'font-weight', value: weight })
+  }
+
   return rule
 }
 
-export function generateFontClassRule(id, fontFamily, ligatures) {
+export function generateFontClassRule(id, { fontFamily, ligatures }) {
   const fontClass = postcss
     .rule({ selector: `.font-${id}` })
     .append({ prop: '--ff', value: fontFamily })
@@ -48,17 +58,11 @@ export default function fonts(ctx, options, source) {
   const startScreen = ctx.theme.screens[0]
   startScreen.htmlRoot.append(createBaseStyleRule())
 
-  Object.entries(ctx.theme.fonts).forEach(
-    ([id, { fontFamily, elements, ligatures }]) => {
-      startScreen.htmlRoot.append(
-        generateFontClassRule(id, fontFamily, ligatures)
-      )
+  Object.entries(ctx.theme.fonts).forEach(([id, settings]) => {
+    startScreen.htmlRoot.append(generateFontClassRule(id, settings))
 
-      if (elements) {
-        startScreen.htmlRoot.append(
-          generateElementsCSSRule(fontFamily, elements, ligatures)
-        )
-      }
+    if (settings.elements) {
+      startScreen.htmlRoot.append(generateElementsCSSRule(settings))
     }
-  )
+  })
 }

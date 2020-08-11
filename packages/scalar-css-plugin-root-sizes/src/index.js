@@ -60,5 +60,17 @@ export default function rootSizes(ctx, options, source) {
   ctx.theme.screens.forEach((screen, index) => {
     const prev = screen.key === 'end' ? ctx.theme.screens[index - 1] : null
     generateRootFontSizeCSS(screen, prev, source)
+
+    if (screen.key === 'start') {
+      // Create all of the base spacing unit variables
+      const scalarUnits = [...Array(ctx.theme.scalarUnits)]
+
+      scalarUnits.forEach((_, num) => {
+        screen.varsRoot.append({
+          prop: `--su-${num + 1}`,
+          value: `calc(var(--rhythm-rem) * ${num + 1})`
+        })
+      })
+    }
   })
 }
