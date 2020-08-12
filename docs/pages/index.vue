@@ -45,9 +45,7 @@
               without forcing you to override base styles.
             </p>
           </div>
-          <div>
-            <img src="/holder.png" />
-          </div>
+          <div></div>
         </div>
       </div>
     </s-section>
