@@ -42,6 +42,16 @@ export default {
             lineHeight: 2,
             marginBottom: '2vr'
           },
+          footer: {
+            fontId: 'sans',
+            scaleStep: -2,
+            marginBottom: '1vr'
+          },
+          toggle: {
+            fontId: 'sans',
+            scaleStep: -2,
+            marginBottom: '0'
+          },
           '-2': {
             fontId: 'sans',
             scaleStep: -2,
@@ -51,6 +61,21 @@ export default {
             fontId: 'sans',
             scaleStep: -1,
             marginBottom: '2vr'
+          },
+          btn: {
+            fontId: 'sans',
+            scaleStep: -1,
+            marginBottom: '0'
+          },
+          tagline: {
+            fontId: 'sans',
+            scaleStep: -1,
+            marginBottom: '0'
+          },
+          iconNumber: {
+            fontId: 'sans',
+            scaleStep: 10,
+            marginBottom: '0'
           },
           '0': {
             fontId: 'sans',
@@ -71,6 +96,7 @@ export default {
           },
           '4': {
             fontId: 'work',
+            lineHeight: 1.2,
             marginBottom: '4vr'
           },
           '5': {
@@ -80,7 +106,7 @@ export default {
           title: {
             fontId: 'work',
             marginBottom: '4vr',
-            scaleStep: 6,
+            scaleStep: 5,
             lineHeight: 1.1,
             letterSpacing: -0.2
           }
@@ -97,7 +123,6 @@ export default {
         key: 'md',
         breakpointStartPx: 768,
         baseFontSizePx: 20,
-        baseLineHeight: 1.5,
         fontScaleId: 'perfectFourth',
         container: {
           maxWidth: 720,
@@ -109,6 +134,16 @@ export default {
             scaleStep: 'x',
             marginBottom: '2vr'
           },
+          footer: {
+            fontId: 'sans',
+            scaleStep: -2,
+            marginBottom: '1vr'
+          },
+          toggle: {
+            fontId: 'sans',
+            scaleStep: -2,
+            marginBottom: '0'
+          },
           '-2': {
             fontId: 'sans',
             scaleStep: -2,
@@ -117,7 +152,23 @@ export default {
           '-1': {
             fontId: 'sans',
             scaleStep: -1,
-            marginBottom: '2vr'
+            lineHeight: 1.3,
+            marginBottom: '1vr'
+          },
+          btn: {
+            fontId: 'sans',
+            scaleStep: -1,
+            marginBottom: '0'
+          },
+          tagline: {
+            fontId: 'sans',
+            scaleStep: -1,
+            marginBottom: '0'
+          },
+          iconNumber: {
+            fontId: 'sans',
+            scaleStep: 10,
+            marginBottom: '0'
           },
           '0': {
             fontId: 'sans',
@@ -147,6 +198,13 @@ export default {
             fontId: 'work',
             lineHeight: 1.1,
             marginBottom: '6vr'
+          },
+          title: {
+            fontId: 'work',
+            marginBottom: '4vr',
+            scaleStep: 4,
+            lineHeight: 1.1,
+            letterSpacing: -0.2
           }
         }
       },
@@ -211,7 +269,6 @@ export default {
         key: 'xl',
         breakpointStartPx: 1200,
         baseFontSizePx: 20,
-        baseLineHeight: 1.5,
         container: {
           maxWidth: 1140
         }

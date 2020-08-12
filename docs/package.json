@@ -21,6 +21,7 @@
     "@nuxt/content": "^1.5.0",
     "nuxt": "^2.14.0",
     "nuxt-webfontloader": "^1.1.0",
+    "prism-themes": "^1.4.0",
     "vue-svg-loader": "^0.16.0"
   },
   "devDependencies": {

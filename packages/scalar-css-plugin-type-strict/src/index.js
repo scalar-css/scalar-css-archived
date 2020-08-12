@@ -159,7 +159,7 @@ export function createBaseStyleRule() {
     .append({ prop: 'margin-bottom', value: 'var(--mb)' })
 }
 
-export default function type(ctx, options, source) {
+export default function typeStrict(ctx, options, source) {
   ctx.theme.screens.forEach(screen => {
     if (screen.key === 'start') {
       screen.htmlRoot.append(createBaseStyleRule())

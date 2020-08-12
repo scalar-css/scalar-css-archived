@@ -14,7 +14,7 @@ import fontFamily from '@scalar-css/scalar-css-plugin-font-family'
 import position from '@scalar-css/scalar-css-plugin-position'
 import spacing from '@scalar-css/scalar-css-plugin-spacing'
 import rootSizes from '@scalar-css/scalar-css-plugin-root-sizes'
-import typography from '@scalar-css/scalar-css-plugin-type'
+import typography from '@scalar-css/scalar-css-plugin-type-strict'
 
 const defaultOptions = {}
 

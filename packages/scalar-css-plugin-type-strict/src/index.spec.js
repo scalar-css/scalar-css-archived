@@ -7,7 +7,7 @@ import {
   createBaseStyleRule,
   generateTypeClassRule,
   default as type
-} from './'
+} from '.'
 import setup from '../../scalar-css/src/core/setup'
 import modularScales from '../../scalar-css/src/defaults/fontScales'
 

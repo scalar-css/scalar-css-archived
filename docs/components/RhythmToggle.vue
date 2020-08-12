@@ -1,32 +1,23 @@
 <template>
   <button
-    class="pos-fixed bottom-0 left-2 toggle bg-black px-2 py-1 rounded-top rhythm-shadow color-dull font-bold d-flex align-center md-top-0 md-bottom-auto md-rounded-top-none md-rounded-bottom md-right-5 md-left-auto"
-    :class="{ 'color-primary': isShowingRhythm }"
+    class="toggle bg-white text-uppercase type-toggle px-2 py-1 font-bold d-flex align-center"
+    :class="{
+      'color-primary-4': isShowingRhythm,
+      'color-neutral-5': !isShowingRhythm
+    }"
     @click="toggle"
     type="button"
   >
-    <power-icon
-      class="d-inline w-2 mr-1"
-      :class="{ 'color-primary': isShowingRhythm }"
-    />
-    Rhythm
+    Toggle Rhythm
   </button>
 </template>
 
 <script>
-  import PowerIcon from '~/assets/icons/power-off.svg'
-
   export default {
-    components: {
-      PowerIcon
-    },
     data() {
       return {
-        isShowingRhythm: true
+        isShowingRhythm: false
       }
-    },
-    mounted() {
-      document.documentElement.classList.add('is-showing-rhythm')
     },
     methods: {
       toggle() {
@@ -40,8 +31,7 @@
 <style lang="postcss">
   :root {
     --line-thickness: 1px;
-    /* --baseline-color: rgba(255, 0, 0, 0.1); */
-    --baseline-color: rgba(11, 255, 247, 0.25);
+    --baseline-color: rgba(194, 153, 112, 0.25);
     --background-baseline: repeating-linear-gradient(
       to bottom,
       var(--baseline-color),
@@ -49,8 +39,8 @@
       transparent 1px,
       transparent var(--baseline-rem)
     );
-    /* Vertical Rhythm */
-    --rhythm-color: rgba(150, 150, 150, 0.25);
+
+    --rhythm-color: rgba(98, 128, 132, 0.15);
     --background-rhythm: repeating-linear-gradient(
       to bottom,
       var(--rhythm-color),
@@ -77,7 +67,7 @@
     background-image: var(--background-rhythm), var(--background-baseline);
     background-size: 100%;
     background-position: 0 0;
-    /* z-index: 1000; */
+    z-index: 1000;
     pointer-events: none;
   }
 

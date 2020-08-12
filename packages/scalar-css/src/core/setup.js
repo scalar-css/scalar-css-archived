@@ -52,10 +52,17 @@ export function setBaseLineHeight(screen, prevScreen) {
  * @param {Object} screen current screen *
  * @returns {Number} the vertical rhythm in a unitless number value
  */
-export function setVerticalRhythm(screen) {
-  return screen.verticalRhythm
-    ? screen.verticalRhythm
-    : screen.baseLineHeight / 2
+export function setVerticalRhythm(screen, prevScreen) {
+  if (screen.verticalRhythm) {
+    return screen.verticalRhythm
+  } else if (prevScreen.verticalRhythm) {
+    return prevScreen.verticalRhythm
+  }
+
+  return screen.baseLineHeight / 2
+  // return screen.verticalRhythm
+  //   ? screen.verticalRhythm
+  //   : screen.baseLineHeight / 2
 }
 
 /**
@@ -154,7 +161,7 @@ export function finalizeScreens(config) {
 
     screen.baseFontSizePx = setBaseFontSizePx(screen, prevScreen)
     screen.baseLineHeight = setBaseLineHeight(screen, prevScreen)
-    screen.verticalRhythm = setVerticalRhythm(screen)
+    screen.verticalRhythm = setVerticalRhythm(screen, prevScreen)
     screen.breakpointEndPx = setBreakpointEndPx(screen, nextScreen)
     screen.fontScale = setFontScale(screen, prevScreen)
     screen.rootNode = setRootCSSNode(screen)
