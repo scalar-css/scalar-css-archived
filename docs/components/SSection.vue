@@ -1,5 +1,5 @@
 <template>
-  <section class="pos-relative mb--4 lg-mb--10" :class="themeClass">
+  <section class="pos-relative mb--4" :class="themeClass">
     <div class="pos-absolute w-full h-full" :class="{ 'bg-neutral-1': image }">
       <div
         :class="bgThemeClass"
@@ -46,12 +46,12 @@
       },
       sectionPadding() {
         if (this.image) {
-          return 'pt-4 pb-10 lg-pbt-10'
+          return 'pt-4 pb-10 lg-pbt-10 lg-mb--10'
         } else if (this.theme === 'footer') {
           return 'py-3'
         }
 
-        return 'py-8 lg-pyt-10'
+        return 'py-8 lg-pyt-10 lg-mb--10'
       },
       imageBg() {
         if (this.image) {
