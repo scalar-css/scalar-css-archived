@@ -22,7 +22,7 @@
             >
           </li>
           <li class="py-1 mr-2">
-            <a class="type--1 color-neutral-3" href="/about">About</a>
+            <a class="type--1 color-neutral-3" href="#">About</a>
           </li>
         </ul>
       </nav>
