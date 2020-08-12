@@ -1,6 +1,9 @@
 <template>
   <section class="pos-relative mb--4" :class="themeClass">
-    <div class="pos-absolute w-full h-full" :class="{ 'bg-neutral-1': image }">
+    <div
+      class="pos-absolute w-full h-full overflow-hidden"
+      :class="{ 'bg-neutral-1': image }"
+    >
       <div
         :class="bgThemeClass"
         :style="imageBg"
