@@ -51,19 +51,25 @@ export function generateRootFontSizeValues(screen, prev, source) {
     .append({ prop: '--screenScalarFontSize', value: `${screenMinFontSize}%` })
     .append({ prop: '--screenMaxFontSize', value: `${screenMaxFontSize}%` })
     .append({ prop: '--screenLineHeight', value: screen.baseLineHeight })
-    .append({ prop: '--screenRhythm', value: screen.verticalRhythm })
+    .append({ prop: '--screenRhythm', value: `${screen.verticalRhythm}rem` })
 }
 
-export function generateDefaultRootCSS(screen, source) {
+export function generateDefaultRootCSS(ctx, screen, source) {
   // Create all of the base scalar spacing unit variables
-  // const scalarUnits = [...Array(ctx.theme.scalarUnits)]
+  console.log('units', ctx.theme.units)
+  const units = [...Array(ctx.theme.units)]
 
-  // scalarUnits.forEach((_, num) => {
-  //   screen.varsRoot.append({
-  //     prop: `--su-${num + 1}`,
-  //     value: `calc(var(--rhythmRem) * ${num + 1})`
-  //   })
-  // })
+  units.forEach((_, num) => {
+    const value = num + 1
+    screen.varsRoot.append({
+      prop: `--rhythmUnit-${value}`,
+      value: `calc(var(--screenRhythm) * ${value}rem)`
+    })
+    screen.varsRoot.append({
+      prop: `--baselineUnit-${value}`,
+      value: `calc(var(--screenLineHeight) * ${value}rem)`
+    })
+  })
 
   screen.htmlRoot.append(
     postcss
@@ -83,7 +89,7 @@ export function generateDefaultRootCSS(screen, source) {
 export default function rootSizes(ctx, options, source) {
   ctx.theme.screens.forEach((screen, index) => {
     if (screen.key === 'start') {
-      generateDefaultRootCSS(screen, source)
+      generateDefaultRootCSS(ctx, screen, source)
     }
 
     const prev = screen.key === 'end' ? ctx.theme.screens[index - 1] : null

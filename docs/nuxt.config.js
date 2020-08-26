@@ -37,11 +37,7 @@ export default {
   },
 
   content: {
-    markdown: {
-      prism: {
-        theme: 'prism-themes/themes/prism-material-oceanic.css'
-      }
-    }
+    markdown: {}
   },
 
   webfontloader: {
@@ -62,7 +58,11 @@ export default {
         'postcss-simple-vars': {},
         'postcss-preset-env': {},
         'postcss-nested': {},
-        '@scalar-css/scalar-css': {}
+        '@scalar-css/scalar-css': {
+          theme: {
+            units: 13
+          }
+        }
       },
       preset: {
         stage: 0

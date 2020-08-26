@@ -58,7 +58,7 @@ export default function (ctx, plugins) {
         atRule.remove()
       }
 
-      if (atRule.params === 'utilities') {
+      if (atRule.params === 'utilities' && Array.isArray(plugins)) {
         plugins.reduce(async (prevPromise, plugin) => {
           return prevPromise.then(initializePlugin(ctx, plugin, atRule.source))
         }, Promise.resolve())

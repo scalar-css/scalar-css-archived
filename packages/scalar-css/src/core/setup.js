@@ -185,7 +185,7 @@ export function finalizeScreens(config) {
  * @returns {Object} ctx Finalized context that is used throughout framework
  */
 export default function setup(userConfig = {}) {
-  const config = finalizeScreens(merge(userConfig, defaultConfig))
+  const config = finalizeScreens(merge(defaultConfig, userConfig))
 
   const ctx = merge(config, {
     theme: {

@@ -1,8 +1,8 @@
 export default {
   options: {
     debug: {
-      baseLineColor: 'rgba(245, 167, 66, 0.2)',
-      rhythmColor: 'rgba(245, 167, 66, 0.1)'
+      baseLineColor: 'rgba(0, 0, 0, 0.2)',
+      rhythmColor: 'rgba(0, 0, 0, 0.1)'
     }
   },
   theme: {
@@ -23,7 +23,7 @@ export default {
         elements: 'mono'
       }
     },
-    scalarUnits: 10,
+    units: 5,
     screens: [
       {
         key: 'start',
