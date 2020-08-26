@@ -87,7 +87,13 @@ describe('src/setup.js', () => {
     let actual = setVerticalRhythm(vr)
     expect(actual).toBe(0.75)
 
-    actual = setVerticalRhythm(noVR)
+    actual = setVerticalRhythm(noVR, vr)
+    expect(actual).toBe(0.75)
+
+    actual = setVerticalRhythm(noVR, {})
+    expect(actual).toBe(1)
+
+    actual = setVerticalRhythm(noVR, null)
     expect(actual).toBe(1)
   })
 

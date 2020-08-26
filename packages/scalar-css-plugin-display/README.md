@@ -1,1 +1,0 @@
-# @scalar-css/scalar-css-plugin-display

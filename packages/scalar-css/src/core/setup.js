@@ -25,7 +25,7 @@ export function setBaseFontSizePx(screen, prevScreen) {
 }
 
 /**
- * Set the base line height for the current screen
+ * Set the base line-height for the current screen
  *
  * @param {Object} screen
  * @param {Object} prevScreen *
@@ -55,14 +55,11 @@ export function setBaseLineHeight(screen, prevScreen) {
 export function setVerticalRhythm(screen, prevScreen) {
   if (screen.verticalRhythm) {
     return screen.verticalRhythm
-  } else if (prevScreen.verticalRhythm) {
+  } else if (prevScreen !== null && prevScreen.verticalRhythm) {
     return prevScreen.verticalRhythm
   }
 
   return screen.baseLineHeight / 2
-  // return screen.verticalRhythm
-  //   ? screen.verticalRhythm
-  //   : screen.baseLineHeight / 2
 }
 
 /**
@@ -164,12 +161,13 @@ export function finalizeScreens(config) {
     screen.verticalRhythm = setVerticalRhythm(screen, prevScreen)
     screen.breakpointEndPx = setBreakpointEndPx(screen, nextScreen)
     screen.fontScale = setFontScale(screen, prevScreen)
+    screen.baseLineHeightPx = screen.baseLineHeight * screen.baseFontSizePx
+    screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
+
     screen.rootNode = setRootCSSNode(screen)
     screen.htmlRoot =
       screen.key === 'start' ? screen.rootNode : screen.rootNode.nodes[0]
     screen.varsRoot = screen.htmlRoot.nodes[0]
-    screen.baseLineHeightPx = screen.baseLineHeight * screen.baseFontSizePx
-    screen.verticalRhythmPx = screen.verticalRhythm * screen.baseFontSizePx
   })
 
   replaceFontStackRefs(config)
@@ -197,12 +195,15 @@ export default function setup(userConfig = {}) {
   })
 
   // Provide additional, easy access to screen values by their key
-  ctx.theme.screensByKey = config.theme.screens.reduce((available, screen) => {
-    return {
-      ...available,
-      [screen.key]: screen
-    }
-  }, {})
+  ctx.theme.screensByKey = config.theme.screens.reduce(
+    (available, screen, index) => {
+      return {
+        ...available,
+        [screen.key]: index
+      }
+    },
+    {}
+  )
 
   return ctx
 }

@@ -31,7 +31,7 @@ export default {
         breakpointStartPx: 320,
         baseFontSizePx: 16,
         baseLineHeight: 1.5,
-        verticalRhythm: 0.5,
+        verticalRhythm: 0.75,
         container: {
           padding: '2vr'
         },

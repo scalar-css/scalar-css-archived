@@ -2,8 +2,7 @@ import postcss from 'postcss'
 import { pxToPercent } from '@scalar-css/scalar-css-util-conversions'
 
 /**
- * Generate the root font size that is used as a scale parameter
- * for the design and layout of the site for this screen.
+ * Generate the root font size values for the current screen
  *
  * @param {Object} screen The current screen object
  * @param {Object} prev  The previous screen object (only used for 'end' screen)
@@ -21,56 +20,73 @@ export function calculateRootFontSize(
     : breakpointStartPx / breakpointEndPx
   // 2. Get the "start" root font size for the current screen
   //      => 14px = 87.5%
-  const rootSizeStart = pxToPercent(baseFontSizePx)
-  // 3. Get the VW value for the root font size of the current screen
-  //     => 14px / 320px * 100 = 4.375vw
-  const rootSizeVW = (baseFontSizePx / breakpointStartPx) * 100
-  // 4. Get the "end" root font size for the current screen
+  const screenMinFontSize = pxToPercent(baseFontSizePx)
+  // 3. Get the "end" root font size for the current screen
   //      => 87.5% / 0.556 = 157.374%
-  const rootSizeEnd = rootSizeStart / breakpointRatio
-  // 5. Set these values in a clamp() except on 'end' screen
-  //      => clamp(100%, 5vw, 1.294%)
+  const screenMaxFontSize = screenMinFontSize / breakpointRatio
+
   return prev
-    ? `${rootSizeEnd}%`
-    : `clamp(${rootSizeStart}%, ${rootSizeVW}vw, ${rootSizeEnd}%)`
+    ? {
+        screenMinFontSize: screenMaxFontSize,
+        screenMaxFontSize
+      }
+    : {
+        screenMinFontSize,
+        screenMaxFontSize
+      }
 }
 
-export function generateRootFontSizeCSS(screen, prev, source) {
-  const fontSize = calculateRootFontSize(screen, prev)
-  const html = postcss
-    .rule({ selector: 'html', source })
-    .append({
-      prop: 'line-height',
-      value: screen.baseLineHeight
-    })
-    .append({
-      prop: 'font-size',
-      value: fontSize
-    })
+export function generateRootFontSizeValues(screen, prev, source) {
+  const { screenMinFontSize, screenMaxFontSize } = calculateRootFontSize(
+    screen,
+    prev
+  )
 
-  screen.htmlRoot.append(html)
   screen.varsRoot
-    .append({ prop: '--baseline', value: screen.baseLineHeight })
-    .append({ prop: '--rhythm', value: screen.verticalRhythm })
-    .append({ prop: '--baseline-rem', value: `${screen.baseLineHeight}rem` })
-    .append({ prop: '--rhythm-rem', value: `${screen.verticalRhythm}rem` })
+    .append({
+      prop: '--screenStartSize',
+      value: `${screen.breakpointStartPx}px`
+    })
+    .append({ prop: '--screenMinFontSize', value: `${screenMinFontSize}%` })
+    .append({ prop: '--screenScalarFontSize', value: `${screenMinFontSize}%` })
+    .append({ prop: '--screenMaxFontSize', value: `${screenMaxFontSize}%` })
+    .append({ prop: '--screenLineHeight', value: screen.baseLineHeight })
+    .append({ prop: '--screenRhythm', value: screen.verticalRhythm })
+}
+
+export function generateDefaultRootCSS(screen, source) {
+  // Create all of the base scalar spacing unit variables
+  // const scalarUnits = [...Array(ctx.theme.scalarUnits)]
+
+  // scalarUnits.forEach((_, num) => {
+  //   screen.varsRoot.append({
+  //     prop: `--su-${num + 1}`,
+  //     value: `calc(var(--rhythmRem) * ${num + 1})`
+  //   })
+  // })
+
+  screen.htmlRoot.append(
+    postcss
+      .rule({ selector: 'html', source })
+      .append({
+        prop: 'line-height',
+        value: 'var(--screenLineHeight)'
+      })
+      .append({
+        prop: 'font-size',
+        value:
+          'clamp(var(--screenMinFontSize), var(--screenScalarFontSize, var(--screenMinFontSize)), var(--screenMaxFontSize))'
+      })
+  )
 }
 
 export default function rootSizes(ctx, options, source) {
   ctx.theme.screens.forEach((screen, index) => {
-    const prev = screen.key === 'end' ? ctx.theme.screens[index - 1] : null
-    generateRootFontSizeCSS(screen, prev, source)
-
     if (screen.key === 'start') {
-      // Create all of the base spacing unit variables
-      const scalarUnits = [...Array(ctx.theme.scalarUnits)]
-
-      scalarUnits.forEach((_, num) => {
-        screen.varsRoot.append({
-          prop: `--su-${num + 1}`,
-          value: `calc(var(--rhythm-rem) * ${num + 1})`
-        })
-      })
+      generateDefaultRootCSS(screen, source)
     }
+
+    const prev = screen.key === 'end' ? ctx.theme.screens[index - 1] : null
+    generateRootFontSizeValues(screen, prev, source)
   })
 }
