@@ -1,0 +1,124 @@
+[class*='bg-'],
+[class*='color-'] {
+  --GREY-H: 204;
+  --GREY-S: 45%;
+  --GREY-L: 98%;
+
+  --BG: hsla(var(--BG-H), var(--BG-S), var(--BG-L), var(--BG-A, 1));
+  --COLOR: hsla(
+    var(--COLOR-H),
+    var(--COLOR-S),
+    var(--COLOR-L),
+    var(--COLOR-A, 1)
+  );
+}
+
+[class*='bg-'] {
+  background-color: var(--BG);
+}
+
+[class*='color-'] {
+  color: var(--COLOR);
+}
+
+.bg-gray {
+  --BG-H: var(--bg-h, var(--GREY-H));
+  --BG-S: var(--bg-s, var(--GREY-S));
+  --BG-L: var(--bg-l, var(--GREY-L));
+  --BG-A: var(--bg-a, 1);
+}
+
+.color-gray {
+  --COLOR-H: var(--color-h, var(--GREY-H));
+  --COLOR-S: var(--color-s, var(--GREY-S));
+  --COLOR-L: var(--color-l, var(--GREY-L));
+  --COLOR-A: var(--color-a, 1);
+}
+
+.bg-l-0 {
+  --bg-l: 0%;
+}
+
+.bg-l-10 {
+  --bg-l: 10%;
+}
+
+.bg-l-20 {
+  --bg-l: 20%;
+}
+
+.bg-l-30 {
+  --bg-l: 30%;
+}
+
+.bg-l-40 {
+  --bg-l: 40%;
+}
+
+.bg-l-50 {
+  --bg-l: 50%;
+}
+
+.bg-l-60 {
+  --bg-l: 60%;
+}
+
+.bg-l-70 {
+  --bg-l: 70%;
+}
+
+.bg-l-80 {
+  --bg-l: 80%;
+}
+
+.bg-l-90 {
+  --bg-l: 90%;
+}
+
+.bg-l-100 {
+  --bg-l: 100%;
+}
+
+.color-l-0 {
+  --color-l: 0%;
+}
+
+.color-l-10 {
+  --color-l: 10%;
+}
+
+.color-l-20 {
+  --color-l: 20%;
+}
+
+.color-l-30 {
+  --color-l: 30%;
+}
+
+.color-l-40 {
+  --color-l: 40%;
+}
+
+.color-l-50 {
+  --color-l: 50%;
+}
+
+.color-l-60 {
+  --color-l: 60%;
+}
+
+.color-l-70 {
+  --color-l: 70%;
+}
+
+.color-l-80 {
+  --color-l: 80%;
+}
+
+.color-l-90 {
+  --color-l: 90%;
+}
+
+.color-l-100 {
+  --color-l: 100%;
+}

@@ -8,7 +8,7 @@
         <p class="type-0 color-neutral-6 lg-max-w-60">
           Scalar CSS is a first-of-its-kind framework for generating
           <strong><em>fluid web design</em></strong>
-          layouts with typographically rich foundations.
+          layouts with typographically rich&nbsp;foundations.
         </p>
         <div class="d-flex justify-start pt-2 flex-gap-2">
           <a
