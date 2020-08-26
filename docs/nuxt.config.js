@@ -78,6 +78,8 @@ export default {
         test: /\.svg$/,
         use: ['babel-loader', 'vue-svg-loader']
       })
-    }
+    },
+
+    transpile: ['@scalar-css/js-property-calculator']
   }
 }

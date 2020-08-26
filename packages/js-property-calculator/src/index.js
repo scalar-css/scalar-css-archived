@@ -1,9 +1,11 @@
-const debounce = (callback, wait) => {
-  let timeout = null
-  return (...args) => {
-    const next = () => callback(...args)
-    clearTimeout(timeout)
-    timeout = setTimeout(next, wait)
+function throttle(callback, timeFrame) {
+  var lastTime = 0
+  return function () {
+    var now = Date.now()
+    if (now - lastTime >= timeFrame) {
+      callback()
+      lastTime = now
+    }
   }
 }
 
@@ -28,6 +30,6 @@ export default {
 
     scalarCalculator()
 
-    window.addEventListener('resize', debounce(scalarCalculator, 100))
+    window.addEventListener('resize', throttle(scalarCalculator, 100))
   }
 }

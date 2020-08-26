@@ -8,13 +8,17 @@
  * the reset, debug, root sizes, and typography for a fluid site.
  */
 import rootSizes from '@scalar-css/scalar-css-plugin-root-sizes'
+import type from '@scalar-css/scalar-css-plugin-type'
 
 const defaultOptions = {}
 
 export default function presetDefault(opts = {}) {
   const options = Object.assign({}, defaultOptions, opts)
 
-  const plugins = [[rootSizes, options.rootSizes]]
+  const plugins = [
+    [rootSizes, options.rootSizes],
+    [type, options.type]
+  ]
 
   return { plugins }
 }

@@ -11,11 +11,15 @@
 <script>
   import SHeader from '~/components/SHeader.vue'
   import SFooter from '~/components/SFooter.vue'
+  import scalarCalc from '@scalar-css/js-property-calculator'
 
   export default {
     components: {
       SHeader,
       SFooter
+    },
+    mounted() {
+      scalarCalc.init()
     }
   }
 </script>
