@@ -3,25 +3,24 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    jest: true,
+    jest: true
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: 'babel-eslint',
     ecmaVersion: 2017,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   extends: [
     'standard',
     'plugin:vue/vue3-recommended',
     'prettier',
     'prettier/vue',
-    'plugin:prettier/recommended',
+    'plugin:prettier/recommended'
   ],
-  plugins: ['prettier', 'vue'],
+  plugins: ['prettier', 'vue', 'simple-import-sort'],
   rules: {
     curly: ['error', 'all'],
-    // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'require-jsdoc': 0,
@@ -38,10 +37,22 @@ module.exports = {
           'transition',
           'transition-group',
           'keep-alive',
-          'slot',
-        ],
-      },
+          'slot'
+        ]
+      }
     ],
     'vue/no-v-html': 'off',
-  },
+    'simple-import-sort/sort': 'error',
+    'sort-imports': 'off',
+    'import/order': 'off'
+  }
+  // overrides: [
+  //   {
+  //     files: ['server/**/*.js'],
+  //     rules: {
+  //       'simple-import-sort/sort': 'off',
+  //       'import/order': ['error', { 'newlines-between': 'always' }]
+  //     }
+  //   }
+  // ]
 }

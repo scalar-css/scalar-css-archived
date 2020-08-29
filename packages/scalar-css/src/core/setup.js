@@ -1,9 +1,9 @@
 import postcss from 'postcss'
 
-import { merge } from '../util/helpers'
 import defaultConfig from '../defaults/config'
 import defaultFontScales from '../defaults/fontScales'
 import fontStacks from '../defaults/fontStacks'
+import { merge } from '../util/helpers'
 
 /**
  * Set the base font size in pixels for the current screen

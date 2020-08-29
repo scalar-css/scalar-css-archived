@@ -1,11 +1,10 @@
-import {
+import setup, {
   setBaseFontSizePx,
   setBaseLineHeight,
-  setFontScale,
-  setVerticalRhythm,
   setBreakpointEndPx,
+  setFontScale,
   setRootCSSNode,
-  default as setup
+  setVerticalRhythm
 } from './setup'
 
 describe('src/setup.js', () => {
@@ -146,7 +145,7 @@ describe('src/setup.js', () => {
   })
 
   it('should properly generate the context from an empty config', () => {
-    let actual = setup()
+    const actual = setup()
 
     const start = actual.theme.screens[0]
     expect(start.baseLineHeightPx).toBe(24)
@@ -193,7 +192,7 @@ describe('src/setup.js', () => {
         ]
       }
     }
-    let actual = setup(config)
+    const actual = setup(config)
 
     const start = actual.theme.screens[0]
     expect(start.baseLineHeightPx).toBe(19.599999999999998)

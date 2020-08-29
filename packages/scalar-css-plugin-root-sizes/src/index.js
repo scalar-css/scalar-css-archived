@@ -56,7 +56,6 @@ export function generateRootFontSizeValues(screen, prev, source) {
 
 export function generateDefaultRootCSS(ctx, screen, source) {
   // Create all of the base scalar spacing unit variables
-  console.log('units', ctx.theme.units)
   const units = [...Array(ctx.theme.units)]
 
   units.forEach((_, num) => {

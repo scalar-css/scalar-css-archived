@@ -1,14 +1,13 @@
-import fs from 'fs'
+import { cosmiconfig } from 'cosmiconfig'
+import isResolvable from 'is-resolvable'
 import path from 'path'
 import postcss from 'postcss'
-import isResolvable from 'is-resolvable'
 import functions from 'postcss-functions'
-import { cosmiconfig } from 'cosmiconfig'
 
-import { merge } from './util/helpers'
-import setup from './core/setup'
 import scalar from './core/scalar'
 import screen from './core/screen'
+import setup from './core/setup'
+import { merge } from './util/helpers'
 
 const scalarName = 'scalar-css'
 
@@ -95,7 +94,6 @@ export default postcss.plugin(scalarName, (pluginConfig = {}) => {
   return async (css, result) => {
     const config = await resolveConfig(pluginConfig, css, result)
     const plugins = await resolvePreset(config.preset, css, result)
-    console.log(plugins)
     const ctx = setup(config)
 
     return postcss([

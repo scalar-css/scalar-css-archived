@@ -11,11 +11,11 @@ function initializePlugin(ctx, plugin, source) {
       (typeof opts === 'object' && !opts.exclude) ||
       (typeof opts === 'boolean' && opts === true)
     ) {
-      return Promise.resolve(processor(ctx, opts, source))
+      return Promise.resolve(processor(ctx, source))
     }
   }
 
-  return Promise.resolve(plugin(ctx, opts, source))
+  return Promise.resolve(plugin(ctx, source))
 }
 
 export default function (ctx, plugins) {

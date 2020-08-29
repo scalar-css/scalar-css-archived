@@ -14,7 +14,6 @@ module.exports = {
       },
       work: {
         fontFamily: '"Work Sans", serif',
-        capHeight: 0.6779661016949152,
         ligatures: 'normal',
         weight: 700,
         elements: ['h1', 'h2', 'h3', 'h4', 'h5']
