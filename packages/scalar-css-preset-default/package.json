@@ -1,10 +1,10 @@
 {
   "name": "@scalar-css/scalar-css-preset-default",
   "version": "0.0.0",
+  "private": true,
   "license": "MIT",
   "main": "src/index.js",
   "homepage": "https://www.scalar-css.com",
-  "repository": "https://github.com/scalar-css/scalar-css",
   "bugs": "https://github.com/scalar-css/scalar-css/issues",
   "author": {
     "name": "Kether Saturnius",
@@ -24,5 +24,16 @@
     "postcss",
     "postcss-plugin",
     "css utilities"
-  ]
+  ],
+  "engines": {
+    "node": ">=12.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scalar-css/scalar-css",
+    "directory": "packages/scalar-css-preset-default"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }

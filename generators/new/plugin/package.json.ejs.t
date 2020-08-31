@@ -37,5 +37,13 @@ to: "packages/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>/package.json
   ],
   "engines": {
     "node": ">=12.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scalar-css/scalar-css",
+    "directory": "packages/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

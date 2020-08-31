@@ -16,7 +16,9 @@
     "dev": "yarn test:unit --watch",
     "release": "lerna version",
     "lint:styles": "stylelint **/*.{pcss,vue} --fix",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test": "yarn test:unit",
+    "publish:npm": "npm publish --access private"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
