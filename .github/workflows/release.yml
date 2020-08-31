@@ -28,28 +28,19 @@ jobs:
         run: git checkout "${GITHUB_REF:11}" && git pull
       - name: Install Packages
         run: yarn install
-      - name: Test
-        run: yarn test
-      # - name: Authenticate with Registry
-      #   run: |
-      #     yarn logout
-      #     echo "@scalar-css:registry=http://npm.pkg.github.com/" > .npmrc
-      #     echo "registry=http://npm.pkg.github.com/" >> .npmrc
-      #     echo "//npm.pkg.github.com/:_authToken=$NPM_TOKEN" >> .npmrc
-      #     npm whoami
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.ACTOR_PAT }}
+      # - name: Test
+      #   run: yarn test
+      - name: Authenticate with Registry
+        run: |
+          yarn logout
+          echo "@scalar-css:registry=http://npm.pkg.github.com/" > .npmrc
+          echo "registry=http://npm.pkg.github.com/" >> .npmrc
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> .npmrc
+          npm whoami
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTOR_PAT }}
       # - name: Publish package
       #   run: npm run deploy:ci
       #   env:
       #     GH_TOKEN: ${{ secrets.ACTOR_PAT }}
       #     GITHUB_TOKEN: ${{ secrets.ACTOR_PAT }}
-      # - name: Build Docs
-      #   run: yarn docs
-      # - run: echo "apolloelements.dev" > docs/CNAME
-      # - name: Deploy Docs
-      #   uses: JamesIves/github-pages-deploy-action@releases/v3
-      #   with:
-      #     ACCESS_TOKEN: ${{ secrets.ACTOR_PAT }}
-      #     BRANCH: gh-pages # The branch the action should deploy to.
-      #     FOLDER: docs # The folder the action should deploy.
