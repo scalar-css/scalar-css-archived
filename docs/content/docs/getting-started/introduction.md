@@ -1,7 +1,7 @@
 ---
-title: Installation
-description: Quick start guide for installing and configuring Scalar CSS.
-position: 2
+title: Introduction
+description: Get started with Scalar, the world's first CSS framework for building typographically rich, mathematically beautiful, custom layouts.
+position: 1
 ---
 
 ## Quick start

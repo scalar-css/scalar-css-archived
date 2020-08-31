@@ -9,15 +9,17 @@
 </template>
 
 <script>
-  import SHeader from '~/components/SHeader.vue'
-  import SFooter from '~/components/SFooter.vue'
   import scalarCalc from '@scalar-css/js-property-calculator'
+
+  import SFooter from '~/components/SFooter.vue'
+  import SHeader from '~/components/SHeader.vue'
 
   export default {
     components: {
       SHeader,
       SFooter
     },
+    middleware: ['sidebar'],
     mounted() {
       scalarCalc.init()
     }
