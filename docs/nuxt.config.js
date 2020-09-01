@@ -3,8 +3,6 @@ export default {
 
   modules: ['@nuxt/content', 'nuxt-webfontloader'],
 
-  css: ['~/styles/scalar.pcss'],
-
   head: {
     title: 'Scalar CSS',
     meta: [
@@ -54,7 +52,7 @@ export default {
   build: {
     postcss: {
       plugins: {
-        'postcss-import': {},
+        '@scalar-css/scalar-css-import': {},
         'postcss-simple-vars': {},
         'postcss-preset-env': {},
         'postcss-nested': {},

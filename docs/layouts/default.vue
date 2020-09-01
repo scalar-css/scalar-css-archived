@@ -26,4 +26,6 @@
   }
 </script>
 
-<style lang="postcss"></style>
+<style lang="postcss">
+  @import '~/styles/scalar.pcss';
+</style>

@@ -10,5 +10,8 @@
       "registry": "https://npm.pkg.github.com",
       "allowBranch": "master"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

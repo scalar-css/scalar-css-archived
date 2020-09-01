@@ -11,9 +11,9 @@ function sortDocuments(docs) {
   return result
 }
 
-function sortFolders(docs) {
-  const result = docs.reduce((acc, current) => {
-    const folder = current.dir.replace('/docs/', '')
+function sortFolders(dir, content) {
+  const result = content.reduce((acc, current) => {
+    const folder = current.dir.replace(`${dir}/`, '')
     acc[`${folder}`] = {
       title: folder.replace('-', ' '),
       key: folder,
@@ -25,20 +25,19 @@ function sortFolders(docs) {
   return sortDocuments(result)
 }
 
+async function fetchDirectory(dir, ctx) {
+  const content = await ctx
+    .$content(dir, { deep: true })
+    .only(['title', 'position', 'dir', 'path'])
+    .fetch()
+  return sortFolders(dir, content)
+}
+
 export default async function sidebar(ctx) {
   const path = ctx.route.path
-  let content
   if (path.startsWith('/docs')) {
-    content = await ctx
-      .$content('/docs', { deep: true })
-      .only(['title', 'position', 'dir', 'path'])
-      .fetch()
+    ctx.sidebarLinks = await fetchDirectory('/docs', ctx)
   } else if (path.startsWith('/blog')) {
-    content = await ctx
-      .$content('/blog', { deep: true })
-      .only(['title', 'position', 'dir', 'path'])
-      .fetch()
+    ctx.sidebarLinks = await fetchDirectory('/blog', ctx)
   }
-
-  ctx.sidebarLinks = sortFolders(content)
 }
