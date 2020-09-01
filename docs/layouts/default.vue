@@ -1,23 +1,24 @@
 <template>
   <div>
-    <s-header />
-    <main class="pt-6 lg-pt-10">
+    <!-- <s-header /> -->
+    <main class="rowLayout gap-lg">
+      <div />
       <nuxt />
     </main>
-    <s-footer />
+    <!-- <s-footer /> -->
   </div>
 </template>
 
 <script>
   import scalarCalc from '@scalar-css/js-property-calculator'
 
-  import SFooter from '~/components/SFooter.vue'
-  import SHeader from '~/components/SHeader.vue'
+  // import SFooter from '~/components/SFooter.vue'
+  // import SHeader from '~/components/SHeader.vue'
 
   export default {
     components: {
-      SHeader,
-      SFooter
+      // SHeader,
+      // SFooter
     },
     middleware: ['sidebar'],
     mounted() {

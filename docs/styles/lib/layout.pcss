@@ -1,0 +1,85 @@
+:root {
+  --scalarUnit: 1rem;
+  --baselineUnit: calc(1.5 * var(--scalarUnit));
+  --rhythmUnit: calc(0.75 * var(--scalarUnit));
+
+  --spacingUnitSm: var(--rhythmUnit);
+  --spacingUnit: var(--scalarUnit);
+  --spacingUnitLg: calc(var(--scalarUnit) * 2);
+
+  --screenWidthStart: 320;
+  --screenWidthMd: 768;
+  --screenWidthLg: 992;
+  --screenWidthXl: 1200;
+  --screenWidthEnd: 1440;
+}
+
+html {
+  background-image: linear-gradient(rgba(169, 169, 169, 0.05) 0.05em, transparent 0.1em), linear-gradient(90deg, rgba(169, 169, 169, 0.05) 0.05em, transparent 0.1em);
+  background-size: var(--baselineUnit) var(--baselineUnit);
+  background-attachment: scroll;
+  /* background-position: calc(50% - 1.75rem/2) -17px; */
+}
+
+.section {
+  --columnPaddingBase: var(--spacingBase);
+  --columnPaddingLg: calc(var(--scalarUnit) * 2);
+  --layoutPaddingMax: calc(var(--scalarUnit) * 8);;
+  --layoutPaddingMin: calc(var(--scalarUnit) * 4);;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  --containerWidth: 100%;
+  --containerMargin: var(--scalarUnit);
+
+  width: 100%;
+  max-width: var(--containerWidth);
+  margin: 0 var(--containerMargin);
+}
+
+.layout {
+  --layoutPadding: calc(var(--layoutPaddingMax) * var(--spacingUnit)));
+
+  padding: var(--layoutPadding) 0;
+}
+
+.rowLayout {
+  --rowLayoutGapSm: var(--spacingUnitSm);
+  --rowLayoutGapMd: calc(var(--spacingUnit) * 2);
+  --rowLayoutGapLg: var(--rowLayoutGapMd);
+  --rowLayoutGapXl: var(--rowLayoutGapMd);
+
+  --rowLayoutGap: var(--rowLayoutGapMd);
+
+  display: grid;
+  grid: auto/minmax(0px,1fr);
+  row-gap: var(--rowLayoutGap);
+}
+
+.columnLayout {
+  --columnRowGap: var(--spacingUnit);
+
+  display: grid;
+  column-gap: var(--columnRowGap);
+  align-items: flex-start;
+}
+
+.gap-sm {
+  --rowLayoutGap: var(--spacingUnitSm);
+  --columnRowGap: var(--spacingUnitSm);
+}
+
+.gap-lg {
+  --rowLayoutGap: var(--spacingUnitLg);
+  --columnRowGap: var(--spacingUnitLg);
+}
+
+@screen md {
+  .columnLayout[data-columns="1,4,1"] {
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+}

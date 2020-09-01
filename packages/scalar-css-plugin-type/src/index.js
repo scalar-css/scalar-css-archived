@@ -1,6 +1,5 @@
-import postcss from 'postcss'
-
 import { pxToRem } from '@scalar-css/scalar-css-util-conversions'
+import postcss from 'postcss'
 
 /**
  * Get a font size in pixels based on the baseFontSize and ratio provided
@@ -34,7 +33,7 @@ export function getLineHeightPx(
   lineHeight,
   verticalRhythmPx
 ) {
-  const lh = lineHeight ? lineHeight : baseLineHeight
+  const lh = lineHeight || baseLineHeight
   const lineHeightPx = fontSizePx * lh
   const rhythmMod = lineHeightPx % verticalRhythmPx
 
@@ -59,8 +58,18 @@ export function getLineHeightPx(
  *
  * @returns {Number}
  */
-export function getMarginBottomPx(verticalRhythmPx, marginBottom) {
-  return marginBottom.replace('vr', '') * verticalRhythmPx
+export function getMarginBottomPx(
+  verticalRhythmPx,
+  baseLineHeightPx,
+  marginBottom
+) {
+  if (marginBottom.includes('rem')) {
+    return marginBottom
+  } else if (marginBottom.includes('vr')) {
+    return marginBottom.replace('vr', '') * verticalRhythmPx
+  } else if (marginBottom.includes('bl')) {
+    return marginBottom.replace('bl', '') * baseLineHeightPx
+  }
 }
 
 /**
@@ -90,15 +99,17 @@ export function getFontScaleStep(id, fontScaleStep) {
  * @param {String} id key for the current type object
  * @param {Object} settings properties for the current type object
  * @param {Object} screen current screen
- * @param {Object} fonts the current theme's font settings
  */
-export function generateTypeClassRule(id, settings, screen, fonts) {
+export function generateTypeClassRule(id, settings, screen) {
   const { baseFontSizePx, baseLineHeight, verticalRhythmPx, fontScale } = screen
-  const { scaleStep, lineHeight, marginBottom } = settings
+  const { scaleStep, lineHeight, elements, marginBottom } = settings
   const typeId = id.startsWith('-')
     ? `.-type-${id.replace('-', '')}`
     : `.type-${id}`
-  const typeClass = postcss.rule({ selector: typeId })
+  const selector = Array.isArray(elements)
+    ? `${elements.join()},${typeId}`
+    : typeId
+  const typeClass = postcss.rule({ selector })
 
   const fontScaleStep = getFontScaleStep(id, scaleStep)
   const fontSizePx = getFontSizePx(baseFontSizePx, fontScale, fontScaleStep)
@@ -108,7 +119,15 @@ export function generateTypeClassRule(id, settings, screen, fonts) {
     lineHeight,
     verticalRhythmPx
   )
-  const marginBottomPx = getMarginBottomPx(verticalRhythmPx, marginBottom)
+
+  const marginBottomPx =
+    typeof marginBottom === 'undefined'
+      ? 0
+      : getMarginBottomPx(
+          verticalRhythmPx,
+          baseLineHeight * baseFontSizePx,
+          marginBottom
+        )
 
   return typeClass
     .append({
@@ -124,20 +143,33 @@ export function generateTypeClassRule(id, settings, screen, fonts) {
 
 export function createBaseStyleRule() {
   return postcss
-    .rule({ selector: '[class*="type-"]' })
+    .rule({ selector: '[class*="type-"],h1,h2,h3,h4,h5,h6,p' })
     .append({ prop: 'font-size', value: 'var(--typeFontSize)' })
     .append({ prop: 'line-height', value: 'var(--typeLineHeight)' })
     .append({ prop: 'margin-bottom', value: 'var(--typeMarginBottom)' })
 }
 
 export default function type(ctx, options, source) {
+  let fontScaleId = null
   ctx.theme.screens.forEach(screen => {
     if (screen.key === 'start') {
+      fontScaleId = screen.fontScaleId
       screen.htmlRoot.append(createBaseStyleRule())
+      Object.entries(ctx.theme.typography).forEach(([id, settings]) => {
+        screen.htmlRoot.append(
+          generateTypeClassRule(id, settings, screen, ctx.theme.fonts)
+        )
+      })
     }
 
-    if ('typography' in screen) {
-      Object.entries(screen.typography).forEach(([id, settings]) => {
+    // Generate new type classes whenever there is a new fontScaleId supplied
+    if (screen.fontScaleId !== fontScaleId) {
+      fontScaleId = screen.fontScaleId
+
+      // User can override typography settings, if desired, on a per-screen level
+      const typography =
+        'typography' in screen ? screen.typography : ctx.theme.typography
+      Object.entries(typography).forEach(([id, settings]) => {
         screen.htmlRoot.append(
           generateTypeClassRule(id, settings, screen, ctx.theme.fonts)
         )

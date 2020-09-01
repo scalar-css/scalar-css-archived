@@ -1,5 +1,5 @@
-import postcss from 'postcss'
 import { pxToPercent } from '@scalar-css/scalar-css-util-conversions'
+import postcss from 'postcss'
 
 /**
  * Generate the root font size values for the current screen
@@ -45,7 +45,11 @@ export function generateRootFontSizeValues(screen, prev, source) {
   screen.varsRoot
     .append({
       prop: '--screenStartSize',
-      value: `${screen.breakpointStartPx}px`
+      value: `${screen.breakpointStartPx}`
+    })
+    .append({
+      prop: '--screenEndSize',
+      value: `${screen.breakpointEndPx}`
     })
     .append({ prop: '--screenMinFontSize', value: `${screenMinFontSize}%` })
     .append({ prop: '--screenScalarFontSize', value: `${screenMinFontSize}%` })
@@ -56,19 +60,19 @@ export function generateRootFontSizeValues(screen, prev, source) {
 
 export function generateDefaultRootCSS(ctx, screen, source) {
   // Create all of the base scalar spacing unit variables
-  const units = [...Array(ctx.theme.units)]
+  // const units = [...Array(ctx.theme.units)]
 
-  units.forEach((_, num) => {
-    const value = num + 1
-    screen.varsRoot.append({
-      prop: `--rhythmUnit-${value}`,
-      value: `calc(var(--screenRhythm) * ${value}rem)`
-    })
-    screen.varsRoot.append({
-      prop: `--baselineUnit-${value}`,
-      value: `calc(var(--screenLineHeight) * ${value}rem)`
-    })
-  })
+  // units.forEach((_, num) => {
+  //   const value = num + 1
+  //   screen.varsRoot.append({
+  //     prop: `--rhythmUnit-${value}`,
+  //     value: `calc(var(--screenRhythm) * ${value}rem)`
+  //   })
+  //   screen.varsRoot.append({
+  //     prop: `--baselineUnit-${value}`,
+  //     value: `calc(var(--screenLineHeight) * ${value}rem)`
+  //   })
+  // })
 
   screen.htmlRoot.append(
     postcss

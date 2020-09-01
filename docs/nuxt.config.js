@@ -49,6 +49,8 @@ export default {
     routes: ['/'] // give the first url to start crawling
   },
 
+  watch: ['./scalar-css.config.js'],
+
   build: {
     postcss: {
       plugins: {

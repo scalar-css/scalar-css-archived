@@ -14,18 +14,18 @@ export default {
     const root = getComputedStyle(document.documentElement)
 
     function scalarCalculator() {
-      const start = root
-        .getPropertyValue('--screenStartSize')
-        .trim()
-        .replace('px', '')
-      const min = root
-        .getPropertyValue('--screenMinFontSize')
-        .trim()
-        .replace('%', '')
-      document.documentElement.style.setProperty(
-        '--screenScalarFontSize',
-        `${min / (start / window.innerWidth)}%`
-      )
+      const start = root.getPropertyValue('--screenStartSize').trim()
+      const end = root.getPropertyValue('--screenEndSize').trim()
+      if (window.innerWidth < end) {
+        const min = root
+          .getPropertyValue('--screenMinFontSize')
+          .trim()
+          .replace('%', '')
+        document.documentElement.style.setProperty(
+          '--screenScalarFontSize',
+          `${min / (start / window.innerWidth)}%`
+        )
+      }
     }
 
     scalarCalculator()

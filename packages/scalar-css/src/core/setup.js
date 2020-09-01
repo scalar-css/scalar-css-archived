@@ -1,9 +1,9 @@
 import postcss from 'postcss'
 
-import defaultConfig from '../defaults/config'
+// import defaultConfig from '../defaults/config'
 import defaultFontScales from '../defaults/fontScales'
 import fontStacks from '../defaults/fontStacks'
-import { merge } from '../util/helpers'
+import { merge, objectIsEmpty } from '../util/helpers'
 
 /**
  * Set the base font size in pixels for the current screen
@@ -185,7 +185,12 @@ export function finalizeScreens(config) {
  * @returns {Object} ctx Finalized context that is used throughout framework
  */
 export default function setup(userConfig = {}) {
-  const config = finalizeScreens(merge(defaultConfig, userConfig))
+  // const config = finalizeScreens(merge(defaultConfig, userConfig))
+  if (objectIsEmpty(userConfig)) {
+    return
+  }
+
+  const config = finalizeScreens(userConfig)
 
   const ctx = merge(config, {
     theme: {
