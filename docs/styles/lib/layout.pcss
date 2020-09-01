@@ -2,6 +2,7 @@
   --scalarUnit: 1rem;
   --baselineUnit: calc(1.5 * var(--scalarUnit));
   --rhythmUnit: calc(0.75 * var(--scalarUnit));
+  --scrollbarWidth: 15px;
 
   --spacingUnitSm: var(--rhythmUnit);
   --spacingUnit: var(--scalarUnit);
@@ -61,7 +62,7 @@ html {
 }
 
 .columnLayout {
-  --columnRowGap: var(--spacingUnit);
+  --columnRowGap: var(--spacingUnitLg);
 
   display: grid;
   column-gap: var(--columnRowGap);
@@ -79,7 +80,25 @@ html {
 }
 
 @screen md {
-  .columnLayout[data-columns="1,4,1"] {
-    grid-template-columns: 1fr 4fr 1fr;
+  /* .columnLayout[data-columns="1,4,1"] {
+    grid-template-columns: 1.414fr 5.6525843fr 0.70721358fr;
+  }
+  .columnLayout[data-columns="golden"] {
+    grid-template-columns: 12fr 48fr 6fr;
+  } */
+  .columnLayout[data-columns="main"] {
+    grid-template-columns: 1fr 5.334fr;
+    margin-right: calc(var(--baselineUnit) * 2);
+  }
+
+  .columnLayout[data-columns="content"] {
+    grid-template-columns: 5.334fr 1fr;
+  }
+}
+
+@screen xl {
+  .container {
+    --containerWidth: 66rem;
+    --containerMargin: calc(var(--baselineUnit) * 2);
   }
 }

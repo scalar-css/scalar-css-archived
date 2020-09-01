@@ -108,7 +108,7 @@ module.exports = {
         breakpointStartPx: 1440,
         baseFontSizePx: 20,
         container: {
-          maxWidth: 1140
+          maxWidth: 1320
         }
       },
       {

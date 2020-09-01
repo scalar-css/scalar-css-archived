@@ -1,19 +1,83 @@
 <template>
   <div class="section">
-    <div class="container">
-      <div class="columnLayout" data-columns="1,4,1">
-        <section class="rowLayout">
-          <div v-for="folder in sidebarLinks" :key="folder.key" class="">
-            <h3 class="-type-2 text-uppercase color-neutral-5">
-              {{ folder.title }}
-            </h3>
-            <ul>
-              <li v-for="link in folder.links" :key="link.path" class="-type-1">
-                <nuxt-link :to="link.path">{{ link.title }}</nuxt-link>
-              </li>
-            </ul>
-          </div>
-        </section>
+    <div class="columnLayout" data-columns="main">
+      <div class="sidebar-scrollbar">
+        <div class="sidebar">
+          <section class="rowLayout">
+            <div v-for="folder in sidebarLinks" :key="folder.key" class="">
+              <h3 class="-type-2 text-uppercase color-neutral-5">
+                {{ folder.title }}
+              </h3>
+              <ul>
+                <li
+                  v-for="link in folder.links"
+                  :key="link.path"
+                  class="-type-1"
+                >
+                  <nuxt-link :to="link.path">{{ link.title }}</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div v-for="folder in sidebarLinks" :key="folder.key" class="">
+              <h3 class="-type-2 text-uppercase color-neutral-5">
+                {{ folder.title }}
+              </h3>
+              <ul>
+                <li
+                  v-for="link in folder.links"
+                  :key="link.path"
+                  class="-type-1"
+                >
+                  <nuxt-link :to="link.path">{{ link.title }}</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div v-for="folder in sidebarLinks" :key="folder.key" class="">
+              <h3 class="-type-2 text-uppercase color-neutral-5">
+                {{ folder.title }}
+              </h3>
+              <ul>
+                <li
+                  v-for="link in folder.links"
+                  :key="link.path"
+                  class="-type-1"
+                >
+                  <nuxt-link :to="link.path">{{ link.title }}</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div v-for="folder in sidebarLinks" :key="folder.key" class="">
+              <h3 class="-type-2 text-uppercase color-neutral-5">
+                {{ folder.title }}
+              </h3>
+              <ul>
+                <li
+                  v-for="link in folder.links"
+                  :key="link.path"
+                  class="-type-1"
+                >
+                  <nuxt-link :to="link.path">{{ link.title }}</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div v-for="folder in sidebarLinks" :key="folder.key" class="">
+              <h3 class="-type-2 text-uppercase color-neutral-5">
+                {{ folder.title }}
+              </h3>
+              <ul>
+                <li
+                  v-for="link in folder.links"
+                  :key="link.path"
+                  class="-type-1"
+                >
+                  <nuxt-link :to="link.path">{{ link.title }}</nuxt-link>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="columnLayout" data-columns="content">
         <section class="rowLayout gap-lg">
           <div class="rowLayout gap-sm">
             <h1 class="color-primary-2">{{ doc.title }}</h1>
@@ -53,3 +117,17 @@
     }
   }
 </script>
+
+<style lang="pcss">
+  .sidebar-scrollbar {
+    top: 0;
+    position: sticky;
+    overflow-y: scroll;
+    direction: rtl;
+  }
+  .sidebar {
+    direction: ltr;
+    padding-left: calc((var(--baselineUnit) * 2) - var(--scrollbarWidth));
+    height: 100vh;
+  }
+</style>
