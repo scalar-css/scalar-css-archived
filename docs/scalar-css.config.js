@@ -25,7 +25,8 @@ module.exports = {
     },
     typography: {
       '-2': {
-        scaleStep: -2
+        scaleStep: -2,
+        lineHeight: 2
       },
       '-1': {
         scaleStep: -1
