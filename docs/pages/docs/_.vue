@@ -3,7 +3,23 @@
     <aside class="sidebar-wrapper">
       <div class="sidebar-sticky">
         <div class="sidebar px-ru">
-          <section class="rowLayout pt-bl" style="--pt-bl: 3;">
+          <nav class="rowLayout pt-bl" style="--pt-bl: 3;">
+            <ul>
+              <li class="-type-1">
+                <nuxt-link to="/docs/getting-started/introduction"
+                  >Docs</nuxt-link
+                >
+              </li>
+              <li class="-type-1">
+                <nuxt-link to="/blog">Blog</nuxt-link>
+              </li>
+              <li class="-type-1">
+                <nuxt-link to="/community">Community</nuxt-link>
+              </li>
+              <li class="-type-1">
+                <nuxt-link to="/support-scalar">Support Scalar</nuxt-link>
+              </li>
+            </ul>
             <div v-for="folder in sidebarLinks" :key="folder.key" class="">
               <h3 class="-type-2 text-uppercase color-neutral-5">
                 {{ folder.title }}
@@ -88,7 +104,7 @@
                 </li>
               </ul>
             </div>
-          </section>
+          </nav>
         </div>
       </div>
     </aside>

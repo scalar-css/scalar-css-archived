@@ -82,7 +82,7 @@ module.exports = {
       {
         key: 'md',
         breakpointStartPx: 768,
-        fontScaleId: 'majorThird',
+        fontScaleId: 'perfectFourth',
         container: {
           maxWidth: 720,
           padding: '1vr'
