@@ -1,78 +1,118 @@
 <template>
   <div>
-    <s-section theme="dark" image="header-image.jpg">
-      <div class="container">
-        <h1 class="type-title color-neutral-7 lg-max-w-60">
-          Consistent type and layout for the web.
-        </h1>
-        <p class="type-0 color-neutral-6 lg-max-w-60">
-          Scalar CSS is a first-of-its-kind framework for generating
-          <strong><em>fluid web design</em></strong>
-          layouts with typographically rich&nbsp;foundations.
-        </p>
-        <div class="d-flex justify-start pt-2 flex-gap-2">
-          <a
-            href="#"
-            class="btn d-inline-block align-items-center px-2 py-1 bg-primary-3 color-neutral-7 font-bold"
-            ><span class="type-btn">Get Started</span></a
-          >
-          <scroll-to
-            target-id="why-scalar"
-            :offset="[50, 100]"
-            class="btn d-inline-block align-items-center px-2 py-1 color-neutral-7 font-bold"
-          >
-            <span class="type-btn">Why Scalar?</span>
-          </scroll-to>
-        </div>
-      </div>
-    </s-section>
-    <s-section theme="light">
-      <div class="container">
-        <div class="lg-d-flex lg-flex-gap-4 align-items-start">
-          <div class="lg-max-w-60">
-            <div class="d-flex flex-direction-column flex-gap-2">
-              <h6 class="type-tagline color-accent-2">
-                Complete Customization, No Overrides
-              </h6>
-              <h2 class="type-3 color-primary-2">
-                Build rapidly with utility-first CSS
-              </h2>
-            </div>
-            <p class="type-0 color-neutral-3">
-              Following in the tradition of other highly-customizable CSS
-              utility frameworks like Tailwind, Scalar generates a low-level,
-              class-based API that helps you rapidly build unique layouts
-              without forcing you to override base styles.
-            </p>
-          </div>
-          <div></div>
-        </div>
-      </div>
-    </s-section>
-    <s-section theme="dark"> </s-section>
+    <section>
+      <section-title
+        tagline="Complete Customization, No Overrides"
+        title="Build quickly with utility-first CSS"
+      />
+      <p>
+        Following in the tradition of other highly-customizable CSS utility
+        frameworks like Tailwind, Scalar generates a low-level, class-based API
+        that helps you rapidly build unique layouts without forcing you to
+        override base styles.
+      </p>
+      <icon-block icon="waveform" title="Responsive, yet precise">
+        Scalar takes advantage of the latest CSS functionality and a pioneering
+        approach to CSS to keep your design consistent, no matter the viewport.
+      </icon-block>
+      <icon-block icon="typography" title="Rich Typography">
+        Modify font properties, vertical rhythm, margins, line heights, and
+        modular scales at any breakpoint to get the right type stylinhg for each
+        screen.
+      </icon-block>
+      <icon-block icon="modular" title="Modular">
+        Scalar’s composable plugins and configs allows you to opt-in, out, or
+        even build your own, to ensure you have 100% control over your final
+        CSS.
+      </icon-block>
+      <icon-block icon="accessible" title="Accessible">
+        Many existing “fluid” font techniques inhibit accessibility. Scalar
+        works without breaking accessibility and doesn’t use obscure calc
+        statements.
+      </icon-block>
+    </section>
+    <section>
+      <section-title
+        tagline="Support Scalar's Development"
+        title="How can you help?"
+      />
+      <p>
+        If you love the ideas behind Scalar and the potential it unveils, please
+        consider sponsoring its development to ensure we can build a web with
+        beautiful, accessible typography and grids for all.
+      </p>
+      <icon-block icon="training" title="Video training">
+        Learn Scalar from the source by buying one of the
+        <a
+          href="https://learn.scalar.com"
+          target="_blank"
+          rel="noreferrer nofollow"
+          >video trainings</a
+        >.
+      </icon-block>
+      <icon-block icon="store" title="Scalar swag">
+        Grab yourself some beautiful swag in our
+        <a
+          href="https://scalar.threadless.com"
+          target="_blank"
+          rel="noreferrer nofollow"
+          >Scalar merch store</a
+        >.
+      </icon-block>
+      <icon-block icon="oc-colored" title="Open Collective">
+        Become a backer or sponsor on
+        <a
+          href="https://www.opencollective.com/scalar-css"
+          target="_blank"
+          rel="noreferrer nofollow"
+          >Open Collective</a
+        >.
+      </icon-block>
+      <icon-block icon="donate" title="Donations">
+        Use
+        <a
+          href="https://paypal.me/k3th3r"
+          target="_blank"
+          rel="noreferrer nofollow"
+          >PayPal</a
+        >
+        to send a one-time, non-recurring donation.
+      </icon-block>
+    </section>
+    <section>
+      <section-title
+        tagline="Video Training — Coming in 2021"
+        title="Learn to design and develop fluidly"
+      />
+      <p>
+        Scalar and fluid web design give us an ability to design and build web
+        sites in a new way that gives us greater control and precision over
+        typography, layout, and copywriting.
+      </p>
+
+      <p>
+        Whether you’re a designer or a developer, prepare for an in-depth,
+        guided course and walk-through of all the building blocks and essential
+        concepts behind fluid web design. You’ll be learning from the creator of
+        Scalar himself, Kether Saturnius, a 20 year veteran of the web industry
+        who spent the first half of his career as a designer.
+      </p>
+
+      <p><strong>Save 50% if you buy before 2021</strong></p>
+    </section>
   </div>
 </template>
 
 <script>
-  import ScrollTo from '~/components/ScrollTo'
-  import SSection from '~/components/SSection'
+  import IconBlock from '~/components/IconBlock'
+  import SectionTitle from '~/components/SectionTitle'
 
   export default {
     components: {
-      SSection,
       IconBlock,
-      ScrollTo
+      SectionTitle
     }
   }
 </script>
 
-<style lang="postcss">
-  .btn {
-    text-decoration: none;
-    transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-
-  .theme-dark a {
-    color: var(--color-neutral-7);
-  }
-</style>
+<style lang="postcss"></style>
