@@ -59,21 +59,6 @@ export function generateRootFontSizeValues(screen, prev, source) {
 }
 
 export function generateDefaultRootCSS(ctx, screen, source) {
-  // Create all of the base scalar spacing unit variables
-  // const units = [...Array(ctx.theme.units)]
-
-  // units.forEach((_, num) => {
-  //   const value = num + 1
-  //   screen.varsRoot.append({
-  //     prop: `--rhythmUnit-${value}`,
-  //     value: `calc(var(--screenRhythm) * ${value}rem)`
-  //   })
-  //   screen.varsRoot.append({
-  //     prop: `--baselineUnit-${value}`,
-  //     value: `calc(var(--screenLineHeight) * ${value}rem)`
-  //   })
-  // })
-
   screen.htmlRoot.append(
     postcss
       .rule({ selector: 'html', source })

@@ -9,6 +9,10 @@ function throttle(callback, timeFrame) {
   }
 }
 
+function getScrollbarWidth() {
+  return window.innerWidth - document.documentElement.clientWidth
+}
+
 export default {
   init: function () {
     const root = getComputedStyle(document.documentElement)
@@ -26,6 +30,11 @@ export default {
           `${min / (start / window.innerWidth)}%`
         )
       }
+
+      document.documentElement.style.setProperty(
+        '--scrollBarWidthJS',
+        `${getScrollbarWidth()}px`
+      )
     }
 
     scalarCalculator()

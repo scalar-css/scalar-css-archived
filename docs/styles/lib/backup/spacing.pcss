@@ -1,0 +1,66 @@
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[class*='p-'] {
+  padding: var(--p);
+}
+
+.p-ru {
+  --p: calc(var(--rhythmUnit) * var(--p-ru, 1));
+}
+
+.p-bl {
+  --p: calc(var(--rhythmUnit) * var(--p-bl, 1));
+}
+
+[class*='px-'] {
+  padding-left: var(--px);
+  padding-right: var(--px);
+}
+
+.px-ru {
+  --px: calc(var(--rhythmUnit) * var(--px-ru, 1));
+}
+
+.px-bl {
+  --px: calc(var(--baselineUnit) * var(--px-bl, 1));
+}
+
+[class*='pl-'] {
+  padding-left: var(--pl);
+}
+
+.pl-ru {
+  --pl: calc(var(--rhythmUnit) * var(--pl-ru, 1));
+}
+
+.pl-bl {
+  --pl: calc(var(--baselineUnit) * var(--pl-bl, 1));
+}
+
+[class*='py-'] {
+  padding-left: var(--py);
+  padding-right: var(--py);
+}
+
+.py-ru {
+  --py: calc(var(--rhythmUnit) * var(--py-ru, 1));
+}
+
+.py-bl {
+  --py: calc(var(--baselineUnit) * var(--py-bl, 1));
+}
+
+[class*='pt-'] {
+  padding-top: var(--pt);
+}
+
+.pt-ru {
+  --pt: calc(var(--rhythmUnit) * var(--pt-ru, 1));
+}
+
+.pt-bl {
+  --pt: calc(var(--baselineUnit) * var(--pt-bl, 1));
+}

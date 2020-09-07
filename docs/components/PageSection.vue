@@ -1,0 +1,71 @@
+<template>
+  <section class="section">
+    <section-bg :bg="bgFill" :bg-top-position="padding">
+      <template v-if="!!$slots.top" #top><slot name="top" /></template>
+      <template v-if="!!$slots.bottom" #bottom><slot name="bottom" /></template>
+    </section-bg>
+    <div class="layout" :style="layoutStyles">
+      <div class="container">
+        <slot />
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+  import SectionBg from './SectionBg'
+
+  export default {
+    components: {
+      SectionBg
+    },
+    props: {
+      bg: {
+        type: String,
+        default: ''
+      },
+      padding: {
+        type: String,
+        default: ''
+      }
+    },
+    computed: {
+      bgFill() {
+        if (this.bg !== '') {
+          return `bg-${this.bg}`
+        }
+        return null
+      },
+      layoutStyles() {
+        return {
+          '--layoutPadding': `calc(var(--baselineUnit) * ${this.padding.replace(
+            'bl',
+            ''
+          )})`
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  .section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .layout {
+    --layoutPaddingTop: var(--layoutPadding);
+    --layoutPaddingBottom: var(--layoutPadding);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: var(--layoutPaddingTop) 0 var(--layoutPaddingBottom);
+  }
+
+  .container {
+    width: var(--containerWidth, 100%);
+    margin-left: var(--containerMargin);
+    margin-right: calc(var(--containerMargin) - var(--scrollbarWidth));
+  }
+</style>

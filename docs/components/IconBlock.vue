@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="rowLayout gap-ru">
     <base-icon :name="icon" />
-    <h4 class="-type-2 color-accent text-uppercase">{{ title }}</h4>
-    <p><slot /></p>
+    <h4 class="-type-2 color-accent-1 text-uppercase">{{ title }}</h4>
+    <p class="-type-1"><slot /></p>
   </div>
 </template>
 

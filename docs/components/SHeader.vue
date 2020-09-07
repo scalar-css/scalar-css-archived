@@ -17,7 +17,7 @@
                   <scalar-brand />
                 </nuxt-link>
               </div>
-              <div>
+              <!-- <div>
                 <div class="relative color-primary-3">
                   <input
                     type="search"
@@ -31,14 +31,17 @@
                     <icon-search class="height-rem" />
                   </div>
                 </div>
-              </div>
+              </div> -->
               <nav>
                 <ul class="columnLayout gap-bl1">
-                  <!-- <li>
-                <a href="https://opencollective.com/scalar-css" rel="noreferrer">
-                  <icon-oc />
-                </a>
-              </li> -->
+                  <li>
+                    <a
+                      href="https://opencollective.com/scalar-css"
+                      rel="noreferrer"
+                    >
+                      <icon-oc />
+                    </a>
+                  </li>
                   <li>
                     <a
                       href="https://discord.gg/gUAQA8U"

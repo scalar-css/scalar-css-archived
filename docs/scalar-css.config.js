@@ -26,7 +26,7 @@ module.exports = {
     typography: {
       '-2': {
         scaleStep: -2,
-        lineHeight: 2
+        lineHeight: 1.3
       },
       '-1': {
         scaleStep: -1
@@ -51,13 +51,22 @@ module.exports = {
         lineHeight: 1.2,
         marginBottom: '1bl'
       },
-      '4': {
-        scaleStep: 4
+      tagline: {
+        scaleStep: 0,
+        lineHeight: 1.2
       },
-      title: {
-        scaleStep: 5,
-        lineHeight: 1.2,
-        elements: ['h1']
+      sectionTitle: {
+        scaleStep: 2,
+        lineHeight: 1.2
+      },
+      lead: {
+        scaleStep: 1,
+        lineHeight: 1.68792198
+      },
+      pageTitle: {
+        scaleStep: 4,
+        lineHeight: 1,
+        marginBottom: '2bl'
       }
     },
     screens: [
@@ -67,7 +76,7 @@ module.exports = {
         breakpointStartPx: 320,
         baseFontSizePx: 16,
         baseLineHeight: 1.5,
-        verticalRhythm: 0.75,
+        verticalRhythm: 0.5,
         container: {
           padding: '2vr'
         }
@@ -90,7 +99,6 @@ module.exports = {
       },
       {
         key: 'lg',
-        baseFontSizePx: 16,
         breakpointStartPx: 992,
         container: {
           maxWidth: 960
@@ -105,7 +113,7 @@ module.exports = {
         }
       },
       {
-        key: 'xl',
+        key: '2xl',
         breakpointStartPx: 1440,
         baseFontSizePx: 20,
         container: {
