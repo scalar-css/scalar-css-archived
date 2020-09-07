@@ -40,7 +40,7 @@ export default {
 
   webfontloader: {
     google: {
-      families: ['Work+Sans:wght@700&display=swap']
+      families: ['Work+Sans:wght@400,500,700&display=swap']
     }
   },
 

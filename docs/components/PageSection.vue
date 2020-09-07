@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section" :style="sectionStyles">
     <section-bg :bg="bgFill" :bg-top-position="padding">
       <template v-if="!!$slots.top" #top><slot name="top" /></template>
       <template v-if="!!$slots.bottom" #bottom><slot name="bottom" /></template>
@@ -27,6 +27,10 @@
       padding: {
         type: String,
         default: ''
+      },
+      pull: {
+        type: String,
+        default: ''
       }
     },
     computed: {
@@ -37,12 +41,36 @@
         return null
       },
       layoutStyles() {
+        if (this.padding.includes(' ')) {
+          const values = this.padding.split(' ')
+          return {
+            '--layoutPaddingTop': `calc(var(--baselineUnit) * ${values[0].replace(
+              'bl',
+              ''
+            )})`,
+            '--layoutPaddingBottom': `calc(var(--baselineUnit) * ${values[1].replace(
+              'bl',
+              ''
+            )})`
+          }
+        }
         return {
           '--layoutPadding': `calc(var(--baselineUnit) * ${this.padding.replace(
             'bl',
             ''
           )})`
         }
+      },
+      sectionStyles() {
+        if (this.pull !== '') {
+          return {
+            '--sectionPull': `calc(var(--baselineUnit) * ${this.pull.replace(
+              'bl',
+              ''
+            )})`
+          }
+        }
+        return null
       }
     }
   }
@@ -50,8 +78,11 @@
 
 <style>
   .section {
+    --sectionPull: 0;
+
     position: relative;
     z-index: 1;
+    margin-bottom: calc(-1 * var(--sectionPull));
   }
 
   .layout {

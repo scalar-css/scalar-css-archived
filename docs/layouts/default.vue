@@ -4,20 +4,20 @@
     <main>
       <nuxt />
     </main>
-    <s-footer />
+    <page-footer />
   </div>
 </template>
 
 <script>
   import scalarCalc from '@scalar-css/js-property-calculator'
 
-  // import SFooter from '~/components/SFooter.vue'
+  import PageFooter from '~/components/PageFooter.vue'
   // import SHeader from '~/components/SHeader.vue'
 
   export default {
     components: {
       // SHeader
-      // SFooter
+      PageFooter
     },
     middleware: ['sidebar'],
     mounted() {

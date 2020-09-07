@@ -1,9 +1,9 @@
 <template>
-  <page-section padding="5bl">
+  <page-section padding="5bl 0">
     <template #top>
       <footer-bg />
     </template>
-    <footer class="footer rowLayout gap-su">
+    <footer class="footer rowLayout gap-su pl-su">
       <nav>
         <ul class="list-unstyled columnLayout gap-su">
           <li class="-type-2">

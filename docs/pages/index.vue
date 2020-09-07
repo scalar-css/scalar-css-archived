@@ -1,16 +1,16 @@
 <template>
   <div>
-    <page-section padding="5bl">
+    <page-section padding="4bl 8bl" pull="4bl">
       <template #top>
         <home-hero />
       </template>
-      <div>
-        <h1 class="type-title color-white">
+      <div class="pl-su">
+        <h1 class="type-pageTitle color-neutral-7 text-semi">
           Reclaim the
-          <span class="color-accent-1">mathematical harmony</span> of your web
+          <span class="color-accent-2">mathematical harmony</span> of your web
           designs
         </h1>
-        <p class="type-lead color-white">
+        <p class="type-lead color-neutral-7">
           Scalar is a first-of-its-kind CSS framework for helping you quickly
           build typographically rich, mathematically beautiful, completely
           custom layouts that maintain their visual integrity across every
@@ -19,39 +19,48 @@
       </div>
     </page-section>
 
-    <page-section padding="5bl" bg="white">
+    <page-section padding="5bl 7bl" bg="white" pull="4bl">
       <template #top>
         <top-two />
       </template>
 
       <div class="rowLayout">
         <section-title
+          class="pl-su"
           tagline="Complete Customization, No Overrides"
           title="Build quickly with utility-first CSS"
         />
-        <p>
+        <p class="pl-su">
           Following in the tradition of other highly-customizable CSS utility
           frameworks like Tailwind, Scalar generates a low-level, class-based
           API that helps you rapidly build unique layouts without forcing you to
           override base styles.
         </p>
-        <div class="columnLayout">
-          <icon-block icon="waveform" title="Responsive, yet precise">
+        <div class="columnLayout gap-su2">
+          <icon-block
+            class="pl-su pr-bl"
+            icon="waveform"
+            title="Responsive, yet precise"
+          >
             Scalar takes advantage of the latest CSS functionality and a
             pioneering approach to CSS to keep your design consistent, no matter
             the viewport.
           </icon-block>
-          <icon-block icon="typography" title="Rich Typography">
+          <icon-block
+            class="pl-su pr-bl"
+            icon="typography"
+            title="Rich Typography"
+          >
             Modify font properties, vertical rhythm, margins, line heights, and
-            modular scales at any breakpoint to get the right type stylinhg for
+            modular scales at any breakpoint to get the right type styling for
             each screen.
           </icon-block>
-          <icon-block icon="modular" title="Modular">
+          <icon-block class="pl-su pr-bl" icon="modular" title="Modular">
             Scalar’s composable plugins and configs allows you to opt-in, out,
             or even build your own, to ensure you have 100% control over your
             final CSS.
           </icon-block>
-          <icon-block icon="accessible" title="Accessible">
+          <icon-block class="pl-su pr-bl" icon="accessible" title="Accessible">
             Many existing “fluid” font techniques inhibit accessibility. Scalar
             works without breaking accessibility and doesn’t use obscure calc
             statements.
@@ -60,30 +69,35 @@
       </div>
     </page-section>
 
-    <page-section padding="5bl" bg="light">
+    <page-section padding="5bl 6bl" bg="light" pull="4bl">
       <template #top>
         <top-three />
       </template>
       <div class="rowLayout">
         <section-title
+          class="pl-su"
           tagline="Support Scalar's Development"
           title="How can you help?"
         />
         <div class="columnLayout">
-          <p>
+          <p class="pl-su">
             If you love the ideas behind Scalar and the potential it unveils,
             please consider sponsoring its development to ensure we can build a
             web with beautiful, accessible typography and grids for all.
           </p>
-          <p class="color-neutral-4">
+          <p class="color-neutral-4 pl-su">
             Scalar CSS is an MIT-licensed, open source project. It grows thanks
             to the sponsors and support by the amazing backers. Please, consider
             supporting the project.
           </p>
         </div>
 
-        <div class="columnLayout">
-          <icon-block icon="training" title="Video training">
+        <div class="columnLayout gap-su2">
+          <icon-block
+            class="pl-su pr-bl"
+            icon="training"
+            title="Video training"
+          >
             Learn Scalar from the source by buying one of the
             <a
               href="https://learn.scalar.com"
@@ -92,7 +106,7 @@
               >video trainings</a
             >.
           </icon-block>
-          <icon-block icon="store" title="Scalar swag">
+          <icon-block class="pl-su pr-bl" icon="store" title="Scalar swag">
             Grab yourself some beautiful swag in our
             <a
               href="https://scalar.threadless.com"
@@ -101,7 +115,11 @@
               >Scalar merch store</a
             >.
           </icon-block>
-          <icon-block icon="oc-colored" title="Open Collective">
+          <icon-block
+            class="pl-su pr-bl"
+            icon="oc-colored"
+            title="Open Collective"
+          >
             Become a backer or sponsor on
             <a
               href="https://www.opencollective.com/scalar-css"
@@ -110,7 +128,7 @@
               >Open Collective</a
             >.
           </icon-block>
-          <icon-block icon="donate" title="Donations">
+          <icon-block class="pl-su pr-bl" icon="donate" title="Donations">
             Use
             <a
               href="https://paypal.me/k3th3r"
@@ -124,22 +142,23 @@
       </div>
     </page-section>
 
-    <page-section bg="primary-1" padding="7bl">
+    <page-section bg="primary-1" padding="7bl" pull="6bl">
       <template #top>
         <top-four />
       </template>
       <section-title
+        class="pl-su"
         tagline="Video Training — Coming in 2021"
         title="Learn to design and develop fluidly"
         theme="dark"
       />
-      <p class="color-neutral-7">
+      <p class="color-neutral-7 pl-su">
         Scalar and fluid web design give us an ability to design and build web
         sites in a new way that gives us greater control and precision over
         typography, layout, and copywriting.
       </p>
 
-      <p class="color-neutral-7">
+      <p class="color-neutral-7 pl-su">
         Whether you’re a designer or a developer, prepare for an in-depth,
         guided course and walk-through of all the building blocks and essential
         concepts behind fluid web design. You’ll be learning from the creator of
@@ -147,7 +166,7 @@
         who spent the first half of his career as a designer.
       </p>
 
-      <p class="color-accent-2">
+      <p class="color-accent-2 pl-su">
         <strong>Save 50% if you buy before 2021</strong>
       </p>
       <template #bottom>

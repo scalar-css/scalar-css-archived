@@ -8,6 +8,11 @@
   --columnGap: var(--scalarUnit);
 }
 
+.gap-su2 {
+  --rowLayoutGap: calc(var(--scalarUnit) * 2);
+  --columnGap: calc(var(--scalarUnit) * 2);
+}
+
 .gap-bl1 {
   --rowLayoutGap: var(--baselineUnit1);
   --columnGap: var(--baselineUnit1);
@@ -21,4 +26,12 @@
 .gap-bl3 {
   --rowLayoutGap: var(--baselineUnit3);
   --columnGap: var(--baselineUnit3);
+}
+
+.pl-su {
+  padding-left: var(--scalarUnit);
+}
+
+.pr-bl {
+  padding-right: var(--baselineUnit);
 }
