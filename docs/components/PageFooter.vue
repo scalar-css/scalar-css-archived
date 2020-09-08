@@ -1,11 +1,11 @@
 <template>
-  <page-section padding="5bl 0">
+  <page-section bg="neutral-1" class="section--footer">
     <template #top>
       <footer-bg />
     </template>
     <footer class="footer rowLayout gap-su pl-su">
       <nav>
-        <ul class="list-unstyled columnLayout gap-su">
+        <ul class="list-unstyled footer-links gap-su">
           <li class="-type-2">
             <a
               class="footer-link text-uppercase"
@@ -25,8 +25,17 @@
             >
           </li>
           <li class="-type-2">
-            <a class="footer-link text-uppercase" href="#">About</a>
+            <a
+              class="footer-link text-uppercase"
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://opencollective.com/scalar-css"
+              >OpenCollective</a
+            >
           </li>
+          <!-- <li class="-type-2">
+            <a class="footer-link text-uppercase" href="#">About</a>
+          </li> -->
         </ul>
       </nav>
       <p class="-type-2 color-neutral-3">
@@ -68,5 +77,10 @@
     &:hover {
       color: var(--color-neutral-2);
     }
+  }
+
+  .footer-links {
+    display: flex;
+    column-gap: var(--columnGap);
   }
 </style>

@@ -8,7 +8,35 @@
 
 .columnLayout {
   --columnGap: var(--baselineUnit);
+  display: grid;
+  align-items: flex-start;
+  row-gap: var(--columnGap);
+}
 
-  display: flex;
-  column-gap: var(--columnGap);
+@screen md {
+  .columnLayout[data-columns='1,1,1,1'] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .columnLayout[data-columns='2,1,1'] {
+    grid-template-columns: 1fr;
+  }
+
+  .columnLayout[data-columns='2,2'] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .columnLayout[data-columns='3,1'] {
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+@screen lg {
+  .columnLayout[data-columns='1,1,1,1'] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .columnLayout[data-columns='2,1,1'] {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
 }

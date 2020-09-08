@@ -5,11 +5,16 @@
     <div v-if="!!$slots.bottom" class="sbg-bottom">
       <slot name="bottom" />
     </div>
+    <bg-guides />
   </div>
 </template>
 
 <script>
+  import BgGuides from './BgGuides'
   export default {
+    components: {
+      BgGuides
+    },
     props: {
       bg: {
         type: String,
@@ -37,9 +42,27 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .sbg-top {
+    width: 200%;
+  }
+
+  .sbg-bottom {
+    width: 400%;
   }
 
   .sbg-middle {
     flex-grow: 1;
+    margin: -2px 0;
+  }
+
+  @screen md {
+    .sbg-top,
+    .sbg-bottom {
+      width: auto;
+    }
   }
 </style>

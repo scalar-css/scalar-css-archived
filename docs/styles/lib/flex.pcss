@@ -2,6 +2,10 @@
   align-items: flex-start;
 }
 
+.align-end {
+  align-items: flex-end;
+}
+
 .align-center {
   align-items: center;
 }
@@ -14,6 +18,15 @@
   justify-content: center;
 }
 
+.flex-row {
+  flex-direction: column;
+}
+
 .flex-grow-0 {
   flex-grow: 0;
+}
+
+.flex-gap {
+  --columnGap: var(--baselineUnit);
+  column-gap: var(--columnGap);
 }

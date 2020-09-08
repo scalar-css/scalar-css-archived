@@ -13,3 +13,27 @@
 .text-bold {
   font-weight: 700;
 }
+
+.text-center {
+  text-align: center;
+}
+
+p:last-child {
+  margin: 0;
+}
+
+.text-max-width {
+  max-width: var(--textMaxWidth, none);
+}
+
+@screen md {
+  .text-max-width {
+    --textMaxWidth: var(--mdTextMaxWidth);
+  }
+}
+
+@screen lg {
+  .text-max-width {
+    --textMaxWidth: var(--lgTextMaxWidth);
+  }
+}

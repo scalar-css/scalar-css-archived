@@ -1,6 +1,6 @@
 .gap-ru {
-  --rowLayoutGap: var(--rhythmUnit);
-  --columnGap: var(--rhythmUnit);
+  --rowLayoutGap: var(--rhythmUnit) !important;
+  --columnGap: var(--rhythmUnit) !important;
 }
 
 .gap-su {
@@ -14,24 +14,89 @@
 }
 
 .gap-bl1 {
-  --rowLayoutGap: var(--baselineUnit1);
-  --columnGap: var(--baselineUnit1);
+  --rowLayoutGap: var(--baselineUnit);
+  --columnGap: var(--baselineUnit);
 }
 
 .gap-bl2 {
-  --rowLayoutGap: var(--baselineUnit2);
-  --columnGap: var(--baselineUnit2);
+  --rowLayoutGap: calc(var(--baselineUnit) * 2);
+  --columnGap: calc(var(--baselineUnit) * 2);
 }
 
 .gap-bl3 {
-  --rowLayoutGap: var(--baselineUnit3);
-  --columnGap: var(--baselineUnit3);
+  --rowLayoutGap: calc(var(--baselineUnit) * 3);
+  --columnGap: calc(var(--baselineUnit) * 3);
 }
 
-.pl-su {
+.p-ru {
+  padding: var(--rhythmUnit);
+}
+
+.p-su {
+  padding: var(--scalarUnit);
+}
+
+.px-ru {
+  padding-left: var(--rhythmUnit);
+  padding-right: var(--rhythmUnit);
+}
+
+.px-su {
   padding-left: var(--scalarUnit);
+  padding-right: var(--scalarUnit);
+}
+
+.py-ru {
+  padding-top: var(--rhythmUnit);
+  padding-bottom: var(--rhythmUnit);
 }
 
 .pr-bl {
   padding-right: var(--baselineUnit);
+}
+
+@screen md {
+  .md-gap-ru {
+    --rowLayoutGap: var(--rhythmUnit);
+    --columnGap: var(--rhythmUnit);
+  }
+
+  .md-gap-su {
+    --rowLayoutGap: var(--scalarUnit);
+    --columnGap: var(--scalarUnit);
+  }
+
+  .md-gap-su2 {
+    --rowLayoutGap: calc(var(--scalarUnit) * 2);
+    --columnGap: calc(var(--scalarUnit) * 2);
+  }
+
+  .md-gap-bl1 {
+    --rowLayoutGap: var(--baselineUnit1);
+    --columnGap: var(--baselineUnit1);
+  }
+
+  .md-gap-bl2 {
+    --rowLayoutGap: var(--baselineUnit2);
+    --columnGap: var(--baselineUnit2);
+  }
+
+  .md-gap-bl3 {
+    --rowLayoutGap: var(--baselineUnit3);
+    --columnGap: var(--baselineUnit3);
+  }
+
+  .md-px-su {
+    padding-left: var(--scalarUnit);
+    padding-right: var(--scalarUnit);
+  }
+
+  .md-pl-su {
+    padding-left: var(--scalarUnit);
+    padding-right: 0;
+  }
+
+  .md-pr-bl {
+    padding-right: var(--baselineUnit);
+  }
 }

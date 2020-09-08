@@ -1,10 +1,10 @@
 <template>
-  <section class="section" :style="sectionStyles">
+  <section class="section">
     <section-bg :bg="bgFill" :bg-top-position="padding">
       <template v-if="!!$slots.top" #top><slot name="top" /></template>
       <template v-if="!!$slots.bottom" #bottom><slot name="bottom" /></template>
     </section-bg>
-    <div class="layout" :style="layoutStyles">
+    <div class="layout">
       <div class="container">
         <slot />
       </div>
@@ -23,52 +23,12 @@
       bg: {
         type: String,
         default: ''
-      },
-      padding: {
-        type: String,
-        default: ''
-      },
-      pull: {
-        type: String,
-        default: ''
       }
     },
     computed: {
       bgFill() {
         if (this.bg !== '') {
           return `bg-${this.bg}`
-        }
-        return null
-      },
-      layoutStyles() {
-        if (this.padding.includes(' ')) {
-          const values = this.padding.split(' ')
-          return {
-            '--layoutPaddingTop': `calc(var(--baselineUnit) * ${values[0].replace(
-              'bl',
-              ''
-            )})`,
-            '--layoutPaddingBottom': `calc(var(--baselineUnit) * ${values[1].replace(
-              'bl',
-              ''
-            )})`
-          }
-        }
-        return {
-          '--layoutPadding': `calc(var(--baselineUnit) * ${this.padding.replace(
-            'bl',
-            ''
-          )})`
-        }
-      },
-      sectionStyles() {
-        if (this.pull !== '') {
-          return {
-            '--sectionPull': `calc(var(--baselineUnit) * ${this.pull.replace(
-              'bl',
-              ''
-            )})`
-          }
         }
         return null
       }
@@ -78,16 +38,24 @@
 
 <style>
   .section {
-    --sectionPull: 0;
+    --sectionPull: calc(var(--baselineUnit) * 5);
 
     position: relative;
     z-index: 1;
     margin-bottom: calc(-1 * var(--sectionPull));
+
+    &--footer {
+      --sectionPull: 0;
+      .layout {
+        --layoutPaddingTop: calc(var(--baselineUnit) * 4);
+        --layoutPaddingBottom: calc(var(--baselineUnit) * 2);
+      }
+    }
   }
 
   .layout {
-    --layoutPaddingTop: var(--layoutPadding);
-    --layoutPaddingBottom: var(--layoutPadding);
+    --layoutPaddingTop: calc(var(--baselineUnit) * 3);
+    --layoutPaddingBottom: calc(var(--baselineUnit) * 7);
     position: relative;
     display: flex;
     align-items: center;
