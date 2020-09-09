@@ -1,6 +1,6 @@
 <template>
   <div class="rowLayout gap-ru">
-    <h3 class="type-tagline color-accent-2">{{ tagline }}</h3>
+    <h3 class="type-tagline text-semi color-accent-2">{{ tagline }}</h3>
     <h2 class="type-sectionTitle" :class="titleColor">{{ title }}</h2>
   </div>
 </template>
@@ -29,8 +29,4 @@
   }
 </script>
 
-<style lang="pcss">
-  .type-tagline {
-    font-weight: 400;
-  }
-</style>
+<style lang="pcss"></style>

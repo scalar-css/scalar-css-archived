@@ -13,6 +13,12 @@
   row-gap: var(--columnGap);
 }
 
+.autocols {
+  --columnGap: var(--baselineUnit);
+  display: flex;
+  column-gap: var(--columnGap);
+}
+
 @screen sm {
   .columnLayout[data-columns='1,1,1,1'] {
     grid-template-columns: repeat(2, 1fr);

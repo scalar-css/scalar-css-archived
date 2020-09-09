@@ -1,5 +1,10 @@
 <template>
-  <div class="icon"><component :is="icon" /></div>
+  <div
+    class="icon"
+    :style="{ '--iconSize': size, '--iconUnit': `var(--${unit}Unit)` }"
+  >
+    <component :is="icon" />
+  </div>
 </template>
 
 <script>
@@ -8,6 +13,14 @@
       name: {
         type: String,
         required: true
+      },
+      size: {
+        type: String,
+        default: '2'
+      },
+      unit: {
+        type: String,
+        default: 'scalar'
       }
     },
     computed: {
@@ -20,7 +33,7 @@
 
 <style>
   .icon {
-    height: calc(var(--scalarUnit) * 2);
+    height: calc(var(--iconUnit) * var(--iconSize));
 
     svg {
       max-height: 100%;

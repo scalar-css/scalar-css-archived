@@ -157,8 +157,8 @@
               "
             >
               If you love the ideas behind Scalar and the potential it unveils,
-              please consider sponsoring its development to ensure beautiful,
-              accessible&nbsp;typography and grids for all.
+              please consider sponsoring or contributing to its development to
+              ensure beautiful, accessible&nbsp;typography and grids for all.
             </p>
           </div>
           <div>
@@ -167,8 +167,8 @@
               style="--textMaxWidth: 14.5rem; --lgTextMaxWidth: 28rem;"
             >
               Scalar CSS is an MIT-licensed, open source project. It grows
-              thanks to the sponsors and support by the amazing backers. Please,
-              consider supporting the project.
+              thanks to the sponsors and it's contributors. Please consider
+              doing what you can to support the project.
             </p>
           </div>
         </div>
@@ -176,20 +176,38 @@
         <div class="columnLayout" data-columns="1,1,1,1">
           <icon-block
             class="px-ru md-px-su"
-            icon="training"
-            title="Video training"
+            icon="discord-colored"
+            title="Scalar Discord"
             style="
               --textMaxWidth: 14rem;
               --mdTextMaxWidth: 19rem;
               --lgTextMaxWidth: 12.5rem;
             "
           >
-            Learn Scalar from the source. Buy one of the
+            Come chat Scalar, design theory and web layout in our
             <a
-              href="https://learn.scalar.com"
+              href="https://discord.gg/gUAQA8U"
               target="_blank"
               rel="noreferrer nofollow"
-              >video trainings</a
+              >Discord</a
+            >.
+          </icon-block>
+          <icon-block
+            class="px-ru md-px-su"
+            icon="github-colored"
+            title="Github"
+            style="
+              --textMaxWidth: 14rem;
+              --mdTextMaxWidth: 19rem;
+              --lgTextMaxWidth: 12.5rem;
+            "
+          >
+            File issues, make pull requests, and ask questions in our
+            <a
+              href="github.com/scalar-css/scalar-css"
+              target="_blank"
+              rel="noreferrer"
+              >Github</a
             >.
           </icon-block>
           <icon-block
@@ -208,24 +226,6 @@
               target="_blank"
               rel="noreferrer nofollow"
               >Scalar merch store</a
-            >.
-          </icon-block>
-          <icon-block
-            class="px-ru md-px-su"
-            icon="oc-colored"
-            title="Open Collective"
-            style="
-              --textMaxWidth: 14rem;
-              --mdTextMaxWidth: 19rem;
-              --lgTextMaxWidth: 12.5rem;
-            "
-          >
-            Become a backer or sponsor on
-            <a
-              href="https://www.opencollective.com/scalar-css"
-              target="_blank"
-              rel="noreferrer nofollow"
-              >Open Collective</a
             >.
           </icon-block>
           <icon-block
@@ -251,17 +251,20 @@
       </div>
     </page-section>
 
-    <page-section bg="primary-1">
+    <page-section
+      bg="primary-1"
+      style="--sectionPull: calc(var(--baselineUnit) * 6);"
+    >
       <template #top>
         <top-four />
       </template>
-      <div class="columnLayout" data-columns="2,1,1">
+      <div class="columnLayout" data-columns="2,2">
         <div>
           <div class="rowLayout">
             <section-title
               class="px-ru md-px-su"
-              tagline="Video Training — Coming in 2021"
-              title="Learn the Scalar fundamentals"
+              tagline="Experimental Usage"
+              title="Get started using Scalar CSS"
               theme="dark"
             />
             <div>
@@ -269,52 +272,19 @@
                 class="color-neutral-7 px-ru md-px-su text-max-width"
                 style="--mdTextMaxWidth: 40rem; --lgTextMaxWidth: 29rem;"
               >
-                Scalar and fluid web design give us an ability to design and
-                build web sites in a new way that gives us greater control and
-                precision over typography, layout, and copywriting.
-              </p>
-
-              <p
-                class="color-neutral-7 px-ru md-px-su text-max-width"
-                style="--mdTextMaxWidth: 40rem; --lgTextMaxWidth: 27rem;"
-              >
-                Whether you’re a designer or a developer, prepare for an
-                in-depth, guided course and walk-through of all the building
-                blocks and essential concepts behind fluid web design. You’ll be
-                learning from the creator of Scalar himself, Kether Saturnius, a
-                20 year veteran of the web industry who spent the first half of
-                his career as a designer.
-              </p>
-
-              <p class="color-accent-2 px-ru md-px-su">
-                <strong>Save 50% if you buy before 2021</strong>
+                Scalar CSS is currently very much in active development and
+                experimentation so the API and usage is changing frequently.
+                <strong
+                  ><em
+                    >You should not be using it in production yet.</em
+                  ></strong
+                >
               </p>
             </div>
           </div>
         </div>
-        <div class="px-ru md-px-su h-full">
-          <training-card
-            title="Scalar Design"
-            image="design-fundamentals"
-            :bullets="[
-              'Step-by-step lesson progression',
-              'Learn the most important building blocks of fluid web design',
-              'Design a page layout from scratch using core fluid web design theory',
-              'Get a high-level overview of recent advances in CSS layout techniques to help you understand what is possible'
-            ]"
-          />
-        </div>
-        <div class="px-ru md-px-su h-full">
-          <training-card
-            title="Scalar Development"
-            image="developer-fundamentals"
-            :bullets="[
-              'Step-by-step lesson progression',
-              'Learn the most important building blocks of fluid web design',
-              'Build a real page layout from scratch using core fluid web design theory and the Scalar CSS framework',
-              'Get a high-level overview of important design theory'
-            ]"
-          />
+        <div>
+          <div class="rowLayout"></div>
         </div>
       </div>
       <template #bottom>
@@ -331,10 +301,9 @@
   import TopFour from '@/assets/section-four-top.svg'
   import TopThree from '@/assets/section-three-top.svg'
   import TopTwo from '@/assets/section-two-top.svg'
+  import IconBlock from '@/components/IconBlock'
   import PageSection from '@/components/PageSection.vue'
-  import IconBlock from '~/components/IconBlock'
-  import SectionTitle from '~/components/SectionTitle'
-  import TrainingCard from '~/components/TrainingCard'
+  import SectionTitle from '@/components/SectionTitle'
 
   export default {
     components: {
@@ -346,8 +315,7 @@
       TopFour,
       BottomFour,
       IconBlock,
-      SectionTitle,
-      TrainingCard
+      SectionTitle
     }
   }
 </script>

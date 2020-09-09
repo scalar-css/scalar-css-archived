@@ -1,4 +1,4 @@
-function throttle(callback, timeFrame) {
+export function throttle(callback, timeFrame) {
   var lastTime = 0
   return function () {
     var now = Date.now()

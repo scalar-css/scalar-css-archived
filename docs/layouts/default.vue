@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <s-header /> -->
+    <page-header />
     <main>
       <nuxt />
     </main>
@@ -12,11 +12,11 @@
   import scalarCalc from '@scalar-css/js-property-calculator'
 
   import PageFooter from '~/components/PageFooter.vue'
-  // import SHeader from '~/components/SHeader.vue'
+  import PageHeader from '~/components/PageHeader.vue'
 
   export default {
     components: {
-      // SHeader
+      PageHeader,
       PageFooter
     },
     middleware: ['sidebar'],
