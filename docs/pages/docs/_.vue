@@ -146,7 +146,7 @@
   }
 </script>
 
-<style lang="pcss">
+<style lang="postcss">
   .sidebar-sticky {
     top: 0;
     position: sticky;

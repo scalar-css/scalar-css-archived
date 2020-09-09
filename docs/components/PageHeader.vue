@@ -5,7 +5,7 @@
     </div>
     <div class="header-content">
       <div class="container">
-        <div class="d-flex justify-between align-center">
+        <div class="d-flex justify-between align-center px-ru md-px-su">
           <div>
             <nuxt-link
               to="/"

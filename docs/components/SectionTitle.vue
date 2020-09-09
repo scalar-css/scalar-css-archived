@@ -28,5 +28,3 @@
     }
   }
 </script>
-
-<style lang="pcss"></style>

@@ -20,6 +20,7 @@
               --textMaxWidth: 14rem;
               --mdTextMaxWidth: 30rem;
               --lgTextMaxWidth: 41rem;
+              --xxlTextMaxWidth: 45rem;
             "
           >
             Scalar is a first-of-its-kind CSS framework for helping you quickly
@@ -28,7 +29,6 @@
             breakpoint.
           </p>
         </div>
-        <div></div>
       </div>
       <template #bottom>
         <home-hero-bottom />
@@ -54,6 +54,7 @@
                 --textMaxWidth: 14rem;
                 --smTextMaxWidth: none;
                 --lgTextMaxWidth: 29rem;
+                --xxlTextMaxWidth: 32rem;
               "
             >
               Following in the tradition of other highly-customizable CSS
@@ -69,10 +70,15 @@
                 --textMaxWidth: 13.8rem;
                 --smTextMaxWidth: none;
                 --lgTextMaxWidth: 14rem;
+                --xxlTextMaxWidth: 13.25rem;
               "
             >
               <em>Psst! Try resizing your browser to see Scalar in action.</em>
             </p>
+          </div>
+
+          <div>
+            <mobile-phone />
           </div>
         </div>
         <div class="columnLayout" data-columns="1,1,1,1">
@@ -98,6 +104,7 @@
               --textMaxWidth: 13rem;
               --mdTextMaxWidth: 19rem;
               --lgTextMaxWidth: 12.1rem;
+              --xxlTextMaxWidth: 13.5rem;
             "
           >
             Modify font properties, vertical rhythm, margins, line heights, and
@@ -112,6 +119,7 @@
               --textMaxWidth: 13rem;
               --mdTextMaxWidth: 18.8rem;
               --lgTextMaxWidth: 12.5rem;
+              --xxlTextMaxWidth: 13.5rem;
             "
           >
             Scalar’s composable plugins and configs allows you to opt-in, out,
@@ -126,6 +134,7 @@
               --textMaxWidth: 14rem;
               --mdTextMaxWidth: 19rem;
               --lgTextMaxWidth: 12.5rem;
+              --xxlTextMaxWidth: 13.5rem;
             "
           >
             Many existing “fluid” font techniques inhibit accessibility. Scalar
@@ -154,6 +163,7 @@
                 --textMaxWidth: 13.75rem;
                 --smTextMaxWidth: none;
                 --lgTextMaxWidth: 28rem;
+                --xxlTextMaxWidth: 32rem;
               "
             >
               If you love the ideas behind Scalar and the potential it unveils,
@@ -164,7 +174,11 @@
           <div>
             <p
               class="color-neutral-4 px-ru md-pl-su text-max-width"
-              style="--textMaxWidth: 14.5rem; --lgTextMaxWidth: 28rem;"
+              style="
+                --textMaxWidth: 14.5rem;
+                --lgTextMaxWidth: 28rem;
+                --xxlTextMaxWidth: 32rem;
+              "
             >
               Scalar CSS is an MIT-licensed, open source project. It grows
               thanks to the sponsors and it's contributors. Please consider
@@ -184,7 +198,7 @@
               --lgTextMaxWidth: 12.5rem;
             "
           >
-            Come chat Scalar, design theory and web layout in our
+            Come chat Scalar, design theory and web development in our
             <a
               href="https://discord.gg/gUAQA8U"
               target="_blank"
@@ -302,6 +316,7 @@
   import TopThree from '@/assets/section-three-top.svg'
   import TopTwo from '@/assets/section-two-top.svg'
   import IconBlock from '@/components/IconBlock'
+  import MobilePhone from '@/components/MobilePhone'
   import PageSection from '@/components/PageSection.vue'
   import SectionTitle from '@/components/SectionTitle'
 
@@ -310,6 +325,7 @@
       PageSection,
       HomeHeroTop,
       HomeHeroBottom,
+      MobilePhone,
       TopTwo,
       TopThree,
       TopFour,

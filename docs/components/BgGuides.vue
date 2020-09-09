@@ -14,7 +14,7 @@
   export default {}
 </script>
 
-<style lang="pcss">
+<style lang="postcss">
   .guides {
     position: absolute;
     height: 100%;

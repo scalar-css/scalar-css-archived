@@ -3,9 +3,18 @@
     <template #top>
       <footer-bg />
     </template>
-    <footer class="footer rowLayout gap-su pl-su">
+    <footer class="footer rowLayout gap-su px-su">
       <nav>
         <ul class="list-unstyled footer-links gap-su">
+          <li class="-type-2">
+            <a
+              class="footer-link text-uppercase"
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://discord.gg/gUAQA8U"
+              >Discord</a
+            >
+          </li>
           <li class="-type-2">
             <a
               class="footer-link text-uppercase"

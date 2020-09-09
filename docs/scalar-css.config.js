@@ -104,7 +104,7 @@ module.exports = {
         baseFontSizePx: 18
       },
       {
-        key: '2xl',
+        key: 'xxl',
         breakpointStartPx: 1440,
         fontScaleId: 'perfectFourth',
         baseFontSizePx: 20
