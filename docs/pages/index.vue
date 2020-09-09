@@ -4,9 +4,6 @@
       <template #top>
         <home-hero-top />
       </template>
-      <template #bottom>
-        <home-hero-bottom />
-      </template>
       <div class="columnLayout" data-columns="3,1">
         <div class="px-ru md-px-su">
           <h1
@@ -33,6 +30,9 @@
         </div>
         <div></div>
       </div>
+      <template #bottom>
+        <home-hero-bottom />
+      </template>
     </page-section>
 
     <page-section bg="white">
@@ -50,7 +50,11 @@
             />
             <p
               class="px-ru md-px-su text-max-width"
-              style="--mdTextMaxWidth: 40rem; --lgTextMaxWidth: 29rem;"
+              style="
+                --textMaxWidth: 14rem;
+                --smTextMaxWidth: none;
+                --lgTextMaxWidth: 29rem;
+              "
             >
               Following in the tradition of other highly-customizable CSS
               utility frameworks like Tailwind, Scalar generates a low-level,
@@ -63,7 +67,7 @@
               class="color-neutral-4 px-ru md-px-su -type-1 text-max-width"
               style="
                 --textMaxWidth: 13.8rem;
-                --mdTextMaxWidth: none;
+                --smTextMaxWidth: none;
                 --lgTextMaxWidth: 14rem;
               "
             >
@@ -71,7 +75,7 @@
             </p>
           </div>
         </div>
-        <div class="columnLayout gap-su2" data-columns="1,1,1,1">
+        <div class="columnLayout" data-columns="1,1,1,1">
           <icon-block
             class="px-ru md-px-su"
             icon="waveform"
@@ -146,7 +150,11 @@
           <div>
             <p
               class="px-ru md-px-su text-max-width"
-              style="--textMaxWidth: 13.75rem; --lgTextMaxWidth: 28rem;"
+              style="
+                --textMaxWidth: 13.75rem;
+                --smTextMaxWidth: none;
+                --lgTextMaxWidth: 28rem;
+              "
             >
               If you love the ideas behind Scalar and the potential it unveils,
               please consider sponsoring its development to ensure beautiful,
@@ -165,9 +173,9 @@
           </div>
         </div>
 
-        <div class="columnLayout gap-su2" data-columns="1,1,1,1">
+        <div class="columnLayout" data-columns="1,1,1,1">
           <icon-block
-            class="px-ru md-pl-su"
+            class="px-ru md-px-su"
             icon="training"
             title="Video training"
             style="
@@ -176,15 +184,13 @@
               --lgTextMaxWidth: 12.5rem;
             "
           >
-            <div class="text-max-width" style="--lgTextMaxWidth: 12rem;">
-              Learn Scalar from the source. Buy one of the
-              <a
-                href="https://learn.scalar.com"
-                target="_blank"
-                rel="noreferrer nofollow"
-                >video trainings</a
-              >.
-            </div>
+            Learn Scalar from the source. Buy one of the
+            <a
+              href="https://learn.scalar.com"
+              target="_blank"
+              rel="noreferrer nofollow"
+              >video trainings</a
+            >.
           </icon-block>
           <icon-block
             class="px-ru md-px-su"

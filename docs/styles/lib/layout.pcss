@@ -13,11 +13,13 @@
   row-gap: var(--columnGap);
 }
 
-@screen md {
+@screen sm {
   .columnLayout[data-columns='1,1,1,1'] {
     grid-template-columns: repeat(2, 1fr);
   }
+}
 
+@screen md {
   .columnLayout[data-columns='2,1,1'] {
     grid-template-columns: 1fr;
   }

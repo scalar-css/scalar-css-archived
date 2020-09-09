@@ -35,6 +35,11 @@ export default {
         '--scrollBarWidthJS',
         `${getScrollbarWidth()}px`
       )
+
+      document.documentElement.style.setProperty(
+        '--windowWidth',
+        `${window.innerWidth - getScrollbarWidth()}px`
+      )
     }
 
     scalarCalculator()

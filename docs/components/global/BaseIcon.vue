@@ -1,21 +1,18 @@
 <template>
-  <Component
-    :is="require(`@/assets/icons/icon-${name}.svg`)"
-    class="icon"
-    v-bind="$attrs"
-  />
+  <div class="icon"><component :is="icon" /></div>
 </template>
 
 <script>
   export default {
-    // Transparent wrapper component
-    // https://vuejs.org/v2/guide/components-props.html#Disabling-Attribute-Inheritance
-    inheritAttrs: false,
-
     props: {
       name: {
         type: String,
         required: true
+      }
+    },
+    computed: {
+      icon() {
+        return () => import(`@/assets/icons/icon-${this.name}.svg`)
       }
     }
   }
@@ -23,6 +20,10 @@
 
 <style>
   .icon {
-    /* Add some default CSS declaration blocks */
+    height: calc(var(--scalarUnit) * 2);
+
+    svg {
+      max-height: 100%;
+    }
   }
 </style>

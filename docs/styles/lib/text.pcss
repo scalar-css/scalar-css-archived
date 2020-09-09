@@ -26,14 +26,20 @@ p:last-child {
   max-width: var(--textMaxWidth, none);
 }
 
+@screen sm {
+  .text-max-width {
+    --textMaxWidth: var(--smTextMaxWidth) !important;
+  }
+}
+
 @screen md {
   .text-max-width {
-    --textMaxWidth: var(--mdTextMaxWidth);
+    --textMaxWidth: var(--mdTextMaxWidth) !important;
   }
 }
 
 @screen lg {
   .text-max-width {
-    --textMaxWidth: var(--lgTextMaxWidth);
+    --textMaxWidth: var(--lgTextMaxWidth) !important;
   }
 }

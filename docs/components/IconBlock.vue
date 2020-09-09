@@ -4,9 +4,7 @@
     <h4 class="icon-title -type-2 color-accent-1 text-uppercase">
       {{ title }}
     </h4>
-    <p class="-type-1 text-max-width">
-      <slot />
-    </p>
+    <p class="-type-1 text-max-width"><slot /></p>
   </div>
 </template>
 

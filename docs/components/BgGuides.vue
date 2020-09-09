@@ -47,6 +47,14 @@
     }
   }
 
+  @screen sm {
+    .guide {
+      &:nth-of-type(3n) {
+        display: block;
+      }
+    }
+  }
+
   @screen md {
     .guide {
       &:nth-of-type(2n),

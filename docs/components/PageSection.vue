@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <section-bg :bg="bgFill" :bg-top-position="padding">
+    <section-bg :bg="bgFill">
       <template v-if="!!$slots.top" #top><slot name="top" /></template>
       <template v-if="!!$slots.bottom" #bottom><slot name="bottom" /></template>
     </section-bg>
@@ -66,5 +66,11 @@
     width: var(--containerWidth, 100%);
     margin-left: var(--containerMargin);
     margin-right: calc(var(--containerMargin) - var(--scrollbarWidth));
+  }
+
+  @screen sm {
+    .layout {
+      --layoutPaddingTop: calc(var(--baselineUnit) * 4);
+    }
   }
 </style>
