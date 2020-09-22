@@ -265,7 +265,7 @@
       </div>
     </page-section>
 
-    <page-section
+    <!-- <page-section
       bg="primary-1"
       style="--sectionPull: calc(var(--baselineUnit) * 6);"
     >
@@ -304,7 +304,7 @@
       <template #bottom>
         <bottom-four />
       </template>
-    </page-section>
+    </page-section> -->
   </div>
 </template>
 
