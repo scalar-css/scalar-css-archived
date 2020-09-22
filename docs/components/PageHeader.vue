@@ -59,7 +59,7 @@
     },
     data() {
       return {
-        isScrolled: true
+        isScrolled: false
       }
     },
     mounted() {

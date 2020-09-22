@@ -34,6 +34,7 @@
 <style>
   .icon {
     height: calc(var(--iconUnit) * var(--iconSize));
+    max-width: 2rem;
 
     svg {
       max-height: 100%;
