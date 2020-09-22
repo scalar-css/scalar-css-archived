@@ -1,0 +1,29 @@
+:root {
+  /* screen/breakpoint details */
+  --screenWidthStart: 320;
+  --screenWidthSm: 576;
+  --screenWidthMd: 768;
+  --screenWidthLg: 992;
+  --screenWidthXl: 1200;
+  --screenWidth2Xl: 1440;
+  --screenWidthEnd: 1920;
+
+  /* units */
+  --scalarUnit: 1rem;
+  --rhythmUnit: calc(0.5 * var(--scalarUnit));
+  --baselineUnit: calc(1.5 * var(--scalarUnit));
+
+  /* layout */
+  --scrollbarWidth: 15px;
+  --gutterWidth: var(--baselineUnit);
+  --windowWidth: calc(100vw - var(--scrollbarWidth));
+  --containerWidth: calc(var(--windowWidth) - (var(--gutterWidth) * 2));
+  --containerMargin: var(--baselineUnit);
+  --containerPadding: 0 calc(var(--rhythmUnit) * 2);
+}
+
+@screen lg {
+  /* :root {
+    --containerMargin: calc(var(--baselineUnit) * 2);
+  } */
+}

@@ -1,16 +1,20 @@
 import { pxToRem } from '@scalar-css/scalar-css-util-conversions'
 
-function updateContext(ctx, screen) {
+function getScreen(ctx, screenKey) {
+  return ctx.theme.screens[ctx.theme.screensByKey[screenKey]]
+}
+
+function updateContext(ctx, screenKey) {
   ctx.theme.currentScreen = {
-    ...ctx.theme.screensByKey[screen]
+    ...getScreen(ctx, screenKey)
   }
 }
 
 function resetContext(ctx) {
-  ctx.theme.currentScreen = ctx.theme.screensByKey[ctx.theme.defaultScreenKey]
+  ctx.theme.currentScreen = getScreen(ctx, ctx.theme.defaultScreenKey)
 }
 
-function convertRemUnits(decl, baseFontSizePx) {
+export function convertRemUnits(decl, baseFontSizePx) {
   const pixelValue = decl.value.replace('rem(', '').replace('px)', '')
   const newValue = pxToRem(pixelValue, baseFontSizePx)
   decl.replaceWith({ prop: decl.prop, value: `${newValue}rem` })
@@ -25,11 +29,9 @@ export default function (ctx) {
         )
       }
 
-      const { breakpointStartPx, baseFontSizePx } = ctx.theme.screensByKey[
-        atRule.params
-      ]
-
       updateContext(ctx, atRule.params)
+      const { breakpointStartPx, baseFontSizePx } = ctx.theme.currentScreen
+
       atRule.name = 'media'
       atRule.params = `screen and (min-width: ${breakpointStartPx}px)`
 

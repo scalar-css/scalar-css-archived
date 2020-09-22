@@ -16,7 +16,9 @@
     "dev": "yarn test:unit --watch",
     "release": "lerna version",
     "lint:styles": "stylelint **/*.{pcss,vue} --fix",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test": "yarn test:unit",
+    "publish:npm": "npm publish --access private"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -35,7 +37,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
     "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^7.0.0-beta.3",
     "husky": "^4.2.5",
     "hygen": "^6.0.4",
     "jest": "^26.1.0",

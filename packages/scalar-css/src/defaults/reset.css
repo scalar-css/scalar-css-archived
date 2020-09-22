@@ -144,14 +144,14 @@ canvas,
 audio,
 iframe,
 embed,
-object {
+object,
+input {
   /* 2 */
   display: block;
   vertical-align: middle;
 }
 
 svg {
-  width: 100%;
   fill: currentColor;
 }
 

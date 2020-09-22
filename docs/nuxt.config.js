@@ -3,8 +3,6 @@ export default {
 
   modules: ['@nuxt/content', 'nuxt-webfontloader'],
 
-  css: ['~/styles/scalar.pcss'],
-
   head: {
     title: 'Scalar CSS',
     meta: [
@@ -37,16 +35,12 @@ export default {
   },
 
   content: {
-    markdown: {
-      prism: {
-        theme: 'prism-themes/themes/prism-material-oceanic.css'
-      }
-    }
+    markdown: {}
   },
 
   webfontloader: {
     google: {
-      families: ['Work+Sans:wght@700&display=swap']
+      families: ['Work+Sans:wght@400,500,700&display=swap']
     }
   },
 
@@ -55,14 +49,20 @@ export default {
     routes: ['/'] // give the first url to start crawling
   },
 
+  watch: ['./scalar-css.config.js'],
+
   build: {
     postcss: {
       plugins: {
-        'postcss-import': {},
+        '@scalar-css/scalar-css-import': {},
         'postcss-simple-vars': {},
         'postcss-preset-env': {},
         'postcss-nested': {},
-        '@scalar-css/scalar-css': {}
+        '@scalar-css/scalar-css': {
+          theme: {
+            units: 13
+          }
+        }
       },
       preset: {
         stage: 0
@@ -78,6 +78,8 @@ export default {
         test: /\.svg$/,
         use: ['babel-loader', 'vue-svg-loader']
       })
-    }
+    },
+
+    transpile: ['@scalar-css/js-property-calculator']
   }
 }

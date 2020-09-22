@@ -1,1 +1,1 @@
-# @scalar-css/scalar-css-preset-default
+# @scalar-css/scalar-css-preset-minimal

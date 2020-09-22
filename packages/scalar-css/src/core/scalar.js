@@ -11,11 +11,11 @@ function initializePlugin(ctx, plugin, source) {
       (typeof opts === 'object' && !opts.exclude) ||
       (typeof opts === 'boolean' && opts === true)
     ) {
-      return Promise.resolve(processor(ctx, opts, source))
+      return Promise.resolve(processor(ctx, source))
     }
   }
 
-  return Promise.resolve(plugin(ctx, opts, source))
+  return Promise.resolve(plugin(ctx, source))
 }
 
 export default function (ctx, plugins) {
@@ -58,7 +58,7 @@ export default function (ctx, plugins) {
         atRule.remove()
       }
 
-      if (atRule.params === 'utilities') {
+      if (atRule.params === 'utilities' && Array.isArray(plugins)) {
         plugins.reduce(async (prevPromise, plugin) => {
           return prevPromise.then(initializePlugin(ctx, plugin, atRule.source))
         }, Promise.resolve())

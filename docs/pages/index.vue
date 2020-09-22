@@ -1,148 +1,337 @@
 <template>
   <div>
-    <s-section theme="dark" image="header-image.jpg">
-      <div class="container">
-        <h1 class="type-title color-neutral-7 lg-max-w-60">
-          Consistent type and layout for the web.
-        </h1>
-        <p class="type-0 color-neutral-6 lg-max-w-60">
-          Scalar CSS is a first-of-its-kind framework for generating
-          <strong><em>fluid web design</em></strong>
-          layouts with typographically rich foundations.
-        </p>
-        <div class="d-flex justify-start pt-2 flex-gap-2">
-          <a
-            href="#"
-            class="btn d-inline-block align-items-center px-2 py-1 bg-primary-3 color-neutral-7 font-bold"
-            ><span class="type-btn">Get Started</span></a
+    <page-section bg="primary-1">
+      <template #top>
+        <home-hero-top />
+      </template>
+      <div class="columnLayout" data-columns="3,1">
+        <div class="px-ru md-px-su">
+          <h1
+            class="type-pageTitle color-neutral-7 text-semi text-max-width"
+            style="--mdTextMaxWidth: 30rem;"
           >
-          <scroll-to
-            target-id="why-scalar"
-            :offset="[50, 100]"
-            class="btn d-inline-block align-items-center px-2 py-1 color-neutral-7 font-bold"
+            Reclaim the
+            <span class="color-accent-2">mathematical harmony</span> of your web
+            designs
+          </h1>
+          <p
+            class="type-lead color-neutral-7 text-max-width"
+            style="
+              --textMaxWidth: 14rem;
+              --mdTextMaxWidth: 30rem;
+              --lgTextMaxWidth: 41rem;
+              --xxlTextMaxWidth: 45rem;
+            "
           >
-            <span class="type-btn">Why Scalar?</span>
-          </scroll-to>
+            Scalar is a first-of-its-kind CSS framework for helping you quickly
+            build visually rich, mathematically beautiful, completely custom
+            layouts that maintain their integrity across every device and
+            breakpoint.
+          </p>
         </div>
       </div>
-    </s-section>
-    <s-section theme="light">
-      <div class="container">
-        <div class="lg-d-flex lg-flex-gap-4 align-items-start">
-          <div class="lg-max-w-60">
-            <div class="d-flex flex-direction-column flex-gap-2">
-              <h6 class="type-tagline color-accent-2">
-                Complete Customization, No Overrides
-              </h6>
-              <h2 class="type-3 color-primary-2">
-                Build rapidly with utility-first CSS
-              </h2>
-            </div>
-            <p class="type-0 color-neutral-3">
+      <template #bottom>
+        <home-hero-bottom />
+      </template>
+    </page-section>
+
+    <page-section bg="white">
+      <template #top>
+        <top-two />
+      </template>
+
+      <div class="rowLayout gap-su2">
+        <div class="columnLayout" data-columns="2,1,1">
+          <div class="rowLayout">
+            <section-title
+              class="px-ru md-px-su"
+              tagline="Complete Customization, No Overrides"
+              title="Build quickly with utility-first CSS"
+            />
+            <p
+              class="px-ru md-px-su text-max-width"
+              style="
+                --textMaxWidth: 14rem;
+                --smTextMaxWidth: none;
+                --lgTextMaxWidth: 29rem;
+                --xxlTextMaxWidth: 32rem;
+              "
+            >
               Following in the tradition of other highly-customizable CSS
               utility frameworks like Tailwind, Scalar generates a low-level,
               class-based API that helps you rapidly build unique layouts
               without forcing you to override base styles.
             </p>
           </div>
-          <div></div>
+          <div class="d-flex align-end h-full">
+            <p
+              class="color-neutral-4 px-ru md-px-su -type-1 text-max-width"
+              style="
+                --textMaxWidth: 13.8rem;
+                --smTextMaxWidth: none;
+                --lgTextMaxWidth: 14rem;
+                --xxlTextMaxWidth: 13.25rem;
+              "
+            >
+              <em>Psst! Try resizing your browser to see Scalar in action.</em>
+            </p>
+          </div>
+
+          <div>
+            <mobile-phone />
+          </div>
+        </div>
+        <div class="columnLayout" data-columns="1,1,1,1">
+          <icon-block
+            class="px-ru md-px-su"
+            icon="waveform"
+            title="Responsive, yet precise"
+            style="
+              --textMaxWidth: 13rem;
+              --mdTextMaxWidth: 16.8rem;
+              --lgTextMaxWidth: 12.5rem;
+            "
+          >
+            Scalar takes advantage of the latest CSS functionality and a
+            pioneering approach to CSS to keep your design consistent, no matter
+            the viewport.
+          </icon-block>
+          <icon-block
+            class="px-ru md-px-su"
+            icon="typography"
+            title="Rich Typography"
+            style="
+              --textMaxWidth: 13rem;
+              --mdTextMaxWidth: 19rem;
+              --lgTextMaxWidth: 12.1rem;
+              --xxlTextMaxWidth: 13.5rem;
+            "
+          >
+            Modify font properties, vertical rhythm, margins, line heights, and
+            modular scales at any breakpoint to get the right type styling for
+            each screen.
+          </icon-block>
+          <icon-block
+            class="px-ru md-px-su"
+            icon="modular"
+            title="Modular"
+            style="
+              --textMaxWidth: 13rem;
+              --mdTextMaxWidth: 18.8rem;
+              --lgTextMaxWidth: 12.5rem;
+              --xxlTextMaxWidth: 13.5rem;
+            "
+          >
+            Scalar’s composable plugins and configs allows you to opt-in, out,
+            or even build your own, to ensure you have 100% control over your
+            final CSS.
+          </icon-block>
+          <icon-block
+            class="px-ru md-px-su"
+            icon="accessible"
+            title="Accessible"
+            style="
+              --textMaxWidth: 14rem;
+              --mdTextMaxWidth: 19rem;
+              --lgTextMaxWidth: 12.5rem;
+              --xxlTextMaxWidth: 13.5rem;
+            "
+          >
+            Many existing “fluid” font techniques inhibit accessibility. Scalar
+            works without breaking accessibility and doesn’t use obscure calc
+            values.
+          </icon-block>
         </div>
       </div>
-    </s-section>
-    <s-section theme="dark">
-      <div class="container">
-        <div class="d-flex flex-direction-column flex-gap-2" id="why-scalar">
-          <h6 class="type-tagline color-accent-2">
-            Same same, but different
-          </h6>
-          <h2 class="type-3 color-neutral-7">What makes Scalar unique?</h2>
+    </page-section>
+
+    <page-section bg="light">
+      <template #top>
+        <top-three />
+      </template>
+      <div class="rowLayout gap-su2">
+        <section-title
+          class="px-ru md-px-su"
+          tagline="Support Scalar's Development"
+          title="How can you help?"
+        />
+        <div class="columnLayout" data-columns="2,2">
+          <div>
+            <p
+              class="px-ru md-px-su text-max-width"
+              style="
+                --textMaxWidth: 13.75rem;
+                --smTextMaxWidth: none;
+                --lgTextMaxWidth: 28rem;
+                --xxlTextMaxWidth: 32rem;
+              "
+            >
+              If you love the ideas behind Scalar and the potential it unveils,
+              please consider sponsoring or contributing to its development to
+              ensure beautiful, accessible&nbsp;typography and grids for all.
+            </p>
+          </div>
+          <div>
+            <p
+              class="color-neutral-4 px-ru md-pl-su text-max-width"
+              style="
+                --textMaxWidth: 14.5rem;
+                --lgTextMaxWidth: 28rem;
+                --xxlTextMaxWidth: 32rem;
+              "
+            >
+              Scalar CSS is an MIT-licensed, open source project. It grows
+              thanks to the sponsors and it's contributors. Please consider
+              doing what you can to support the project.
+            </p>
+          </div>
         </div>
-        <div class="d-flex flex-direction-column flex-gap-2">
-          <p class="type-0 color-neutral-7 lg-max-w-60">
-            If you're already familiar with Tailwind, then many aspects of
-            Scalar will seem familiar and intuitive. There are two major things
-            that make Scalar unique:
-          </p>
-          <div class="lg-d-flex lg-flex-direction-row flex-gap-4">
-            <div class="lg-max-w-50">
-              <icon-block icon="fluid" title="Fluid Web Design">
-                <p class="type-0 color-neutral-5">
-                  Scalar is the first CSS framework to provide support out of
-                  the box for building <em>"fluid"</em> web designs.
-                </p>
-                <p class="type-0 color-neutral-5">
-                  Essentially, using some basic math based on the supplied
-                  screen dimensions, Scalar will auto-scale your text, images
-                  and other page elements between breakpoints. This ensures your
-                  design (including line breaks, measure and vertical rhythm)
-                  stays consistent no matter the dimensions of your visitor's
-                  browser.
-                </p>
-                <p class="type-0 color-neutral-5">
-                  And, most important of all, this is accomplished entirely
-                  <em class="font-bold"
-                    >without any additional JavaScript whatsoever</em
-                  >.
-                </p>
-                <p class="type-0">
-                  <a href="#" class="font-bold">Learn More »</a>
-                </p>
-              </icon-block>
-            </div>
-            <div class="lg-max-w-50">
-              <icon-block icon="type" title="Rich Typography">
-                <p class="type-0 color-neutral-5">
-                  Scalar has been built from the ground up to properly support
-                  vertical rhythm, modular scales, and
-                  <a
-                    href="https://medium.com/@razvanonofrei/aligning-type-to-baseline-the-right-way-using-sass-e258fce47a9b"
-                    target="_blank"
-                    rel="noreferrer noopener nofollow"
-                    >proper baseline alignment</a
-                  >.
-                </p>
-                <p class="type-0 color-neutral-5">
-                  Scalar also gives you the ability to dynamically modify font
-                  options, sizes, margins, line heights, and modular scales
-                  across any breakpoint. This means that on mobile where space
-                  is limited, you can use the 'majorSecond' scale, while on
-                  desktop you could use the 'augmentedFourth' and bump margins
-                  or line-height to take advantage of the extra space available
-                  with large monitors.
-                </p>
-                <p class="type-0">
-                  <a href="#" class="font-bold">Learn More »</a>
-                </p>
-              </icon-block>
+
+        <div class="columnLayout" data-columns="1,1,1,1">
+          <icon-block
+            class="px-ru md-px-su"
+            icon="discord-colored"
+            title="Scalar Discord"
+            style="
+              --textMaxWidth: 14rem;
+              --mdTextMaxWidth: 19rem;
+              --lgTextMaxWidth: 12.5rem;
+            "
+          >
+            Come chat Scalar, design theory and web development in our
+            <a
+              href="https://discord.gg/gUAQA8U"
+              target="_blank"
+              rel="noreferrer nofollow"
+              >Discord</a
+            >.
+          </icon-block>
+          <icon-block
+            class="px-ru md-px-su"
+            icon="github-colored"
+            title="Github"
+            style="
+              --textMaxWidth: 14rem;
+              --mdTextMaxWidth: 19rem;
+              --lgTextMaxWidth: 12.5rem;
+            "
+          >
+            File issues, make pull requests, and ask questions in our
+            <a
+              href="github.com/scalar-css/scalar-css"
+              target="_blank"
+              rel="noreferrer"
+              >Github</a
+            >.
+          </icon-block>
+          <icon-block
+            class="px-ru md-px-su"
+            icon="store"
+            title="Scalar swag"
+            style="
+              --textMaxWidth: 14rem;
+              --mdTextMaxWidth: 19rem;
+              --lgTextMaxWidth: 12.5rem;
+            "
+          >
+            Grab yourself some beautiful swag in our
+            <a
+              href="https://scalar.threadless.com"
+              target="_blank"
+              rel="noreferrer nofollow"
+              >Scalar merch store</a
+            >.
+          </icon-block>
+          <icon-block
+            class="px-ru md-px-su"
+            icon="donate"
+            title="Donations"
+            style="
+              --textMaxWidth: 14rem;
+              --mdTextMaxWidth: 19rem;
+              --lgTextMaxWidth: 12.5rem;
+            "
+          >
+            Use
+            <a
+              href="https://paypal.me/k3th3r"
+              target="_blank"
+              rel="noreferrer nofollow"
+              >PayPal</a
+            >
+            to send a one-time, non-recurring donation.
+          </icon-block>
+        </div>
+      </div>
+    </page-section>
+
+    <!-- <page-section
+      bg="primary-1"
+      style="--sectionPull: calc(var(--baselineUnit) * 6);"
+    >
+      <template #top>
+        <top-four />
+      </template>
+      <div class="columnLayout" data-columns="2,2">
+        <div>
+          <div class="rowLayout">
+            <section-title
+              class="px-ru md-px-su"
+              tagline="Experimental Usage"
+              title="Get started using Scalar CSS"
+              theme="dark"
+            />
+            <div>
+              <p
+                class="color-neutral-7 px-ru md-px-su text-max-width"
+                style="--mdTextMaxWidth: 40rem; --lgTextMaxWidth: 29rem;"
+              >
+                Scalar CSS is currently very much in active development and
+                experimentation so the API and usage is changing frequently.
+                <strong
+                  ><em
+                    >You should not be using it in production yet.</em
+                  ></strong
+                >
+              </p>
             </div>
           </div>
         </div>
+        <div>
+          <div class="rowLayout"></div>
+        </div>
       </div>
-    </s-section>
+      <template #bottom>
+        <bottom-four />
+      </template>
+    </page-section> -->
   </div>
 </template>
 
 <script>
-  import SSection from '~/components/SSection'
-  import IconBlock from '~/components/IconBlock'
-  import ScrollTo from '~/components/ScrollTo'
+  import HomeHeroBottom from '@/assets/home-bg-bottom.svg'
+  import HomeHeroTop from '@/assets/home-bg-top.svg'
+  import BottomFour from '@/assets/section-four-bottom.svg'
+  import TopFour from '@/assets/section-four-top.svg'
+  import TopThree from '@/assets/section-three-top.svg'
+  import TopTwo from '@/assets/section-two-top.svg'
+  import IconBlock from '@/components/IconBlock'
+  import MobilePhone from '@/components/MobilePhone'
+  import PageSection from '@/components/PageSection.vue'
+  import SectionTitle from '@/components/SectionTitle'
 
   export default {
     components: {
-      SSection,
+      PageSection,
+      HomeHeroTop,
+      HomeHeroBottom,
+      MobilePhone,
+      TopTwo,
+      TopThree,
+      TopFour,
+      BottomFour,
       IconBlock,
-      ScrollTo
+      SectionTitle
     }
   }
 </script>
-
-<style lang="postcss">
-  .btn {
-    text-decoration: none;
-    transition: background-color 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-
-  .theme-dark a {
-    color: var(--color-neutral-7);
-  }
-</style>

@@ -1,13 +1,13 @@
-import fs from 'fs'
+import { cosmiconfig } from 'cosmiconfig'
+import isResolvable from 'is-resolvable'
 import path from 'path'
 import postcss from 'postcss'
-import isResolvable from 'is-resolvable'
 import functions from 'postcss-functions'
-import { cosmiconfig } from 'cosmiconfig'
 
-import setup from './core/setup'
 import scalar from './core/scalar'
 import screen from './core/screen'
+import setup from './core/setup'
+import { merge } from './util/helpers'
 
 const scalarName = 'scalar-css'
 
@@ -21,8 +21,12 @@ const scalarFunctions = functions({
  * @param {Array} preset - multiple presets to be merged, ['default', {}]
  * @param {Object} preset - already invoked function: { plugins: [] }
  */
-function resolvePreset(preset) {
+async function resolvePreset(preset) {
   let fn, options
+
+  if (typeof preset === 'undefined') {
+    return Promise.resolve([])
+  }
 
   if (preset.plugins) {
     return Promise.resolve(preset.plugins)
@@ -61,18 +65,18 @@ function resolvePreset(preset) {
  * @param {*} css
  * @param {*} options
  */
-async function resolveConfig(config, css, result) {
-  if (config.preset) {
-    return resolvePreset(config.preset)
-  }
-
+async function resolveConfig(pluginConfig, css, result) {
   const inputFile = css.source && css.source.input && css.source.input.file
   let searchPath = inputFile ? path.dirname(inputFile) : process.cwd()
   let configPath = null
 
-  if (config.configFile) {
+  if (searchPath.includes('node_modules')) {
+    return {}
+  }
+
+  if (pluginConfig.configFile) {
     searchPath = null
-    configPath = path.resolve(process.cwd(), config.configFile)
+    configPath = path.resolve(process.cwd(), pluginConfig.configFile)
   }
 
   const configExplorer = cosmiconfig(scalarName)
@@ -80,19 +84,17 @@ async function resolveConfig(config, css, result) {
     ? configExplorer.load(configPath)
     : configExplorer.search(searchPath)
 
-  return searchForConfig.then(config => {
-    if (config === null) {
-      return resolvePreset('minimal')
-    }
-
-    return resolvePreset(config.config.preset || config.config)
+  return searchForConfig.then(cfg => {
+    const config = cfg === null ? {} : merge(pluginConfig, cfg.config)
+    return Promise.resolve(config)
   })
 }
 
-export default postcss.plugin(scalarName, (config = {}) => {
+export default postcss.plugin(scalarName, (pluginConfig = {}) => {
   return async (css, result) => {
+    const config = await resolveConfig(pluginConfig, css, result)
+    const plugins = await resolvePreset(config.preset, css, result)
     const ctx = setup(config)
-    const plugins = await resolveConfig(config, css, result)
 
     return postcss([
       scalar(ctx, plugins),
