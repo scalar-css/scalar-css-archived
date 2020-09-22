@@ -1,6 +1,6 @@
 {
   "name": "@scalar-css/js-property-calculator",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "A small javascript utility for dynamically calculating the CSS scalar property value based on the current window size",
   "license": "MIT",
@@ -13,8 +13,6 @@
     "email": "iamkether@gmail.com",
     "url": "https://www.k3th3r.com"
   },
-  "devDependencies": {},
-  "dependencies": {},
   "keywords": [
     "css",
     "modular scale",

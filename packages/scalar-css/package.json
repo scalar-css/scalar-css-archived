@@ -1,6 +1,6 @@
 {
   "name": "@scalar-css/scalar-css",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "A utility-first CSS framework for rapidly building fluid websites for modern browsers",
   "license": "MIT",
@@ -26,9 +26,9 @@
     "node": ">=12.11.0"
   },
   "devDependencies": {
-    "@scalar-css/scalar-css-plugin-root-sizes": "0.0.0",
-    "@scalar-css/scalar-css-util-conversions": "0.0.0",
-    "@scalar-css/scalar-css-util-css": "0.0.0",
+    "@scalar-css/scalar-css-plugin-root-sizes": "^0.1.0",
+    "@scalar-css/scalar-css-util-conversions": "^0.1.0",
+    "@scalar-css/scalar-css-util-css": "^0.0.1",
     "cosmiconfig": "^6.0.0",
     "is-resolvable": "^1.1.0",
     "postcss": "^7.0.32"

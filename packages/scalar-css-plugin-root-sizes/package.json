@@ -1,6 +1,6 @@
 {
   "name": "@scalar-css/scalar-css-plugin-root-sizes",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "postcss": "7.0.21"
   },
   "devDependencies": {
-    "@scalar-css/scalar-css-util-conversions": "0.0.0",
+    "@scalar-css/scalar-css-util-conversions": "^0.1.0",
     "jest": "24.9.0"
   },
   "homepage": "https://www.scalar-css.com",

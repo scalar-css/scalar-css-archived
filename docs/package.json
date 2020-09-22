@@ -1,6 +1,6 @@
 {
   "name": "@scalar-css/docs-website",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "index.js",
   "homepage": "https://www.scalar-css.com",
@@ -26,9 +26,9 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.10.4",
-    "@scalar-css/scalar-css": "0.0.0",
-    "@scalar-css/scalar-css-preset-default": "0.0.0",
-    "@scalar-css/scalar-css-import": "0.0.0",
+    "@scalar-css/scalar-css": "^0.1.0",
+    "@scalar-css/scalar-css-import": "^0.0.1",
+    "@scalar-css/scalar-css-preset-default": "^0.0.1",
     "postcss-nested": "^4.2.3",
     "postcss-preset-env": "^6.7.0",
     "postcss-simple-vars": "^5.0.2"

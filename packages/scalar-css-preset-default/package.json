@@ -1,6 +1,6 @@
 {
   "name": "@scalar-css/scalar-css-preset-default",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "main": "src/index.js",
@@ -12,9 +12,9 @@
     "url": "https://www.k3th3r.com"
   },
   "dependencies": {
-    "@scalar-css/scalar-css-plugin-fonts": "0.0.0",
-    "@scalar-css/scalar-css-plugin-root-sizes": "0.0.0",
-    "@scalar-css/scalar-css-plugin-type": "0.0.0"
+    "@scalar-css/scalar-css-plugin-fonts": "^0.0.1",
+    "@scalar-css/scalar-css-plugin-root-sizes": "^0.1.0",
+    "@scalar-css/scalar-css-plugin-type": "^0.1.0"
   },
   "keywords": [
     "css",

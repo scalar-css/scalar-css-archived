@@ -1,6 +1,6 @@
 {
   "name": "@scalar-css/scalar-css-import",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "PostCSS plugin to import CSS files. Modified version of `postcss-import`",
   "keywords": [
     "css",
