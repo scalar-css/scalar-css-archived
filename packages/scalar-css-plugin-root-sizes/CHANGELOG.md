@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/scalar-css/scalar-css/compare/@scalar-css/scalar-css-plugin-root-sizes@0.1.0...@scalar-css/scalar-css-plugin-root-sizes@0.1.1) (2020-10-06)
+
+**Note:** Version bump only for package @scalar-css/scalar-css-plugin-root-sizes
+
+
+
+
+
 # 0.1.0 (2020-09-22)
 
 

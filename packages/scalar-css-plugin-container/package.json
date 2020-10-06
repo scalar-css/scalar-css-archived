@@ -1,6 +1,6 @@
 {
   "name": "@scalar-css/scalar-css-plugin-container",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "license": "MIT",
   "main": "src/index.js",
@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@scalar-css/scalar-css-util-conversions": "^0.1.0",
+    "@scalar-css/scalar-css-util-conversions": "^0.1.1",
     "postcss": "7.0.21"
   },
   "devDependencies": {
