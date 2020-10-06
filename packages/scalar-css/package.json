@@ -1,7 +1,6 @@
 {
   "name": "@scalar-css/scalar-css",
   "version": "0.1.0",
-  "private": true,
   "description": "A utility-first CSS framework for rapidly building fluid websites for modern browsers",
   "license": "MIT",
   "main": "src/index.js",

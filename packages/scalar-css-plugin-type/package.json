@@ -1,7 +1,6 @@
 {
   "name": "@scalar-css/scalar-css-plugin-type",
   "version": "0.1.0",
-  "private": true,
   "description": "",
   "license": "MIT",
   "main": "src/index.js",

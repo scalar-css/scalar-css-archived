@@ -1,7 +1,6 @@
 {
   "name": "@scalar-css/scalar-css-preset-default",
   "version": "0.0.1",
-  "private": true,
   "license": "MIT",
   "main": "src/index.js",
   "homepage": "https://www.scalar-css.com",

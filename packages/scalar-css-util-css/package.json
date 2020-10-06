@@ -1,7 +1,6 @@
 {
   "name": "@scalar-css/scalar-css-util-css",
   "version": "0.0.1",
-  "private": true,
   "description": "Utilities for creating/loading/writing CSS",
   "license": "MIT",
   "main": "src/index.js",
