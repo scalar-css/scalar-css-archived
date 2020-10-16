@@ -1,0 +1,105 @@
+"use strict";
+
+var _conversions = require("./conversions");
+
+describe('src/util/conversions.js', function () {
+  it('should convert pixels to a percent integer', function () {
+    var expected = 100;
+    var actual = (0, _conversions.pxToPercent)(16);
+    expect(actual).toBe(expected);
+    expected = 112.5;
+    actual = (0, _conversions.pxToPercent)(18);
+    expect(actual).toBe(expected);
+    expected = 87.5;
+    actual = (0, _conversions.pxToPercent)(14);
+    expect(actual).toBe(expected);
+    expected = 75;
+    actual = (0, _conversions.pxToPercent)(12);
+    expect(actual).toBe(expected);
+  });
+  it('should convert percent to pixels', function () {
+    var expected = 16;
+    var actual = (0, _conversions.percentToPx)(100);
+    expect(actual).toBe(expected);
+    expected = 18;
+    actual = (0, _conversions.percentToPx)(112.5);
+    expect(actual).toBe(expected);
+    expected = 14;
+    actual = (0, _conversions.percentToPx)(87.5);
+    expect(actual).toBe(expected);
+    expected = 12;
+    actual = (0, _conversions.percentToPx)(75);
+    expect(actual).toBe(expected);
+    expected = 13.5;
+    actual = (0, _conversions.percentToPx)(75, 18);
+    expect(actual).toBe(expected);
+  });
+  it('should convert pixels to a browser rem unit', function () {
+    var expected = 1;
+    var actual = (0, _conversions.pxToRem)(16);
+    expect(actual).toBe(expected);
+    expected = 1.125;
+    actual = (0, _conversions.pxToRem)(18);
+    expect(actual).toBe(expected);
+    expected = 0.875;
+    actual = (0, _conversions.pxToRem)(14);
+    expect(actual).toBe(expected);
+    expected = 0.75;
+    actual = (0, _conversions.pxToRem)(12);
+    expect(actual).toBe(expected);
+  });
+  it('should convert a rem value to pixels', function () {
+    var expected = 16;
+    var actual = (0, _conversions.remToPx)(1);
+    expect(actual).toBe(expected);
+    expected = 18;
+    actual = (0, _conversions.remToPx)(1.125);
+    expect(actual).toBe(expected);
+    expected = 14;
+    actual = (0, _conversions.remToPx)(0.875);
+    expect(actual).toBe(expected);
+    expected = 12;
+    actual = (0, _conversions.remToPx)(0.75);
+    expect(actual).toBe(expected);
+    expected = 18;
+    actual = (0, _conversions.remToPx)(1, 18);
+    expect(actual).toBe(expected);
+    expected = 20.25;
+    actual = (0, _conversions.remToPx)(1.125, 18);
+    expect(actual).toBe(expected);
+    expected = 15.75;
+    actual = (0, _conversions.remToPx)(0.875, 18);
+    expect(actual).toBe(expected);
+    expected = 13.5;
+    actual = (0, _conversions.remToPx)(0.75, 18);
+    expect(actual).toBe(expected);
+  });
+  it('should round to the right decimal place', function () {
+    var expected = 0.87;
+    var actual = (0, _conversions.rounded)(0.8743962, 2);
+    expect(actual).toBe(expected);
+    expected = 0.8744;
+    actual = (0, _conversions.rounded)(0.8743962, 4);
+    expect(actual).toBe(expected);
+    expected = 1.875;
+    actual = (0, _conversions.rounded)(1.874962, 3);
+    expect(actual).toBe(expected);
+    expected = 2.8744;
+    actual = (0, _conversions.rounded)(2.8743962, 5);
+    expect(actual).toBe(expected);
+  });
+  it('should convert scalar units properly', function () {
+    var expected = 'rem(20px)';
+    var actual = (0, _conversions.scalarUnitConversion)(20);
+    expect(actual).toBe(expected);
+    expected = '1rem';
+    actual = (0, _conversions.scalarUnitConversion)('1rem');
+    expect(actual).toBe(expected);
+    expected = '100%';
+    actual = (0, _conversions.scalarUnitConversion)('100%');
+    expect(actual).toBe(expected);
+    expected = 'calc(var(--rhythm-rem) * 3)';
+    actual = (0, _conversions.scalarUnitConversion)('3vr');
+    expect(actual).toBe(expected);
+  });
+});

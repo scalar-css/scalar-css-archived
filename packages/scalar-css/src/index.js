@@ -3,6 +3,8 @@ import isResolvable from 'is-resolvable'
 import path from 'path'
 import postcss from 'postcss'
 import functions from 'postcss-functions'
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 
 import scalar from './core/scalar'
 import screen from './core/screen'
@@ -90,7 +92,7 @@ async function resolveConfig(pluginConfig, css, result) {
   })
 }
 
-export default postcss.plugin(scalarName, (pluginConfig = {}) => {
+const plugin = postcss.plugin(scalarName, (pluginConfig = {}) => {
   return async (css, result) => {
     const config = await resolveConfig(pluginConfig, css, result)
     const plugins = await resolvePreset(config.preset, css, result)
@@ -105,3 +107,5 @@ export default postcss.plugin(scalarName, (pluginConfig = {}) => {
     })
   }
 })
+
+module.exports = plugin

@@ -1,4 +1,4 @@
-import { pxToRem } from '@scalar-css/scalar-css-util-conversions'
+import { pxToRem } from '../util/conversions'
 
 function getScreen(ctx, screenKey) {
   return ctx.theme.screens[ctx.theme.screensByKey[screenKey]]
