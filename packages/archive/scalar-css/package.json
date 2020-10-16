@@ -5,8 +5,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src -d lib",
-    "build:local": "babel src -d lib && yalc push"
+    "build": "babel src -d lib"
   },
   "homepage": "https://www.scalar-css.com",
   "bugs": "https://github.com/scalar-css/scalar-css/issues",
