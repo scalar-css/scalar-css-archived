@@ -93,9 +93,9 @@ async function resolveConfig(pluginConfig, css, result) {
 }
 
 const plugin = postcss.plugin(scalarName, (pluginConfig = {}) => {
-  return async (css, result) => {
-    const config = await resolveConfig(pluginConfig, css, result)
-    const plugins = await resolvePreset(config.preset, css, result)
+  return async (css) => {
+    const config = await resolveConfig(pluginConfig, css)
+    const plugins = await resolvePreset(config.preset, css)
     const ctx = setup(config)
 
     return postcss([

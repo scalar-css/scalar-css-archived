@@ -6,6 +6,10 @@ require("regenerator-runtime/runtime");
 
 var _postcss = _interopRequireDefault(require("postcss"));
 
+var _setup = _interopRequireDefault(require("./core/setup"));
+
+var _scalar = _interopRequireDefault(require("./core/scalar"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -16,13 +20,16 @@ var scalarName = 'scalar-css';
 
 var plugin = _postcss["default"].plugin(scalarName, function () {
   var pluginConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var ctx = (0, _setup["default"])(pluginConfig);
   return /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(css, result) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(css) {
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              return _context.abrupt("return", (0, _postcss["default"])([]));
+              return _context.abrupt("return", (0, _postcss["default"])([(0, _scalar["default"])(ctx)]).process(css, {
+                from: css.source.input.file
+              }));
 
             case 1:
             case "end":
@@ -32,7 +39,7 @@ var plugin = _postcss["default"].plugin(scalarName, function () {
       }, _callee);
     }));
 
-    return function (_x, _x2) {
+    return function (_x) {
       return _ref.apply(this, arguments);
     };
   }();

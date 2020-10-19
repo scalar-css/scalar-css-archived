@@ -1,14 +1,19 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import postcss from 'postcss'
-import { resolveConfig } from 'prettier'
+
+import setup from './core/setup'
+import scalar from './core/scalar'
 
 const scalarName = 'scalar-css'
 
 const plugin = postcss.plugin(scalarName, (pluginConfig = {}) => {
-  return async (css, result) => {
-    const config = await resolveConfig(pluginConfig, css, result)
-    return postcss([])
+  const ctx = setup(pluginConfig)
+
+  return async (css) => {
+    return postcss([scalar(ctx)]).process(css, {
+      from: css.source.input.file,
+    })
   }
 })
 

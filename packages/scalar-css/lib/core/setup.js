@@ -19,7 +19,7 @@ var _fontScales = _interopRequireDefault(require("../defaults/fontScales"));
 
 var _fontStacks = _interopRequireDefault(require("../defaults/fontStacks"));
 
-var _helpers = require("../util/helpers");
+var _helpers = require("../utils/helpers");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -203,7 +203,6 @@ function finalizeScreens(config) {
  * Take our config and build out our custom context that will
  * be used for calculations throughout the rest of the framework
  *
- * @param {Object} defaultConfig Scalar's default config
  * @param {Object} userConfig User's configuration
  *
  * @returns {Object} ctx Finalized context that is used throughout framework
@@ -212,12 +211,6 @@ function finalizeScreens(config) {
 
 function setup() {
   var userConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  // const config = finalizeScreens(merge(defaultConfig, userConfig))
-  if ((0, _helpers.objectIsEmpty)(userConfig)) {
-    return;
-  }
-
   var config = finalizeScreens(userConfig);
   var ctx = (0, _helpers.merge)(config, {
     theme: {

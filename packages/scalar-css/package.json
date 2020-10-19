@@ -6,7 +6,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "build:local": "babel src -d lib && yalc push"
+    "build:local": "babel src -d lib && yarn build:copy:css && yalc push",
+    "build:copy:css": "copyfiles --flat ./src/defaults/*.css ./lib/defaults"
   },
   "homepage": "https://www.scalar-css.com",
   "bugs": "https://github.com/scalar-css/scalar-css/issues",
@@ -28,6 +29,7 @@
     "node": ">=12.11.0"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.0",
     "cosmiconfig": "^6.0.0",
     "is-resolvable": "^1.1.0",
     "postcss": "^7.0.32"
