@@ -1,14 +1,3 @@
-export function throttle(callback, timeFrame) {
-  var lastTime = 0
-  return function () {
-    var now = Date.now()
-    if (now - lastTime >= timeFrame) {
-      callback()
-      lastTime = now
-    }
-  }
-}
-
 function getScrollbarWidth() {
   return window.innerWidth - document.documentElement.clientWidth
 }
@@ -20,6 +9,7 @@ export default {
     function scalarCalculator() {
       const start = root.getPropertyValue('--screenStartSize').trim()
       const end = root.getPropertyValue('--screenEndSize').trim()
+
       if (window.innerWidth < end) {
         const min = root
           .getPropertyValue('--screenMinFontSize')
@@ -32,7 +22,7 @@ export default {
       }
 
       document.documentElement.style.setProperty(
-        '--scrollBarWidthJS',
+        '--scrollbarWidth',
         `${getScrollbarWidth()}px`
       )
 
@@ -44,6 +34,6 @@ export default {
 
     scalarCalculator()
 
-    window.addEventListener('resize', throttle(scalarCalculator, 100))
+    window.addEventListener('resize', scalarCalculator)
   }
 }

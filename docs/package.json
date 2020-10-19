@@ -21,10 +21,10 @@
     "@nuxt/content": "^1.5.0",
     "nuxt": "^2.14.0",
     "nuxt-webfontloader": "^1.1.0",
-    "prism-themes": "^1.4.0",
-    "vue-svg-loader": "^0.16.0"
+    "prism-themes": "^1.4.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.10.4",
     "postcss-nested": "^4.2.3",
     "postcss-preset-env": "^6.7.0",

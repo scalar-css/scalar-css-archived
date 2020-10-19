@@ -1,4 +1,5 @@
 module.exports = {
-  ...require('prettier-config-standard'),
-  vueIndentScriptAndStyle: true
+  semi: false,
+  singleQuote: true,
+  trailingComma: 'all',
 }

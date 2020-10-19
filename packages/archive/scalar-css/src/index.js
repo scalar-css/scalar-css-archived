@@ -14,7 +14,7 @@ import { merge } from './util/helpers'
 const scalarName = 'scalar-css'
 
 const scalarFunctions = functions({
-  glob: path.join(__dirname, 'functions', '*.js')
+  glob: path.join(__dirname, 'functions', '*.js'),
 })
 
 /**
@@ -55,7 +55,7 @@ async function resolvePreset(preset) {
 
   // If those fail, we probably have a typo in the config somewhere
   throw new Error(
-    `Cannot load preset "${fn}". Please check your configuration for errors and try again.`
+    `Cannot load preset "${fn}". Please check your configuration for errors and try again.`,
   )
 }
 
@@ -86,7 +86,7 @@ async function resolveConfig(pluginConfig, css, result) {
     ? configExplorer.load(configPath)
     : configExplorer.search(searchPath)
 
-  return searchForConfig.then(cfg => {
+  return searchForConfig.then((cfg) => {
     const config = cfg === null ? {} : merge(pluginConfig, cfg.config)
     return Promise.resolve(config)
   })
@@ -101,9 +101,9 @@ const plugin = postcss.plugin(scalarName, (pluginConfig = {}) => {
     return postcss([
       scalar(ctx, plugins),
       screen(ctx),
-      scalarFunctions
+      scalarFunctions,
     ]).process(css, {
-      from: css.source.input.file
+      from: css.source.input.file,
     })
   }
 })
