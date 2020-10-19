@@ -6,9 +6,11 @@ require("regenerator-runtime/runtime");
 
 var _postcss = _interopRequireDefault(require("postcss"));
 
-var _setup = _interopRequireDefault(require("./core/setup"));
-
 var _scalar = _interopRequireDefault(require("./core/scalar"));
+
+var _screen = _interopRequireDefault(require("./core/screen"));
+
+var _setup = _interopRequireDefault(require("./core/setup"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -27,7 +29,7 @@ var plugin = _postcss["default"].plugin(scalarName, function () {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              return _context.abrupt("return", (0, _postcss["default"])([(0, _scalar["default"])(ctx)]).process(css, {
+              return _context.abrupt("return", (0, _postcss["default"])([(0, _scalar["default"])(ctx), (0, _screen["default"])(ctx)]).process(css, {
                 from: css.source.input.file
               }));
 
