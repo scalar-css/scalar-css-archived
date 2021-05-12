@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "postcss": "7.0.21"
+    "postcss": "8.2.10"
   },
   "devDependencies": {
     "@scalar-css/scalar-css-util-conversions": "^0.1.1",
