@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import postcss from 'postcss'
 
-import * as plugins from '../plugins'
+// import * as plugins from '../plugins'
 
 function initializePlugin(ctx, plugin) {
   return Promise.resolve(plugin(ctx))
@@ -21,12 +21,12 @@ export default function (ctx) {
         atRule.remove()
       }
 
-      if (atRule.params === 'utilities') {
-        Object.entries(plugins).reduce(async (prevPromise, [key, plugin]) => {
-          return prevPromise.then(initializePlugin(ctx, plugin))
-        }, Promise.resolve())
-        atRule.remove()
-      }
+      // if (atRule.params === 'utilities') {
+      //   Object.entries(plugins).reduce(async (prevPromise, [key, plugin]) => {
+      //     return prevPromise.then(initializePlugin(ctx, plugin))
+      //   }, Promise.resolve())
+      //   atRule.remove()
+      // }
     })
 
     ctx.theme.screens.forEach((screen) => {
