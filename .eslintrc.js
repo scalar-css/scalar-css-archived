@@ -1,58 +1,42 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
     node: true,
-    jest: true
-  },
-  parser: 'vue-eslint-parser',
-  parserOptions: {
-    parser: 'babel-eslint',
-    ecmaVersion: 2017,
-    sourceType: 'module'
   },
   extends: [
-    'standard',
-    'plugin:vue/vue3-recommended',
-    'prettier',
-    'prettier/vue',
-    'plugin:prettier/recommended'
+    'plugin:vue/vue3-essential',
+    '@vue/prettier',
+    '@vue/standard',
+    '@vue/typescript/recommended',
+    'plugin:prettier/recommended',
   ],
-  plugins: ['prettier', 'vue', 'simple-import-sort'],
+  plugins: ['simple-import-sort', 'prettier'],
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   rules: {
-    curly: ['error', 'all'],
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'require-jsdoc': 0,
-    'max-len': 0,
-    'prettier/prettier': 'error',
-    'vue/name-property-casing': ['error', 'kebab-case'],
-    'vue/component-name-in-template-casing': [
-      'error',
-      'kebab-case',
-      {
-        ignores: [
-          'component',
-          'template',
-          'transition',
-          'transition-group',
-          'keep-alive',
-          'slot'
-        ]
-      }
-    ],
-    'vue/no-v-html': 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'vue/no-multiple-template-root': 'off',
+    'comma-dangle': ['error', 'only-multiline'],
+    '@typescript-eslint/no-var-requires': 'off',
+
+    // Import Sorting
     'simple-import-sort/sort': 'error',
     'sort-imports': 'off',
-    'import/order': 'off'
-  }
-  // overrides: [
-  //   {
-  //     files: ['server/**/*.js'],
-  //     rules: {
-  //       'simple-import-sort/sort': 'off',
-  //       'import/order': ['error', { 'newlines-between': 'always' }]
-  //     }
-  //   }
-  // ]
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
+  },
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }

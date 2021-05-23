@@ -1,0 +1,53 @@
+{
+  "name": "@scalar-css/scalar-css",
+  "version": "0.1.1",
+  "description": "A utility-first CSS framework for rapidly building fluid websites for modern browsers",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "build:local": "babel src -d lib && yarn build:copy:css && yalc push",
+    "build:copy:css": "copyfiles --flat ./src/defaults/*.css ./lib/defaults"
+  },
+  "homepage": "https://www.scalar-css.com",
+  "bugs": "https://github.com/scalar-css/scalar-css/issues",
+  "author": {
+    "name": "Kether Saturnius",
+    "email": "iamkether@gmail.com",
+    "url": "https://www.k3th3r.com"
+  },
+  "keywords": [
+    "css",
+    "modular scale",
+    "typography",
+    "fluid web design",
+    "postcss",
+    "postcss-plugin",
+    "css utilities"
+  ],
+  "engines": {
+    "node": ">=12.11.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.0",
+    "cosmiconfig": "^7.0.0",
+    "is-resolvable": "^1.1.0",
+    "postcss": "^8.3.0"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "core-js": "^3.6.5",
+    "postcss-functions": "^4.0.2",
+    "regenerator-runtime": "^0.13.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scalar-css/scalar-css",
+    "directory": "packages/scalar-css"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}

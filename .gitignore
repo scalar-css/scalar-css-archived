@@ -1,4 +1,6 @@
 _backup
+.yarn
+lib
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
