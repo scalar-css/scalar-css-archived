@@ -28,19 +28,19 @@
 
 <style lang="postcss">
   .hamburger {
-    padding: 1rem;
     display: inline-block;
-    cursor: pointer;
-    transition-property: opacity, filter;
-    transition-duration: 0.15s;
-    transition-timing-function: linear;
+    padding: 1rem;
+    margin: 0;
+    overflow: visible;
     font: inherit;
     color: inherit;
     text-transform: none;
+    cursor: pointer;
     background-color: transparent;
     border: 0;
-    margin: 0;
-    overflow: visible;
+    transition-timing-function: linear;
+    transition-duration: 0.15s;
+    transition-property: opacity, filter;
   }
 
   .hamburger:hover {
@@ -58,33 +58,33 @@
   }
 
   .hamburger-box {
+    position: relative;
+    display: inline-block;
     width: 1rem;
     height: 1rem;
-    display: inline-block;
-    position: relative;
   }
 
   .hamburger-inner {
-    display: block;
     top: 50%;
+    display: block;
   }
 
   .hamburger-inner,
   .hamburger-inner::before,
   .hamburger-inner::after {
+    position: absolute;
     width: 1rem;
     height: 2px;
     background-color: #c2c2c2;
-    position: absolute;
-    transition-property: transform;
-    transition-duration: 0.15s;
     transition-timing-function: ease;
+    transition-duration: 0.15s;
+    transition-property: transform;
   }
 
   .hamburger-inner::before,
   .hamburger-inner::after {
-    content: '';
     display: block;
+    content: '';
   }
 
   .hamburger-inner::before {
@@ -96,8 +96,8 @@
   }
 
   .hamburger--spin .hamburger-inner {
-    transition-duration: 0.22s;
     transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition-duration: 0.22s;
   }
 
   .hamburger--spin .hamburger-inner::before {
@@ -110,9 +110,9 @@
   }
 
   .hamburger--spin.is-open .hamburger-inner {
-    transform: rotate(225deg);
     transition-delay: 0.12s;
     transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: rotate(225deg);
   }
 
   .hamburger--spin.is-open .hamburger-inner::before {
@@ -123,9 +123,9 @@
 
   .hamburger--spin.is-open .hamburger-inner::after {
     bottom: 0;
-    transform: rotate(-90deg);
     transition: bottom 0.1s ease-out,
       transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: rotate(-90deg);
   }
 
   @above md {

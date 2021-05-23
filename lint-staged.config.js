@@ -1,7 +1,7 @@
 module.exports = {
-  '*.{js,vue}': [
-    // 'vue-cli-service lint'
+  '*.{js,jsx,vue,ts,tsx,pcss}': [
+    // 'vue-cli-service lint',
     // 'yarn lint:styles',
     // 'jest --bail --findRelatedTests',
-  ]
+  ],
 }

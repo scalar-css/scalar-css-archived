@@ -8,7 +8,7 @@
         <div class="px-ru md-px-su">
           <h1
             class="type-pageTitle color-neutral-7 text-semi text-max-width"
-            style="--mdTextMaxWidth: 30rem;"
+            style="--mdTextMaxWidth: 30rem"
           >
             Reclaim the
             <span class="color-accent-2">mathematical harmony</span> of your web
@@ -145,7 +145,7 @@
       </div>
     </page-section>
 
-    <page-section bg="light">
+    <!-- <page-section bg="light">
       <template #top>
         <top-three />
       </template>
@@ -263,7 +263,7 @@
           </icon-block>
         </div>
       </div>
-    </page-section>
+    </page-section> -->
 
     <!-- <page-section
       bg="primary-1"
@@ -309,29 +309,29 @@
 </template>
 
 <script>
-  import HomeHeroBottom from '@/assets/home-bg-bottom.svg'
-  import HomeHeroTop from '@/assets/home-bg-top.svg'
-  import BottomFour from '@/assets/section-four-bottom.svg'
-  import TopFour from '@/assets/section-four-top.svg'
-  import TopThree from '@/assets/section-three-top.svg'
-  import TopTwo from '@/assets/section-two-top.svg'
-  import IconBlock from '@/components/IconBlock'
-  import MobilePhone from '@/components/MobilePhone'
-  import PageSection from '@/components/PageSection.vue'
-  import SectionTitle from '@/components/SectionTitle'
+import HomeHeroBottom from '@/assets/home-bg-bottom.svg'
+import HomeHeroTop from '@/assets/home-bg-top.svg'
+import BottomFour from '@/assets/section-four-bottom.svg'
+import TopFour from '@/assets/section-four-top.svg'
+import TopThree from '@/assets/section-three-top.svg'
+import TopTwo from '@/assets/section-two-top.svg'
+import IconBlock from '@/components/IconBlock'
+import MobilePhone from '@/components/MobilePhone'
+import PageSection from '@/components/PageSection.vue'
+import SectionTitle from '@/components/SectionTitle'
 
-  export default {
-    components: {
-      PageSection,
-      HomeHeroTop,
-      HomeHeroBottom,
-      MobilePhone,
-      TopTwo,
-      TopThree,
-      TopFour,
-      BottomFour,
-      IconBlock,
-      SectionTitle
-    }
-  }
+export default {
+  components: {
+    PageSection,
+    HomeHeroTop,
+    HomeHeroBottom,
+    MobilePhone,
+    TopTwo,
+    TopThree,
+    TopFour,
+    BottomFour,
+    IconBlock,
+    SectionTitle,
+  },
+}
 </script>

@@ -78,9 +78,9 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 5;
     width: 100%;
     height: calc(var(--baselineUnit) * 3);
-    z-index: 5;
   }
 
   .header-bg {
@@ -90,10 +90,10 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.25s ease-in-out;
     border-bottom: thin solid #175255;
     box-shadow: 0px 5px 17px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
 
     &--show {
       opacity: 1;

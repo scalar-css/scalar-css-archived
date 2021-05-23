@@ -33,79 +33,79 @@
     --phoneHeight: 50vh;
     --phoneWidth: calc(var(--phoneHeight) * 0.56338028);
     position: relative;
-    display: inline-block;
     box-sizing: content-box !important;
-    padding: 105px 22px;
-    background: #2c2b2c;
+    display: inline-block;
     width: var(--phoneWidth);
     height: var(--phoneHeight);
-    border-radius: 50px;
+    padding: 105px 22px;
     margin-top: calc(-1 * var(--phoneHeight));
-    animation: phoneScale 5s alternate infinite ease-in-out;
+    background: #2c2b2c;
+    border-radius: 50px;
     transform-origin: bottom left;
+    animation: phoneScale 5s alternate infinite ease-in-out;
 
     &:before {
-      width: calc(100% - 8px);
-      height: calc(100% - 8px);
       position: absolute;
       top: 4px;
-      content: '';
       left: 4px;
-      border-radius: 46px;
-      background: #1e1e1e;
       z-index: 1;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      content: '';
+      background: #1e1e1e;
+      border-radius: 46px;
     }
 
     .screen {
-      width: 100%;
       position: relative;
-      height: 100%;
       z-index: 3;
-      background: white;
-      overflow: hidden;
       display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: white;
       border-radius: 1px;
       box-shadow: 0 0 0 3px #111;
     }
 
     .home {
-      border-radius: 36px;
-      width: 68px;
-      box-shadow: inset 0 0 0 4px #2c2b2c;
-      height: 68px;
       position: absolute;
-      left: 50%;
-      margin-left: -34px;
       bottom: 19px;
+      left: 50%;
       z-index: 3;
+      width: 68px;
+      height: 68px;
+      margin-left: -34px;
+      border-radius: 36px;
+      box-shadow: inset 0 0 0 4px #2c2b2c;
     }
 
     .top-bar,
     .bottom-bar {
+      display: block;
+      width: 100%;
       height: 3px;
       background: black;
-      width: 100%;
-      display: block;
     }
 
     .top-bar {
-      top: 70px;
       position: absolute;
+      top: 70px;
       left: 0;
     }
 
     .middle-bar {
-      width: 3px;
-      height: 4px;
+      position: absolute;
       top: 0px;
       left: 90px;
+      width: 3px;
+      height: 4px;
       background: black;
-      position: absolute;
     }
 
     .bottom-bar {
-      bottom: 70px;
       position: absolute;
+      bottom: 70px;
       left: 0;
     }
 
@@ -115,79 +115,79 @@
       right: 60px;
       width: 60px;
       height: 4px;
-      border-radius: 2px 2px 0px 0px;
       background: #282727;
+      border-radius: 2px 2px 0px 0px;
     }
 
     .volume {
       position: absolute;
-      left: -4px;
       top: 180px;
+      left: -4px;
       z-index: 0;
-      height: 27px;
       width: 4px;
-      border-radius: 2px 0px 0px 2px;
+      height: 27px;
       background: #282727;
+      border-radius: 2px 0px 0px 2px;
 
       &:before {
         position: absolute;
-        left: 0px;
         top: -75px;
-        height: 35px;
-        width: 4px;
-        border-radius: 2px 0px 0px 2px;
-        background: inherit;
-        content: '';
+        left: 0px;
         display: block;
+        width: 4px;
+        height: 35px;
+        content: '';
+        background: inherit;
+        border-radius: 2px 0px 0px 2px;
       }
 
       &:after {
         position: absolute;
-        left: 0px;
         bottom: -64px;
-        height: 27px;
-        width: 4px;
-        border-radius: 2px 0px 0px 2px;
-        background: inherit;
-        content: '';
+        left: 0px;
         display: block;
+        width: 4px;
+        height: 27px;
+        content: '';
+        background: inherit;
+        border-radius: 2px 0px 0px 2px;
       }
     }
 
     .camera {
-      background: #3c3d3d;
-      width: 10px;
-      height: 10px;
       position: absolute;
       top: 32px;
       left: 50%;
-      margin-left: -5px;
-      border-radius: 5px;
       z-index: 3;
+      width: 10px;
+      height: 10px;
+      margin-left: -5px;
+      background: #3c3d3d;
+      border-radius: 5px;
     }
 
     .sensor {
-      background: #3c3d3d;
-      width: 10px;
-      height: 10px;
       position: absolute;
       top: 60px;
       left: 160px;
       z-index: 3;
+      width: 10px;
+      height: 10px;
       margin-left: -32px;
+      background: #3c3d3d;
       border-radius: 5px;
     }
 
     .speaker {
-      background: #292728;
-      width: 64px;
-      height: 10px;
       position: absolute;
       top: 60px;
       left: 50%;
-      margin-left: -32px;
-      border-radius: 5px;
       z-index: 3;
+      width: 64px;
+      height: 10px;
+      margin-left: -32px;
+      background: #292728;
+      border-radius: 5px;
     }
   }
 </style>

@@ -34,12 +34,12 @@
 
     &:before {
       position: absolute;
-      content: ' ';
-      display: block;
-      height: 1em;
-      width: 1px;
       top: calc(var(--typeLineHeight) * 0.2em);
       left: calc(-1 * var(--rhythmUnit));
+      display: block;
+      width: 1px;
+      height: 1em;
+      content: ' ';
       background-color: var(--color-accent-2);
     }
   }

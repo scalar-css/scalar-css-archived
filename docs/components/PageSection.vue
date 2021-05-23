@@ -64,8 +64,8 @@
 
   .container {
     width: var(--containerWidth, 100%);
-    margin-left: var(--containerMargin);
     margin-right: calc(var(--containerMargin) - var(--scrollbarWidth));
+    margin-left: var(--containerMargin);
   }
 
   @screen sm {

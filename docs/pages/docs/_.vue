@@ -148,8 +148,8 @@
 
 <style lang="postcss">
   .sidebar-sticky {
-    top: 0;
     position: sticky;
+    top: 0;
   }
   .sidebar {
     height: calc(100vh - (var(--baselineUnit) * 3));

@@ -30,16 +30,16 @@
   },
   "devDependencies": {
     "copyfiles": "^2.4.0",
-    "cosmiconfig": "^6.0.0",
+    "cosmiconfig": "^7.0.0",
     "is-resolvable": "^1.1.0",
-    "postcss": "^7.0.32"
+    "postcss": "^8.3.0"
   },
   "dependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "core-js": "^3.6.5",
-    "postcss-functions": "^3.0.0",
+    "postcss-functions": "^4.0.2",
     "regenerator-runtime": "^0.13.7"
   },
   "repository": {

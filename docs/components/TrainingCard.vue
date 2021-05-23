@@ -48,8 +48,8 @@
 <style lang="postcss">
   .checkmark {
     flex: 1 0 12px;
-    margin-top: 0.5em;
     max-width: 12px;
+    margin-top: 0.5em;
 
     svg {
       max-width: 100%;

@@ -60,15 +60,15 @@
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 1000;
+    min-height: 100vh;
     margin-right: auto;
     margin-left: auto;
-    min-height: 100vh;
+    pointer-events: none;
     content: '';
     background-image: var(--background-rhythm), var(--background-baseline);
-    background-size: 100%;
     background-position: 0 0;
-    z-index: 1000;
-    pointer-events: none;
+    background-size: 100%;
   }
 
   .toggle {
