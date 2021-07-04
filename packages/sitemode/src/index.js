@@ -1,20 +1,18 @@
-const plugin = require('tailwindcss/plugin')
-
 module.exports = function sitemode({ addUtilities }) {
   const newUtilities = {
     '.sitemode-ltr': {
-      'writing-mode': 'horizontal-tb',
+      writingMode: 'horizontal-tb',
       direction: 'ltr',
     },
     '.sitemode-rtl': {
-      'writing-mode': 'horizontal-tb',
+      writingMode: 'horizontal-tb',
       direction: 'rtl',
     },
     '.sitemode-vlr': {
-      'writing-mode': 'vertical-lr',
+      writingMode: 'vertical-lr',
     },
     '.sitemode-vrl': {
-      'writing-mode': 'vertical-rl',
+      writingMode: 'vertical-rl',
     },
   }
 
