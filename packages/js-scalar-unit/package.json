@@ -1,0 +1,38 @@
+{
+  "name": "@scalar-css/js-scalar-unit",
+  "version": "0.0.0",
+  "description": "A small javascript utility for dynamically calculating the CSS scalar property value based on the current window size",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {},
+  "homepage": "https://www.scalar-css.com",
+  "bugs": "https://github.com/scalar-css/scalar-css/issues",
+  "author": {
+    "name": "Kether Saturnius",
+    "email": "iamkether@gmail.com",
+    "url": "https://www.k3th3r.com"
+  },
+  "keywords": [
+    "css",
+    "scalar css",
+    "scalar unit",
+    "modular scale",
+    "typography",
+    "fluid web design",
+    "postcss",
+    "postcss-plugin",
+    "css utilities"
+  ],
+  "engines": {
+    "node": ">=v14.16",
+    "npm": ">=7.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scalar-css/scalar-css",
+    "directory": "packages/js-scalar-unit"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
