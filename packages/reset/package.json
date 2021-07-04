@@ -1,9 +1,9 @@
 {
   "name": "@scalar-css/reset",
   "version": "0.0.0",
-  "description": "A small javascript utility for dynamically calculating the CSS scalar property value based on the current window size",
+  "description": "Scalar CSS base styles reset plugin",
   "license": "MIT",
-  "main": "src/index.css",
+  "main": "src/index.js",
   "scripts": {},
   "homepage": "https://www.scalar-css.com",
   "bugs": "https://github.com/scalar-css/scalar-css/issues",
