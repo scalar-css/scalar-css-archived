@@ -4,13 +4,24 @@
   "description": "Scalar CSS utilities for modifying a project's language direction and writing modes",
   "license": "MIT",
   "main": "src/index.js",
-  "scripts": {},
   "homepage": "https://www.scalar-css.com",
   "bugs": "https://github.com/scalar-css/scalar-css/issues",
   "author": {
     "name": "Kether Saturnius",
     "email": "iamkether@gmail.com",
     "url": "https://www.k3th3r.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scalar-css/scalar-css",
+    "directory": "packages/sitemode"
+  },
+  "engines": {
+    "node": ">=v14.16",
+    "npm": ">=7.7"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "keywords": [
     "css",
@@ -22,17 +33,5 @@
     "postcss",
     "postcss-plugin",
     "css utilities"
-  ],
-  "engines": {
-    "node": ">=v14.16",
-    "npm": ">=7.7"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scalar-css/scalar-css",
-    "directory": "packages/sitemode"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
+  ]
 }

@@ -1,8 +1,6 @@
 ---
-to: "packages/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>/src/index.js"
+to: "packages/<%= h.changeCase.paramCase(name) %>/src/index.js"
 ---
-import postcss from 'postcss';
-
-export default function <%= h.changeCase.camelCase(name) %>(ctx, options, source) {
+module.exports = function <%= h.changeCase.camelCase(name) %>({ addUtilities, addComponents, e, prefix, config }) {
 
 }
