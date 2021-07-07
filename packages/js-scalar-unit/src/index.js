@@ -7,29 +7,27 @@ export const jsScalarUnit = {
     const root = getComputedStyle(document.documentElement)
 
     function scalarCalculator() {
-      const start = root.getPropertyValue('--screenStartSize').trim()
-      const end = root.getPropertyValue('--screenEndSize').trim()
+      const start = root.getPropertyValue('--screen-start-size').trim()
+      const end = root.getPropertyValue('--screen-end-size').trim()
 
       if (window.innerWidth < end) {
         const min = root
-          .getPropertyValue('--screenMinFontSize')
+          .getPropertyValue('--screen-min-font-size')
           .trim()
           .replace('%', '')
         document.documentElement.style.setProperty(
-          '--screenScalarFontSize',
+          '--screen-scalar-font-size',
           `${min / (start / window.innerWidth)}%`,
         )
       }
 
-      console.log('INIT JS SCALAR')
-
       document.documentElement.style.setProperty(
-        '--scrollbarWidth',
+        '--scrollbar-width',
         `${getScrollbarWidth()}px`,
       )
 
       document.documentElement.style.setProperty(
-        '--windowWidth',
+        '--window-width',
         `${window.innerWidth - getScrollbarWidth()}px`,
       )
     }
