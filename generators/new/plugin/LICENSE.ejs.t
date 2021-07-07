@@ -1,5 +1,5 @@
 ---
-to: "packages/scalar-css-plugin-<%= h.changeCase.paramCase(name) %>/LICENSE"
+to: "packages/<%= h.changeCase.paramCase(name) %>/LICENSE"
 ---
 MIT License
 

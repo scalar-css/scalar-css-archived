@@ -36,5 +36,5 @@ to: "packages/<%= h.changeCase.paramCase(name) %>/package.json"
     "postcss",
     "postcss-plugin",
     "css utilities"
-  ],
+  ]
 }
