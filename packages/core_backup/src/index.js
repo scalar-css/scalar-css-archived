@@ -7,6 +7,8 @@ const {
   setFontScale,
   calculateRootFontSize,
 } = require('./setup')
+const { reset } = require('./plugins/reset')
+const sitemode = require('./plugins/sitemode')
 
 /**
  * Finalize the screen properties by duplicating/merging a few values
@@ -17,7 +19,32 @@ const {
  * @param {Object} config
  * @returns {Object}
  */
-module.exports = function screens({ addComponents, theme }) {
+module.exports = function core({
+  addBase,
+  addComponents,
+  addUtilities,
+  theme,
+  postcss,
+}) {
+  // reset(addBase, postcss)
+  addUtilities(sitemode)
+  // addUtilities({
+  //   '.sitemode-ltr': {
+  //     writingMode: 'horizontal-tb',
+  //     direction: 'ltr',
+  //   },
+  //   '.sitemode-rtl': {
+  //     writingMode: 'horizontal-tb',
+  //     direction: 'rtl',
+  //   },
+  //   '.sitemode-vlr': {
+  //     writingMode: 'vertical-lr',
+  //   },
+  //   '.sitemode-vrl': {
+  //     writingMode: 'vertical-rl',
+  //   },
+  // })
+
   const screens = theme('screens', {})
   const screenList = Object.entries(screens)
   const screenStyles = screenList.map(([key, screen], index) => {
