@@ -2,14 +2,14 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
 import setup from './lib/setup'
-import reset from './lib/plugins/reset'
+import scalar from './lib/scalar'
 
 module.exports = (config = {}) => {
   const ctx = setup(config)
 
   return {
     postcssPlugin: 'scalarcss',
-    plugins: [reset(ctx)],
+    plugins: [scalar(ctx)],
   }
 }
 
