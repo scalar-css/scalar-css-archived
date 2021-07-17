@@ -29,8 +29,8 @@ export function setRootCSSNode(screenKey, screen, postcss) {
  */
 export function replaceFontStackRefs(config) {
   Object.entries(config.theme.fonts).forEach(([id, settings]) => {
-    if (settings.fontFamily in fontStacks) {
-      const stack = fontStacks[settings.fontFamily]
+    if (settings.family in fontStacks) {
+      const stack = fontStacks[settings.family]
       config.theme.fonts[id] = {
         ...settings,
         ...stack,

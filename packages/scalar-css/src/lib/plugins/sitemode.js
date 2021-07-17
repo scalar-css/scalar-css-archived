@@ -11,10 +11,10 @@ export function createBaseStyleRule(sitemode, bodyRoot) {
 }
 
 export default function sitemode(config) {
-  const root = config.theme.screens.start.bodyRoot
+  const { bodyRoot } = config.theme.screens.start
   if (!config.theme.sitemode || config.theme.sitemode === 'ltr') {
-    createBaseStyleRule('ltr', root)
+    createBaseStyleRule('ltr', bodyRoot)
   } else {
-    createBaseStyleRule(config.theme.sitemode, root)
+    createBaseStyleRule(config.theme.sitemode, bodyRoot)
   }
 }
