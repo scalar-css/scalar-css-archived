@@ -14,7 +14,7 @@
     "commit": "git-cz",
     "setup:lerna": "lerna bootstrap --use-workspaces",
     "lint:styles": "stylelint **/*.{pcss,vue} --fix",
-    "dev": "yarn test:unit --watch",
+    "dev": "yarn workspace scalarcss dev",
     "test": "yarn test:unit",
     "test:unit": "jest",
     "release": "lerna version",

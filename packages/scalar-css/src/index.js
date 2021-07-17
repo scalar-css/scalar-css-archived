@@ -9,6 +9,7 @@ const scalarComment = `! ScalarCSS v${pkg.version} | MIT License | https://scala
 const resetPath = path.resolve(__dirname, './lib/defaults/reset.css')
 const resetFile = fs.readFileSync(resetPath, 'utf8')
 const plugins = loadPlugins()
+
 function scalarPluginCreator(opts = {}) {
   return {
     postcssPlugin: 'scalarcss',
