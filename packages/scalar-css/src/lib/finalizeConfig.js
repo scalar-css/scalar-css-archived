@@ -1,10 +1,8 @@
-import postcss from 'postcss'
-
 import defaultFontScales from './defaults/fontScales'
 import fontStacks from './defaults/fontStacks'
 
 /**
- * Generate a new root css node to attach to our context object. This node
+ * Generate a new root css node to attach to our config object. This node
  * is used to insert our generated utility classes and css variables directly
  * from our plugins so that all of the final CSS is output in a single
  * bundle that is organized by screen
@@ -12,21 +10,14 @@ import fontStacks from './defaults/fontStacks'
  * @param {String} screenKey
  * @param {Object} screen
  */
-export function setRootCSSNode(screenKey, screen) {
-  const root = postcss.root({ after: '\n' })
-  if (screenKey === 'start') {
-    return root.append(':root {}')
-  }
-
-  return screenKey !== 'end'
-    ? root.append(
-        postcss.parse(`@media (min-width ${screen.minPx}px) {\n:root {}\n}`),
-      )
-    : root.append(
-        postcss.parse(
-          `@media (min-width ${screen.minPx}px) and (max-width ${screen.maxPx}px) {\n:root {}\n}`,
-        ),
-      )
+export function setRootCSSNode(screenKey, screen, postcss) {
+  return postcss
+    .root()
+    .append(
+      screenKey === 'start'
+        ? postcss.parse(':root {}\n body {}')
+        : postcss.parse(`@media (min-width ${screen.minPx}px) {\n:root {}\n}`),
+    )
 }
 
 /**
@@ -111,15 +102,16 @@ export const createSetDefaultValueFunc =
   }
 
 /**
- * Finalize the screen properties by duplicating/merging a few values
- * to allow easier access to properties for calculation purposes in
- * other areas of the framework. If a screen does not have new/existing
- * values set, then we re-use the values from the previous screen.
+ * Take our config and build out our custom context that will
+ * be used for calculations throughout the rest of the framework.
+ * This mostly makes sure that we have the right properties for
+ * each screen, by copying the values from the previous screen
+ * if they don't exist on the current screen.
  *
  * @param {Object} config
  * @returns {Object}
  */
-export const finalize = (config) => {
+export const finalize = (config, postcss) => {
   const screens = Object.entries(config.theme.screens)
   const defaultPropKeys = [
     'baseFontSizePx',
@@ -139,25 +131,17 @@ export const finalize = (config) => {
 
     screen.maxPx = setBreakpointEndPx(screenKey, screen, nextScreen)
     screen.fontScale = setFontScale(screenKey, screen, prevScreen)
-    screen.rootNode = setRootCSSNode(screenKey, screen)
+    screen.rootNode = setRootCSSNode(screenKey, screen, postcss)
+    screen.htmlRoot =
+      screenKey === 'start' ? screen.rootNode : screen.rootNode.nodes[0]
+    screen.varsRoot = screen.htmlRoot.nodes[0]
+
+    if (screenKey === 'start') {
+      screen.bodyRoot = screen.htmlRoot.nodes[1]
+    }
   })
 
   replaceFontStackRefs(config)
 
   return config
-}
-
-/**
- * Take our config and build out our custom context that will
- * be used for calculations throughout the rest of the framework.
- * This mostly makes sure that we have the right properties for
- * each screen, by copying the values from the previous screen
- * if they don't exist on the current screen.
- *
- * @param {Object} config User's custom configuration
- *
- * @returns {Object} ctx Finalized context that is used throughout framework
- */
-export default (config) => {
-  return finalize(config)
 }

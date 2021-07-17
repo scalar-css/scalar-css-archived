@@ -1,16 +1,47 @@
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
+import fs from 'fs'
+import path from 'path'
 
-import setup from './lib/setup'
-import scalar from './lib/scalar'
+import pkg from '../package.json'
+import { finalize } from './lib/finalizeConfig'
+import { loadPlugins } from './lib/loadPlugins'
 
-module.exports = (config = {}) => {
-  const ctx = setup(config)
-
+const scalarComment = `! ScalarCSS v${pkg.version} | MIT License | https://scalar-css.com`
+const resetPath = path.resolve(__dirname, './lib/defaults/reset.css')
+const resetFile = fs.readFileSync(resetPath, 'utf8')
+const plugins = loadPlugins()
+function scalarPluginCreator(opts = {}) {
   return {
     postcssPlugin: 'scalarcss',
-    plugins: [scalar(ctx)],
+    prepare() {
+      return {
+        AtRule: {
+          scalar: (atRule, postcss) => {
+            const config = finalize(opts, postcss)
+
+            atRule.before(
+              postcss.comment({
+                text: scalarComment,
+              }),
+            )
+            atRule.before(
+              postcss.parse(resetFile, {
+                from: resetPath,
+              }),
+            )
+
+            plugins.forEach((plugin) => plugin(config, postcss))
+
+            Object.values(config.theme.screens).forEach((screen) => {
+              atRule.before(screen.rootNode.toString())
+            })
+
+            atRule.remove()
+          },
+        },
+      }
+    },
   }
 }
 
-module.exports.postcss = true
+scalarPluginCreator.postcss = true
+export default scalarPluginCreator

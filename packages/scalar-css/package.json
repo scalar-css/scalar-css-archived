@@ -4,9 +4,9 @@
   "main": "dist/index.js",
   "homepage": "https://scalar-css.com",
   "scripts": {
-    "dev": "nodemon --watch src --exec yarn compile & yarn copy:reset",
+    "dev": "rm -rf dist && yarn copy:reset && nodemon --watch src --exec yarn compile",
     "compile": "babel src -d dist",
-    "copy:reset": "cp src/lib/defaults/reset.css dist/lib/defaults/reset.css"
+    "copy:reset": "copyfiles -f src/lib/defaults/reset.css dist/lib/defaults"
   },
   "bugs": "https://github.com/scalar-css/scalar-css/issues",
   "author": {
@@ -23,6 +23,8 @@
     "@babel/cli": "^7.14.5",
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "copyfiles": "^2.4.1",
     "jest": "^26.6.3",
     "nodemon": "^2.0.12",
     "postcss": "^8.3.5"
@@ -47,5 +49,9 @@
     "postcss",
     "postcss-plugin",
     "css utilities"
-  ]
+  ],
+  "dependencies": {
+    "postcss-js": "^3.0.3",
+    "postcss-nested": "^5.0.5"
+  }
 }
