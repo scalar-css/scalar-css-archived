@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rm -rf dist && yarn copy:reset && nodemon --watch src --exec yarn compile",
     "compile": "babel src -d dist",
-    "copy:reset": "copyfiles -f src/lib/defaults/reset.css dist/lib/defaults"
+    "copy:reset": "copyfiles -f src/lib/defaults/*.css dist/lib/defaults"
   },
   "bugs": "https://github.com/scalar-css/scalar-css/issues",
   "author": {

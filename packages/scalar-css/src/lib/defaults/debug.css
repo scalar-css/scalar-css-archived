@@ -1,0 +1,54 @@
+:root {
+  --line-thickness: 1px;
+  /* Baseline */
+  --grid-color: rgba(255, 0, 0, 0.1);
+  --background-grid: linear-gradient(
+      to right,
+      transparent calc(100% - 1px),
+      var(--grid-color) 1px
+    ),
+    linear-gradient(
+      to bottom,
+      transparent calc(100% - 1px),
+      var(--grid-color) 1px
+    );
+  /* Vertical Rhythm */
+  --rhythm-color: rgba(255, 0, 0, 0.05);
+  --background-rhythm: linear-gradient(
+    to bottom,
+    transparent calc(100% - 1px),
+    var(--rhythm-color) 1px
+  );
+  --grid-rem: 1rem;
+  --rhythm-rem: 0.5rem;
+}
+
+html {
+  position: relative;
+}
+
+html::before,
+html::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 100vh;
+  margin-right: auto;
+  margin-left: auto;
+  pointer-events: none;
+  content: '';
+}
+
+html::before {
+  z-index: 500;
+  background-image: var(--background-rhythm);
+  background-size: var(--rhythm-rem) var(--rhythm-rem);
+}
+
+html::after {
+  z-index: 1000;
+  background-image: var(--background-grid);
+  background-size: var(--grid-rem) var(--grid-rem);
+}
