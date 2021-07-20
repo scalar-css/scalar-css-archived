@@ -19,6 +19,8 @@ function scalarPluginCreator(opts = {}) {
           scalar: (atRule, postcss) => {
             const config = finalize(opts, postcss)
 
+            plugins.forEach((plugin) => plugin(config, postcss))
+
             atRule.before(
               postcss.comment({
                 text: scalarComment,
@@ -29,8 +31,6 @@ function scalarPluginCreator(opts = {}) {
                 from: resetPath,
               }),
             )
-
-            plugins.forEach((plugin) => plugin(config, postcss))
 
             Object.values(config.theme.screens).forEach((screen) => {
               atRule.before(screen.rootNode.toString())

@@ -16,7 +16,9 @@ export function setRootCSSNode(screenKey, screen, postcss) {
     .append(
       screenKey === 'start'
         ? postcss.parse(':root {}\n body {}')
-        : postcss.parse(`@media (min-width ${screen.minPx}px) {\n:root {}\n}`),
+        : postcss.parse(
+            `@media (min-width: ${screen.breakpointStartPx}px) {\n:root {}\n}`,
+          ),
     )
 }
 
@@ -80,7 +82,9 @@ export function setFontScale(screenKey, screen, prevScreen) {
  * @returns {Integer} the end breakpoint value in pixels
  */
 export function setBreakpointEndPx(screenKey, screen, nextScreen) {
-  return screenKey === 'end' ? screen.minPx : nextScreen.minPx
+  return screenKey === 'end'
+    ? screen.breakpointStartPx
+    : nextScreen.breakpointStartPx
 }
 
 /**
@@ -129,16 +133,21 @@ export const finalize = (config, postcss) => {
       screen[propKey] = setDefaultValue(screenKey, propKey)
     })
 
-    screen.maxPx = setBreakpointEndPx(screenKey, screen, nextScreen)
+    screen.breakpointEndPx = setBreakpointEndPx(screenKey, screen, nextScreen)
     screen.fontScale = setFontScale(screenKey, screen, prevScreen)
     screen.rootNode = setRootCSSNode(screenKey, screen, postcss)
+    console.log('rootNode', screen.rootNode.toString())
+    console.log('---')
     screen.htmlRoot =
       screenKey === 'start' ? screen.rootNode : screen.rootNode.nodes[0]
+    console.log('htmlRoot', screen.htmlRoot.toString())
     screen.varsRoot = screen.htmlRoot.nodes[0]
 
     if (screenKey === 'start') {
       screen.bodyRoot = screen.htmlRoot.nodes[1]
+      console.log('bodyRoot', screen.bodyRoot.toString())
     }
+    console.log('##############')
   })
 
   replaceFontStackRefs(config)
