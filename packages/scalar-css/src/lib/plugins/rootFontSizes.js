@@ -41,11 +41,7 @@ export function calculateRootFontSize(
 export function generateRootFontSizeValues(screen, prev) {
   const { screenMinFontSizePercent, screenMaxFontSizePercent } =
     calculateRootFontSize(screen, prev)
-
-  // console.table({
-  //   screenMinFontSizePercent,
-  //   screenMaxFontSizePercent,
-  // })
+  const baseLineHeight = screen.baseLineHeightPx / screen.baseFontSizePx
 
   screen.varsRoot
     .append({
@@ -68,8 +64,7 @@ export function generateRootFontSizeValues(screen, prev) {
       prop: '--screenMaxFontSize',
       value: `${screenMaxFontSizePercent}%`,
     })
-  // .append({ prop: '--screenLineHeight', value: screen.baseLineHeight })
-  // .append({ prop: '--screenRhythm', value: `${screen.verticalRhythm}rem` })
+    .append({ prop: '--screenLineHeight', value: baseLineHeight })
 }
 
 export function generateDefaultRootCSS(screen) {

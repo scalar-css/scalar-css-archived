@@ -136,18 +136,13 @@ export const finalize = (config, postcss) => {
     screen.breakpointEndPx = setBreakpointEndPx(screenKey, screen, nextScreen)
     screen.fontScale = setFontScale(screenKey, screen, prevScreen)
     screen.rootNode = setRootCSSNode(screenKey, screen, postcss)
-    console.log('rootNode', screen.rootNode.toString())
-    console.log('---')
     screen.htmlRoot =
       screenKey === 'start' ? screen.rootNode : screen.rootNode.nodes[0]
-    console.log('htmlRoot', screen.htmlRoot.toString())
     screen.varsRoot = screen.htmlRoot.nodes[0]
 
     if (screenKey === 'start') {
       screen.bodyRoot = screen.htmlRoot.nodes[1]
-      console.log('bodyRoot', screen.bodyRoot.toString())
     }
-    console.log('##############')
   })
 
   replaceFontStackRefs(config)

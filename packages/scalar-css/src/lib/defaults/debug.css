@@ -1,26 +1,25 @@
 :root {
-  --line-thickness: 1px;
-  /* Baseline */
-  --grid-color: rgba(255, 0, 0, 0.1);
-  --background-grid: linear-gradient(
+  /* Virtual Grid */
+  --vgridThickness: 1px;
+  --vGridColor: rgba(255, 0, 0, 0.1);
+  --vGrid: linear-gradient(
       to right,
-      transparent calc(100% - 1px),
-      var(--grid-color) 1px
+      transparent calc(100% - var(--vgridThickness)),
+      var(--vGridColor) var(--vgridThickness)
     ),
     linear-gradient(
       to bottom,
-      transparent calc(100% - 1px),
-      var(--grid-color) 1px
+      transparent calc(100% - var(--vgridThickness)),
+      var(--vGridColor) var(--vgridThickness)
     );
   /* Vertical Rhythm */
-  --rhythm-color: rgba(255, 0, 0, 0.05);
-  --background-rhythm: linear-gradient(
+  --vRhythmThickness: 1px;
+  /* --vRhythmColor: rgba(255, 0, 0, 0.05);
+  --vRhythm: linear-gradient(
     to bottom,
-    transparent calc(100% - 1px),
-    var(--rhythm-color) 1px
-  );
-  --grid-rem: 1rem;
-  --rhythm-rem: 0.5rem;
+    transparent calc(100% - var(--vRhythmThickness)),
+    var(--vRhythmColor) var(--vRhythmThickness)
+  ); */
 }
 
 html {
@@ -41,14 +40,14 @@ html::after {
   content: '';
 }
 
-html::before {
+/* html::before {
   z-index: 500;
-  background-image: var(--background-rhythm);
-  background-size: var(--rhythm-rem) var(--rhythm-rem);
-}
+  background-image: var(--vRhythm);
+  background-size: var(--vRhythmRem) var(--vRhythmRem);
+} */
 
 html::after {
   z-index: 1000;
-  background-image: var(--background-grid);
-  background-size: var(--grid-rem) var(--grid-rem);
+  background-image: var(--vGrid);
+  background-size: var(--vGridRem) var(--vGridRem);
 }
