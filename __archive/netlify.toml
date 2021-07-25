@@ -1,4 +1,0 @@
-[build]
-  base = "docs"
-  publish = "dist"
-  command = "yarn workspace @scalar-css/docs-website generate"
