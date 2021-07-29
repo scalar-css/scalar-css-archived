@@ -11,47 +11,26 @@ import { pxToRem } from '../utils/conversions'
  * @param {Array} units
  * @param {Function} postcss
  */
-export function generateDefaultSizeUnits(key, screen, units, postcss) {
+export function generateClassesForScreen(key, screen, postcss) {
   const screenKey = key === 'start' ? '' : `${key}\\:`
 
-  const rules = units.reduce((acc, unit) => {
-    const unitRem = pxToRem(unit, screen.baseFontSizePx)
+  const iStack = postcss
+    .rule({ selector: `.${screenKey}i-stack` })
+    .append({ prop: 'display', value: `flex` })
+    .append({ prop: 'flex-direction', value: 'row' })
 
-    const iSize = postcss
-      .rule({ selector: `.${screenKey}i-size-${unit}` })
-      .append({ prop: '--iSize', value: `${unitRem}rem` })
-    acc.push(iSize)
+  const bStack = postcss
+    .rule({ selector: `.${screenKey}b-stack` })
+    .append({ prop: 'display', value: `flex` })
+    .append({ prop: 'flex-direction', value: 'column' })
 
-    const bSize = postcss
-      .rule({ selector: `.${screenKey}b-size-${unit}` })
-      .append({ prop: '--bSize', value: `${unitRem}rem` })
-    acc.push(bSize)
-
-    return acc
-  }, [])
-
-  screen.htmlRoot.append(...rules)
+  screen.htmlRoot.append(iStack, bStack)
 }
 
-export function generateDefaultRootCSS(screen, postcss) {
-  const iSize = postcss
-    .rule({ selector: `[class*='i-size']` })
-    .append({ prop: 'inline-size', value: `var(--iSize, 1rem)` })
-  const bSize = postcss
-    .rule({ selector: `[class*='b-size']` })
-    .append({ prop: 'block-size', value: `var(--bSize, 1rem)` })
-  screen.htmlRoot.append(iSize, bSize)
-}
-
-export default function logicalDimensions(config, postcss) {
-  const { units } = config.theme
+export default function stacks(config, postcss) {
   const screens = Object.entries(config.theme.screens)
 
-  screens.forEach(([key, screen], index) => {
-    if (key === 'start') {
-      generateDefaultRootCSS(screen, postcss)
-    }
-
-    generateDefaultSizeUnits(key, screen, units, postcss)
+  screens.forEach(([key, screen]) => {
+    generateClassesForScreen(key, screen, postcss)
   })
 }
