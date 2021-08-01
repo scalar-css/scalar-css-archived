@@ -67,17 +67,32 @@ export function generateRootFontSizeValues(screen, prev) {
     .append({ prop: '--screenLineHeight', value: baseLineHeight })
 }
 
-export function generateDefaultRootCSS(screen) {
-  screen.varsRoot
-    .append({
-      prop: 'line-height',
-      value: 'var(--screenLineHeight)',
-    })
-    .append({
-      prop: 'font-size',
-      value:
-        'clamp(var(--screenMinFontSize), var(--screenScalarFontSize, var(--screenMinFontSize)), var(--screenMaxFontSize))',
-    })
+export function generateDefaultRootCSS(applyGlobalScalar, screen, postcss) {
+  if (applyGlobalScalar) {
+    screen.bodyRoot
+      .append({
+        prop: 'line-height',
+        value: 'var(--screenLineHeight)',
+      })
+      .append({
+        prop: 'font-size',
+        value:
+          'clamp(var(--screenMinFontSize), var(--screenScalarFontSize, var(--screenMinFontSize)), var(--screenMaxFontSize))',
+      })
+  } else {
+    const scalarClass = postcss
+      .rule({ selector: '.scalar' })
+      .append({
+        prop: 'line-height',
+        value: 'var(--screenLineHeight)',
+      })
+      .append({
+        prop: 'font-size',
+        value:
+          'clamp(var(--screenMinFontSize), var(--screenScalarFontSize, var(--screenMinFontSize)), var(--screenMaxFontSize))',
+      })
+    screen.htmlRoot.append(scalarClass)
+  }
 }
 
 export default function rootFontSizes(config, postcss) {
@@ -86,7 +101,7 @@ export default function rootFontSizes(config, postcss) {
 
   screens.forEach(([key, screen], index) => {
     if (key === 'start') {
-      generateDefaultRootCSS(screen)
+      generateDefaultRootCSS(config.options.applyGlobalScalar, screen, postcss)
     }
 
     generateRootFontSizeValues(screen, prev)

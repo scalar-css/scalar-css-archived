@@ -15,16 +15,14 @@ export function generateDefaultSizeUnits(key, screen, units, postcss) {
   const screenKey = key === 'start' ? '' : `${key}\\:`
 
   const rules = units.reduce((acc, unit) => {
-    const unitRem = pxToRem(unit, screen.baseFontSizePx)
-
     const iSize = postcss
       .rule({ selector: `.${screenKey}i-size-${unit}` })
-      .append({ prop: '--iSize', value: `${unitRem}rem` })
+      .append({ prop: '--iSize', value: `var(--unit-${unit})` })
     acc.push(iSize)
 
     const bSize = postcss
       .rule({ selector: `.${screenKey}b-size-${unit}` })
-      .append({ prop: '--bSize', value: `${unitRem}rem` })
+      .append({ prop: '--bSize', value: `var(--unit-${unit})` })
     acc.push(bSize)
 
     return acc
@@ -36,10 +34,10 @@ export function generateDefaultSizeUnits(key, screen, units, postcss) {
 export function generateDefaultRootCSS(screen, postcss) {
   const iSize = postcss
     .rule({ selector: `[class*='i-size']` })
-    .append({ prop: 'inline-size', value: `var(--iSize, 1rem)` })
+    .append({ prop: 'inline-size', value: `calc(1rem * var(--iSize, 1))` })
   const bSize = postcss
     .rule({ selector: `[class*='b-size']` })
-    .append({ prop: 'block-size', value: `var(--bSize, 1rem)` })
+    .append({ prop: 'block-size', value: `calc(1rem * var(--bSize, 1))` })
   screen.htmlRoot.append(iSize, bSize)
 }
 

@@ -15,11 +15,9 @@ export function generateDefaultGapUnits(key, screen, units, postcss) {
   const screenKey = key === 'start' ? '' : `${key}\\:`
 
   const rules = units.reduce((acc, unit) => {
-    const unitRem = pxToRem(unit, screen.baseFontSizePx)
-
     const gap = postcss
       .rule({ selector: `.${screenKey}gap-${unit}` })
-      .append({ prop: '--gap', value: `${unitRem}rem` })
+      .append({ prop: '--gap', value: `var(--unit-${unit})` })
     acc.push(gap)
 
     return acc
@@ -31,7 +29,7 @@ export function generateDefaultGapUnits(key, screen, units, postcss) {
 export function generateDefaultRootCSS(screen, postcss) {
   const iGap = postcss
     .rule({ selector: `[class*='gap']` })
-    .append({ prop: 'gap', value: `var(--gap, 0)` })
+    .append({ prop: 'gap', value: `calc(1rem * var(--gap, 0))` })
   screen.htmlRoot.append(iGap)
 }
 
