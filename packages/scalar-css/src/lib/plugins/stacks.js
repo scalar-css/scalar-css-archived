@@ -1,3 +1,19 @@
+const alignItems = [
+  ['start', 'flex-start'],
+  ['end', 'flex-end'],
+  ['center', 'center'],
+  ['baseline', 'baseline'],
+  ['stretch', 'stretch'],
+]
+const justifyContent = [
+  ['start', 'flex-start'],
+  ['end', 'flex-end'],
+  ['center', 'center'],
+  ['between', 'space-between'],
+  ['around', 'space-around'],
+  ['evenly', 'space-evenly'],
+]
+
 /**
  * Generate Default Size Units
  *
@@ -10,20 +26,43 @@
  * @param {Function} postcss
  */
 export function generateClassesForScreen(key, screen, postcss) {
+  const rules = []
   const screenKey = key === 'start' ? '' : `${key}\\:`
 
-  const iStack = postcss
-    .rule({ selector: `.${screenKey}i-stack` })
-    .append({ prop: 'display', value: `flex` })
-    .append({ prop: 'flex-direction', value: 'row' })
-    .append({ prop: 'align-items', value: 'center' })
+  rules.push(
+    postcss
+      .rule({ selector: `.${screenKey}i-stack` })
+      .append({ prop: 'display', value: `flex` })
+      .append({ prop: 'flex-direction', value: 'row' }),
+  )
 
-  const bStack = postcss
-    .rule({ selector: `.${screenKey}b-stack` })
-    .append({ prop: 'display', value: `flex` })
-    .append({ prop: 'flex-direction', value: 'column' })
+  rules.push(
+    postcss
+      .rule({ selector: `.${screenKey}b-stack` })
+      .append({ prop: 'display', value: `flex` })
+      .append({ prop: 'flex-direction', value: 'column' }),
+  )
 
-  screen.htmlRoot.append(iStack, bStack)
+  justifyContent.forEach(([justifyKey, justifyValue]) => {
+    alignItems.forEach(([alignKey, alignValue]) => {
+      let rule = null
+
+      if (justifyKey === alignKey) {
+        rule = postcss.rule({ selector: `.${screenKey}${justifyKey}` })
+      } else {
+        rule = postcss.rule({
+          selector: `.${screenKey}${justifyKey}-${alignKey}`,
+        })
+      }
+      rules.push(
+        rule
+          .append({ prop: 'justify-content', value: justifyValue })
+          .append({ prop: 'align-items', value: alignValue }),
+      )
+    })
+  })
+
+  screen.htmlRoot.append(...rules)
 }
 
 export default function stacks(config, postcss) {
