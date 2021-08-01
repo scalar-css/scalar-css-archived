@@ -33,33 +33,44 @@ const mappings = {
  * @param {Array} units
  * @param {Function} postcss
  */
-export function generateDefaultGapUnits(key, screen, units, postcss) {
+export function generateMargins(key, screen, units, postcss) {
   const screenKey = key === 'start' ? '' : `${key}\\:`
 
   const rules = units.reduce((acc, unit) => {
     Object.entries(mappings).forEach(([key, value]) => {
-      acc.push(
-        postcss
-          .rule({
-            selector: `.${screenKey}${key}-${unit}`,
-          })
-          .append({
-            prop: '--bs-margin',
-            value: value[0] ? `var(--unit-${unit})` : 0,
-          })
-          .append({
-            prop: '--be-margin',
-            value: value[1] ? `var(--unit-${unit})` : 0,
-          })
-          .append({
-            prop: '--is-margin',
-            value: value[2] ? `var(--unit-${unit})` : 0,
-          })
-          .append({
-            prop: '--ie-margin',
-            value: value[3] ? `var(--unit-${unit})` : 0,
-          }),
-      )
+      const rule = postcss.rule({
+        selector: `.${screenKey}${key}-${unit}`,
+      })
+
+      if (value[0]) {
+        rule.append({
+          prop: '--bs-margin',
+          value: `var(--unit-${unit})`,
+        })
+      }
+
+      if (value[1]) {
+        rule.append({
+          prop: '--be-margin',
+          value: `var(--unit-${unit})`,
+        })
+      }
+
+      if (value[2]) {
+        rule.append({
+          prop: '--is-margin',
+          value: `var(--unit-${unit})`,
+        })
+      }
+
+      if (value[3]) {
+        rule.append({
+          prop: '--ie-margin',
+          value: `var(--unit-${unit})`,
+        })
+      }
+
+      acc.push(rule)
     })
 
     return acc
@@ -103,6 +114,6 @@ export default function padding(config, postcss) {
       generateDefaultRootCSS(screen, units, postcss)
     }
 
-    generateDefaultGapUnits(key, screen, units, postcss)
+    generateMargins(key, screen, units, postcss)
   })
 }

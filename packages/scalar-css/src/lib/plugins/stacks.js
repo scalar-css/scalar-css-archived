@@ -1,5 +1,3 @@
-import { pxToRem } from '../utils/conversions'
-
 /**
  * Generate Default Size Units
  *
@@ -18,6 +16,7 @@ export function generateClassesForScreen(key, screen, postcss) {
     .rule({ selector: `.${screenKey}i-stack` })
     .append({ prop: 'display', value: `flex` })
     .append({ prop: 'flex-direction', value: 'row' })
+    .append({ prop: 'align-items', value: 'center' })
 
   const bStack = postcss
     .rule({ selector: `.${screenKey}b-stack` })
