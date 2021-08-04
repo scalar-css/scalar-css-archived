@@ -38,10 +38,24 @@ export function calculateRootFontSize(
       }
 }
 
-export function generateRootFontSizeValues(screen, prev) {
+export function generateRootFontSizeValues(key, screen, prev, postcss) {
   const { screenMinFontSizePercent, screenMaxFontSizePercent } =
     calculateRootFontSize(screen, prev)
   const baseLineHeight = screen.baseLineHeightPx / screen.baseFontSizePx
+
+  if (key === 'start') {
+    const htmlRootRule = postcss
+      .rule({ selector: 'html' })
+      .append({
+        prop: 'line-height',
+        value: 'var(--screenLineHeight, 1.5)',
+      })
+      .append({
+        prop: 'font-size',
+        value: `${screenMinFontSizePercent}%`,
+      })
+    screen.htmlRoot.append(htmlRootRule)
+  }
 
   screen.varsRoot
     .append({
@@ -104,7 +118,7 @@ export default function rootFontSizes(config, postcss) {
       generateDefaultRootCSS(config.options.applyGlobalScalar, screen, postcss)
     }
 
-    generateRootFontSizeValues(screen, prev)
+    generateRootFontSizeValues(key, screen, prev, postcss)
 
     // set prev on screen before 'end'
     if (index === screens.length - 2) {

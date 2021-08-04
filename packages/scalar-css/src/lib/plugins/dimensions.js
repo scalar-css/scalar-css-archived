@@ -1,5 +1,3 @@
-import { pxToRem } from '../utils/conversions'
-
 /**
  * Generate Default Size Units
  *
