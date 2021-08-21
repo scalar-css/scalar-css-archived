@@ -4,8 +4,9 @@
   "main": "dist/index.js",
   "homepage": "https://scalar-css.com",
   "scripts": {
-    "dev": "rm -rf dist && yarn copy:reset && nodemon --watch src --exec yarn compile",
-    "compile": "babel src -d dist",
+    "dev": "nodemon --watch src --exec yarn compile",
+    "compile": "rm -rf dist && yarn copy:reset && yarn build",
+    "build": "babel src -d dist",
     "copy:reset": "copyfiles -f src/lib/defaults/*.css dist/lib/defaults"
   },
   "bugs": "https://github.com/scalar-css/scalar-css/issues",

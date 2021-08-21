@@ -52,6 +52,7 @@ export function createScreenSettings(config, varsRoot) {
     const { baseFontSizePx, virtualGridPx, verticalRhythmPx } = screen
     const virtualGridRem = pxToRem(virtualGridPx, baseFontSizePx)
     // const verticalRhythmRem = pxToRem(verticalRhythmPx, baseFontSizePx)
+
     varsRoot.append({
       prop: '--vGridRem',
       value: `${virtualGridRem}rem`,
@@ -64,7 +65,7 @@ export function createScreenSettings(config, varsRoot) {
 }
 
 export default function debug(config, postcss) {
-  if (config.options.debug.enabled) {
+  if (config.options.debug.enabled !== false) {
     const { htmlRoot, varsRoot } = config.theme.screens.start
     const debugSource = postcss.parse(debugFile, {
       from: debugPath,

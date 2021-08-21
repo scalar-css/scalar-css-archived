@@ -1,5 +1,5 @@
-import defaultFontScales from './defaults/fontScales'
-import fontStacks from './defaults/fontStacks'
+import { defaultTypeScales } from './defaults/typeScales'
+import { defaultFontStacks } from './defaults/fontStacks'
 
 /**
  * Generate a new root css node to attach to our config object. This node
@@ -31,21 +31,20 @@ export function setRootCSSNode(screenKey, screen, postcss) {
  */
 export function replaceFontStackRefs(config) {
   Object.entries(config.theme.fonts).forEach(([id, settings]) => {
-    if (settings.family in fontStacks) {
-      const stack = fontStacks[settings.family]
+    if (settings.fontFamily in defaultFontStacks) {
       config.theme.fonts[id] = {
         ...settings,
-        ...stack,
+        ...defaultFontStacks[settings.fontFamily],
       }
     }
   })
 }
 
 /**
- * Set the font scale for the current screen
+ * Set the type scale for the current screen
  *
  * If the user hasn't specified their own modular scale value on the
- * `screen.fontScale` value, we create it based on a modular scale
+ * `screen.typeScale` value, we create it based on a modular scale
  * id they provided (or use the value from the previous screen)
  *
  * @param {String} screenKey
@@ -53,21 +52,21 @@ export function replaceFontStackRefs(config) {
  * @param {Object} prevScreen
  * @returns {Number}
  */
-export function setFontScale(screenKey, screen, prevScreen) {
-  if (screen.fontScale) {
-    return screen.fontScale
+export function setTypeScales(screenKey, screen, prevScreen) {
+  if (screen.typeScale) {
+    return screen.typeScale
   }
 
-  if (screen.fontScaleId && !(screen.fontScaleId in defaultFontScales)) {
+  if (screen.typeScaleId && !(screen.typeScaleId in defaultTypeScales)) {
     // @todo add reference URL to default modular scales
     throw new Error(
       `Invalid font scale settings for '${screenKey}' screen. You must either provide a 'modularScale' float value, or specify a 'modularScaleId' value that matches one of the default modular scales provided by Scalar CSS.`,
     )
   }
 
-  return screen.fontScaleId
-    ? defaultFontScales[screen.fontScaleId]
-    : prevScreen.fontScale
+  return screen.typeScaleId
+    ? defaultTypeScales[screen.typeScaleId]
+    : prevScreen.typeScale
 }
 
 /**
@@ -134,7 +133,7 @@ export const finalize = (config, postcss) => {
     })
 
     screen.breakpointEndPx = setBreakpointEndPx(screenKey, screen, nextScreen)
-    screen.fontScale = setFontScale(screenKey, screen, prevScreen)
+    screen.typeScale = setTypeScales(screenKey, screen, prevScreen)
     screen.rootNode = setRootCSSNode(screenKey, screen, postcss)
     screen.htmlRoot =
       screenKey === 'start' ? screen.rootNode : screen.rootNode.nodes[0]

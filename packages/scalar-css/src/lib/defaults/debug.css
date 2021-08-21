@@ -13,11 +13,11 @@
       var(--vGridColor) var(--vgridThickness)
     );
   /* Vertical Rhythm */
-  --vRhythmThickness: 1px;
-  /* --vRhythmColor: rgba(255, 0, 0, 0.05);
+  /* --vRhythmThickness: 1px;
+  --vRhythmColor: rgba(255, 0, 0, 0.05);
   --vRhythm: linear-gradient(
     to bottom,
-    transparent calc(100% - var(--vRhythmThickness)),
+    transparent var(--vRhythmThickness),
     var(--vRhythmColor) var(--vRhythmThickness)
   ); */
 }
@@ -26,7 +26,7 @@ html {
   position: relative;
 }
 
-html::before,
+/* html::before, */
 html::after {
   position: absolute;
   top: 0;
@@ -43,7 +43,7 @@ html::after {
 /* html::before {
   z-index: 500;
   background-image: var(--vRhythm);
-  background-size: var(--vRhythmRem) var(--vRhythmRem);
+  background-size: 100% var(--vRhythmRem);
 } */
 
 html::after {

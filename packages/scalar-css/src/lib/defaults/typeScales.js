@@ -1,5 +1,5 @@
 // props to https://www.modularscale.com
-export default {
+export const defaultTypeScales = {
   minorSecond: 1.067,
   majorSecond: 1.125,
   minorThird: 1.2,
@@ -16,5 +16,5 @@ export default {
   majorTenth: 2.5,
   majorEleventh: 2.667,
   majorTwelfth: 3,
-  doubleOctave: 4
+  doubleOctave: 4,
 }

@@ -5,11 +5,10 @@ export function getRule(key, postcss) {
     return postcss.rule({ selector: 'pre,code,kbd,samp' })
   } else if (key === 'HEADERS') {
     return postcss.rule({ selector: 'h1,h2,h3,h4,h5,h6' })
-  } else if (Array.isArray(elements)) {
-    const selector = elements.reduce((sel, el) => `${sel},${el}`)
-    return postcss.rule({ selector })
-  } else if (typeof key === 'string') {
-    return postcss.rule({ selector: elements })
+  } else if (key.includes('.')) {
+    return postcss.rule({ selector: key })
+  } else {
+    return postcss.rule({ selector: `.font-${key}` })
   }
 }
 

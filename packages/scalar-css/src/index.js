@@ -8,7 +8,7 @@ import { loadPlugins } from './lib/loadPlugins'
 const scalarComment = `! ScalarCSS v${pkg.version} | MIT License | https://scalar-css.com`
 const resetPath = path.resolve(__dirname, './lib/defaults/reset.css')
 const resetFile = fs.readFileSync(resetPath, 'utf8')
-const plugins = loadPlugins()
+const core = loadPlugins('./core')
 
 function scalarPluginCreator(opts = {}) {
   return {
@@ -19,7 +19,17 @@ function scalarPluginCreator(opts = {}) {
           scalar: (atRule, postcss) => {
             const config = finalize(opts, postcss)
 
-            plugins.forEach((plugin) => plugin(config, postcss))
+            core.forEach((corePlugin) => corePlugin(config, postcss))
+
+            if (config.options.layout) {
+              const layout = loadPlugins('./layout')
+              layout.forEach((layoutPlugin) => layoutPlugin(config, postcss))
+            }
+
+            if (config.options.paint) {
+              const paint = loadPlugins('./paint')
+              paint.forEach((paintPlugin) => paintPlugin(config, postcss))
+            }
 
             atRule.before(
               postcss.comment({
